@@ -31,19 +31,11 @@ struct CoreData {
     
     /// Returns the latest List, sorted by date
     static func getLastLlist() -> ShoppingList? {
-        let context = CoreDataStack.shared.managedObjectContext
-        var allLists: [ShoppingList] = []
+        var allLists: [ShoppingList] = getAlllLists()!
+        if(allLists.count == 0) { return nil}
         
-        do {
-            let result = try context.fetch(AppData.fetchRequest())
-            if(result.count == 0) { return nil}
-            if(result[0].lists != nil){
-                allLists = result[0].lists!.allObjects as! [ShoppingList]
-                allLists = allLists.sorted(by: {$0.date! < $1.date!})
-                return allLists[0]
-            } else { return nil}
-        } catch {}
-        return nil
+        allLists = allLists.sorted(by: {$0.date! < $1.date!})
+        return allLists[0]
     }
     
     /// Returns an array of all Lists
@@ -89,6 +81,13 @@ struct CoreData {
         let data = getCoreData()
         data?.removeFromLists(list)
         try! context.save()
+    }
+    
+    /// Get all items of a list
+    static func getListItems(_ list: ShoppingList) -> [Item]? {
+        if(list.items == nil){ return []}
+        if(list.items!.count == 0) { return []}
+        return (list.items!.allObjects as! [Item])
     }
     
 }

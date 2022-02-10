@@ -1,5 +1,5 @@
 //
-//  LlistView.swift
+//  ItemView.swift
 //  VGApp
 //
 //  Created by Kiara on 10.02.22.
@@ -7,14 +7,16 @@
 
 import UIKit
 
-class ListView: UIViewController, UITableViewDelegate, UITableViewDataSource  {
+class Itemview: UIViewController, UITableViewDelegate, UITableViewDataSource  {
     private let tableView : UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
-        table.register(ListCell.self, forCellReuseIdentifier: ListCell.identifier)
+        table.register(ItemsCell.self, forCellReuseIdentifier: ItemsCell.identifier)
         return table
     }()
-    var models = [Section]()
     
+    var models = [Section2]()
+    var list: ShoppingList?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.models = []
@@ -25,10 +27,6 @@ class ListView: UIViewController, UITableViewDelegate, UITableViewDataSource  {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.frame = view.bounds
-        self.navigationItem.title = "Einkaufsliste"
-        
-        self.navigationItem.rightBarButtonItem?.tintColor = .systemOrange
-        self.navigationItem.rightBarButtonItem =  UIBarButtonItem(title: "Neue Liste", style: .plain, target: self, action: #selector(createList))
         
         if #available(iOS 15.0, *) {
                   let appearence =  UITabBarAppearance()
@@ -38,19 +36,35 @@ class ListView: UIViewController, UITableViewDelegate, UITableViewDataSource  {
                   appearence2.configureWithDefaultBackground()
                   self.navigationController?.navigationBar.scrollEdgeAppearance = appearence2
         }
+        
+        self.navigationItem.rightBarButtonItem?.tintColor = .systemOrange
+        self.navigationItem.rightBarButtonItem =  UIBarButtonItem(title: "Neues Item", style: .plain, target: self, action: #selector(createItem))
+        
+        update()
     }
     
-    @objc func createList(_ sender:UIButton) {
-        Util.createNewList()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         update()
     }
     
     func update() {
+        self.list = CoreData.getLastLlist()
+        if(self.list != nil) {
+            self.navigationItem.title = "Übersicht"
+        } else {
+            self.navigationItem.title = "Keine Liste vorhanden"
+        }
         self.models = []
         configure();
         self.tableView.reloadData();
     }
     
+    @objc func createItem(_ sender:UIButton) {
+        Util.createItem(list!)
+        update()
+    }
+
     //MARK: Table Config
     func numberOfSections(in tableView: UITableView) -> Int {
         return models.count
@@ -69,8 +83,8 @@ class ListView: UIViewController, UITableViewDelegate, UITableViewDataSource  {
         let model = models[indexpath.section].options[indexpath.row]
         
         switch model.self{
-        case .listCell(let model):
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: ListCell.identifier, for: indexpath) as? ListCell else {
+        case .itemCell(let model):
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ItemsCell.identifier, for: indexpath) as? ItemsCell else {
                 return UITableViewCell()
             }
             cell.configure(with: model)
@@ -83,33 +97,31 @@ class ListView: UIViewController, UITableViewDelegate, UITableViewDataSource  {
         let type = models[indexPath.section].options[indexPath.row]
         
         switch type.self{
-        case .listCell(let model):
+        case .itemCell(let model):
             model.selectHandler()
         }
     }
     
     func configure(){
-        var listArray = CoreData.getAlllLists()!
+        if(self.list == nil) { return}
+        let itemArray = CoreData.getListItems(list!)!
+        if(itemArray.count == 0) { return}
         
-        var arr: [ListSectionOption] = []
-        if (listArray.count < 1) {return;}
+        var arr: [ItemSectionOption] = []
+        //listArray = listArray.sorted{$0.date! > $1.date!}
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "E dd.MM.yyyy, HH:mm"
-        listArray = listArray.sorted{$0.date! > $1.date!}
-        
-        for list in listArray {
-            arr.append(.listCell(model: ListOption(title: dateFormatter.string(from: list.date!), subtitle: String(list.items!.count), selectHandler: {
+        for item in itemArray {
+            arr.append(.itemCell(model: ItemOption(title: item.name!, subtitle: item.number!, selectHandler: {
                 print("hi")
             })))
         }
-        models.append(Section(title: "Listen", options: arr))
+        models.append(Section2(title: "Items", options: arr))
         
-        models.append(Section(title: "Bearbeiten", options: [.listCell(model: ListOption(title: "Alle Löschen", subtitle: "", selectHandler: {
-            Util.deleteAllLists()
+        models.append(Section2(title: "Bearbeiten", options: [.itemCell(model: ItemOption(title: "Alle Löschen", subtitle: "", selectHandler: {
+            Util.deleteAllItems(self.list!)
             self.update()
         }))]))
         
     }
-    
 }
+
