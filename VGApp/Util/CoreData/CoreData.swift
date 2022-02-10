@@ -48,8 +48,8 @@ struct CoreData {
     
     /// Returns an array of all Lists
     static func getAlllLists() -> [ShoppingList]? {
-        let data = getCoreData()?.lists
-        if(data != nil) { return []}
+        let data = getCoreData()!.lists
+        if(data == nil) { return []}
         return data!.allObjects as! [ShoppingList]?
     }
     
@@ -78,8 +78,8 @@ struct CoreData {
     /// create list
     static func addList(_ list: ShoppingList){
         let context = CoreDataStack.shared.managedObjectContext
-        let data = getCoreData()
-        data?.addToLists(list)
+        let data = getCoreData()!
+        data.addToLists(list)
         try! context.save()
     }
     
@@ -90,7 +90,5 @@ struct CoreData {
         data?.removeFromLists(list)
         try! context.save()
     }
-    
-    
     
 }
