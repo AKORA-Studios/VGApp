@@ -37,7 +37,6 @@ class Itemview: UIViewController, UITableViewDelegate, UITableViewDataSource  {
                   self.navigationController?.navigationBar.scrollEdgeAppearance = appearence2
         }
         
-        self.navigationItem.rightBarButtonItem?.tintColor = .systemOrange
         self.navigationItem.rightBarButtonItem =  UIBarButtonItem(title: "Neues Item", style: .plain, target: self, action: #selector(createItem))
         
         update()

@@ -27,7 +27,6 @@ class ListView: UIViewController, UITableViewDelegate, UITableViewDataSource  {
         tableView.frame = view.bounds
         self.navigationItem.title = "Einkaufsliste"
         
-        self.navigationItem.rightBarButtonItem?.tintColor = .systemOrange
         self.navigationItem.rightBarButtonItem =  UIBarButtonItem(title: "Neue Liste", style: .plain, target: self, action: #selector(createList))
         
         if #available(iOS 15.0, *) {
