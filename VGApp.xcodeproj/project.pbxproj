@@ -28,6 +28,7 @@
 		DDEBB40E27B5BB9F004D80BB /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDEBB40D27B5BB9F004D80BB /* Util.swift */; };
 		DDEBB41027B5C246004D80BB /* ItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDEBB40F27B5C246004D80BB /* ItemView.swift */; };
 		DDEBB41227B5C40B004D80BB /* ItemsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDEBB41127B5C40B004D80BB /* ItemsCell.swift */; };
+		DDEE287527B66AA600AC142F /* NewItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDEE287427B66AA600AC142F /* NewItemView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +56,7 @@
 		DDEBB40D27B5BB9F004D80BB /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		DDEBB40F27B5C246004D80BB /* ItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemView.swift; sourceTree = "<group>"; };
 		DDEBB41127B5C40B004D80BB /* ItemsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsCell.swift; sourceTree = "<group>"; };
+		DDEE287427B66AA600AC142F /* NewItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewItemView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +134,7 @@
 			children = (
 				DDEBB40B27B5B7D8004D80BB /* ListView.swift */,
 				DDEBB40F27B5C246004D80BB /* ItemView.swift */,
+				DDEE287427B66AA600AC142F /* NewItemView.swift */,
 			);
 			path = Tabs;
 			sourceTree = "<group>";
@@ -220,6 +223,7 @@
 				DDEBB40C27B5B7D8004D80BB /* ListView.swift in Sources */,
 				DD28465527B2AED8001C883F /* AppData+CoreDataClass.swift in Sources */,
 				DD28465D27B2AF19001C883F /* ShoppingList+CoreDataClass.swift in Sources */,
+				DDEE287527B66AA600AC142F /* NewItemView.swift in Sources */,
 				DDEBB40E27B5BB9F004D80BB /* Util.swift in Sources */,
 				DD28462B27B2AD6C001C883F /* CoreDataStack.swift in Sources */,
 				DD28465627B2AED8001C883F /* AppData+CoreDataProperties.swift in Sources */,

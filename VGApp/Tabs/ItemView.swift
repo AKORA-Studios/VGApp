@@ -60,8 +60,11 @@ class Itemview: UIViewController, UITableViewDelegate, UITableViewDataSource  {
     }
     
     @objc func createItem(_ sender:UIButton) {
-        Util.createItem(list!)
+   //     Util.createItem(list!)
         update()
+        let newView = self.storyboard?.instantiateViewController(withIdentifier: "NewItemView") as! NewItemView
+        let navController = UINavigationController(rootViewController: newView)
+                self.navigationController?.present(navController, animated: true, completion: nil)
     }
 
     //MARK: Table Config
@@ -114,7 +117,12 @@ class Itemview: UIViewController, UITableViewDelegate, UITableViewDataSource  {
                 print("hi")
             })))
         }
-        models.append(Section2(title: "Items", options: arr))
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "E dd.MM.yyyy, HH:mm"
+        let date = dateFormatter.string(from: list!.date!)
+        
+        models.append(Section2(title: date, options: arr))
         
         models.append(Section2(title: "Bearbeiten", options: [.itemCell(model: ItemOption(title: "Alle Löschen", subtitle: "", selectHandler: {
             Util.deleteAllItems(self.list!)
