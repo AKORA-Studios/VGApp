@@ -60,9 +60,13 @@ class Itemview: UIViewController, UITableViewDelegate, UITableViewDataSource  {
     }
     
     @objc func createItem(_ sender:UIButton) {
-   //     Util.createItem(list!)
+        if(list == nil) {
+            list = Util.createNewList()
+        }
         update()
         let newView = self.storyboard?.instantiateViewController(withIdentifier: "NewItemView") as! NewItemView
+        newView.list = list!
+        newView.callback = { self.update()}
         let navController = UINavigationController(rootViewController: newView)
                 self.navigationController?.present(navController, animated: true, completion: nil)
     }

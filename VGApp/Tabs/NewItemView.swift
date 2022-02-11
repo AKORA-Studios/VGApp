@@ -18,6 +18,9 @@ class NewItemView: UIViewController, UITextFieldDelegate {
     var numberFields: [UILabel] = []
     var noTextField = UITextField()
     var activeLabel: UITextField?
+    var list: ShoppingList!
+    var callback: (() -> Void)!
+
     
     override func viewDidLoad() {
         activeLabel = noTextField
@@ -40,6 +43,10 @@ class NewItemView: UIViewController, UITextFieldDelegate {
               self.view.addGestureRecognizer(tapGesture)
         enterNumberField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
     }
+    override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
+        super.dismiss(animated: true, completion: nil)
+        self.callback()
+    }
     
     @objc func dismissKeyboard (_ sender: UITapGestureRecognizer) {
         activeLabel!.resignFirstResponder()
@@ -52,6 +59,11 @@ class NewItemView: UIViewController, UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         activeLabel = textField
+    }
+    
+    @IBAction func doneButton(_ sender: Any) {
+        Util.createItem(list!, itemNameField.text!, enterNumberField.text!)
+        self.dismiss(animated: true, completion: nil)
     }
     
     // manage changed numbers

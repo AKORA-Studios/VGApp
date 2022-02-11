@@ -10,7 +10,7 @@ import Foundation
 
 struct Util {
     
-    static func createNewList(){
+    static func createNewList() -> ShoppingList{
         let context = CoreDataStack.shared.managedObjectContext
         let newList = ShoppingList(context: context)
         
@@ -19,6 +19,7 @@ struct Util {
     
         CoreData.addList(newList)
         try! context.save()
+        return newList
     }
     
     static func deleteAllLists(){
@@ -34,11 +35,19 @@ struct Util {
         try! context.save()
     }
     
-    static func createItem(_ list: ShoppingList){
+    static func createItem(_ list: ShoppingList, _ name: String, _ code: String){
+        var codeArr = code.map{ String($0)}
+
+        for _ in 1...4{
+            if(codeArr.count < 4){
+                codeArr.append("0")
+            }
+        }
+        
         let context = CoreDataStack.shared.managedObjectContext
         let newItem = Item(context: context)
-        newItem.name = "Test"
-        newItem.number = "1111"
+        newItem.name = name
+        newItem.number = codeArr.joined(separator: "")
         newItem.icon = "apple"
         list.addToItems(newItem)
         try! context.save()
