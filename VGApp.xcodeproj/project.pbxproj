@@ -29,6 +29,7 @@
 		DDEBB41027B5C246004D80BB /* ItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDEBB40F27B5C246004D80BB /* ItemView.swift */; };
 		DDEBB41227B5C40B004D80BB /* ItemsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDEBB41127B5C40B004D80BB /* ItemsCell.swift */; };
 		DDEE287527B66AA600AC142F /* NewItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDEE287427B66AA600AC142F /* NewItemView.swift */; };
+		DDEE287727B68C0700AC142F /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDEE287627B68C0600AC142F /* ScannerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +58,7 @@
 		DDEBB40F27B5C246004D80BB /* ItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemView.swift; sourceTree = "<group>"; };
 		DDEBB41127B5C40B004D80BB /* ItemsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsCell.swift; sourceTree = "<group>"; };
 		DDEE287427B66AA600AC142F /* NewItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewItemView.swift; sourceTree = "<group>"; };
+		DDEE287627B68C0600AC142F /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +137,7 @@
 				DDEBB40B27B5B7D8004D80BB /* ListView.swift */,
 				DDEBB40F27B5C246004D80BB /* ItemView.swift */,
 				DDEE287427B66AA600AC142F /* NewItemView.swift */,
+				DDEE287627B68C0600AC142F /* ScannerView.swift */,
 			);
 			path = Tabs;
 			sourceTree = "<group>";
@@ -229,6 +232,7 @@
 				DD28465627B2AED8001C883F /* AppData+CoreDataProperties.swift in Sources */,
 				DD28465727B2AED8001C883F /* Item+CoreDataClass.swift in Sources */,
 				DD28465827B2AED8001C883F /* Item+CoreDataProperties.swift in Sources */,
+				DDEE287727B68C0700AC142F /* ScannerView.swift in Sources */,
 				DDEBB41227B5C40B004D80BB /* ItemsCell.swift in Sources */,
 				DD28461427B2ACF0001C883F /* ViewController.swift in Sources */,
 				DD28465E27B2AF19001C883F /* ShoppingList+CoreDataProperties.swift in Sources */,
@@ -315,7 +319,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -370,7 +374,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -391,9 +395,11 @@
 				DEVELOPMENT_TEAM = 93TVBDWQK4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = VGApp/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Scan Barcodes";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -405,7 +411,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -420,9 +426,11 @@
 				DEVELOPMENT_TEAM = 93TVBDWQK4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = VGApp/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Scan Barcodes";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -434,7 +442,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

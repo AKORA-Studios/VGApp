@@ -14,7 +14,7 @@ struct Util {
         let context = CoreDataStack.shared.managedObjectContext
         let newList = ShoppingList(context: context)
         
-        newList.date = Date.now
+        newList.date = Date()
         newList.items = []
     
         CoreData.addList(newList)

@@ -32,7 +32,11 @@ struct CoreData {
     /// Returns the latest List, sorted by date
     static func getLastLlist() -> ShoppingList? {
         var allLists: [ShoppingList] = getAlllLists()!
-        if(allLists.count == 0) { return nil}
+        
+        if(allLists.count == 0) {
+            Util.createNewList()
+        allLists = getAlllLists()!
+           }
         
         allLists = allLists.sorted(by: {$0.date! < $1.date!})
         return allLists[0]

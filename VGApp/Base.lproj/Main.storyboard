@@ -78,10 +78,10 @@
             </objects>
             <point key="canvasLocation" x="822" y="-567"/>
         </scene>
-        <!--View Controller-->
+        <!--Scanner View-->
         <scene sceneID="TKE-BM-npr">
             <objects>
-                <viewController id="aP8-2V-fIP" sceneMemberID="viewController">
+                <viewController restorationIdentifier="ScannerView" storyboardIdentifier="ScannerView" id="aP8-2V-fIP" customClass="ScannerView" customModule="VGApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QCS-n2-atV">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

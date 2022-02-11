@@ -52,7 +52,7 @@ class ItemsCell: UITableViewCell {
     
     public func configure(with model: ItemOption){
         label.text =  model.title.count > 23 ? String(model.title.prefix(21)) + "..." : model.title
-        itemLabel.text = model.subtitle.count != 0 ? "Code: " + model.subtitle : ""
+        itemLabel.text = model.subtitle.count != 0 ? model.subtitle : ""
         
         self.selectionStyle = .none
         self.accessoryType = .none
