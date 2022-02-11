@@ -30,6 +30,7 @@
 		DDEBB41227B5C40B004D80BB /* ItemsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDEBB41127B5C40B004D80BB /* ItemsCell.swift */; };
 		DDEE287527B66AA600AC142F /* NewItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDEE287427B66AA600AC142F /* NewItemView.swift */; };
 		DDEE287727B68C0700AC142F /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDEE287627B68C0600AC142F /* ScannerView.swift */; };
+		DDEE287927B6B17600AC142F /* DeleteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDEE287827B6B17600AC142F /* DeleteCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +60,7 @@
 		DDEBB41127B5C40B004D80BB /* ItemsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsCell.swift; sourceTree = "<group>"; };
 		DDEE287427B66AA600AC142F /* NewItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewItemView.swift; sourceTree = "<group>"; };
 		DDEE287627B68C0600AC142F /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
+		DDEE287827B6B17600AC142F /* DeleteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +150,7 @@
 				DDEBB40627B5B756004D80BB /* TableCellStructs.swift */,
 				DDEBB40927B5B788004D80BB /* ShppinglistCell.swift */,
 				DDEBB41127B5C40B004D80BB /* ItemsCell.swift */,
+				DDEE287827B6B17600AC142F /* DeleteCell.swift */,
 			);
 			path = TableCells;
 			sourceTree = "<group>";
@@ -239,6 +242,7 @@
 				DD28461027B2ACF0001C883F /* AppDelegate.swift in Sources */,
 				DD28461227B2ACF0001C883F /* SceneDelegate.swift in Sources */,
 				DDEBB40A27B5B788004D80BB /* ShppinglistCell.swift in Sources */,
+				DDEE287927B6B17600AC142F /* DeleteCell.swift in Sources */,
 				DD28462D27B2AD7A001C883F /* CoreData.swift in Sources */,
 				DDEBB41027B5C246004D80BB /* ItemView.swift in Sources */,
 				DD28463027B2AD8A001C883F /* Model.xcdatamodeld in Sources */,

@@ -11,12 +11,13 @@ class Itemview: UIViewController, UITableViewDelegate, UITableViewDataSource  {
     private let tableView : UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
         table.register(ItemsCell.self, forCellReuseIdentifier: ItemsCell.identifier)
+        table.register(DeleteCell.self, forCellReuseIdentifier: DeleteCell.identifier)
         return table
     }()
     
     var models = [Section2]()
     var list: ShoppingList?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.models = []
@@ -29,12 +30,12 @@ class Itemview: UIViewController, UITableViewDelegate, UITableViewDataSource  {
         tableView.frame = view.bounds
         
         if #available(iOS 15.0, *) {
-                  let appearence =  UITabBarAppearance()
-                  appearence.configureWithDefaultBackground()
-                  self.tabBarController?.tabBar.scrollEdgeAppearance = appearence
-                  let appearence2 =  UINavigationBarAppearance()
-                  appearence2.configureWithDefaultBackground()
-                  self.navigationController?.navigationBar.scrollEdgeAppearance = appearence2
+            let appearence =  UITabBarAppearance()
+            appearence.configureWithDefaultBackground()
+            self.tabBarController?.tabBar.scrollEdgeAppearance = appearence
+            let appearence2 =  UINavigationBarAppearance()
+            appearence2.configureWithDefaultBackground()
+            self.navigationController?.navigationBar.scrollEdgeAppearance = appearence2
         }
         
         self.navigationItem.rightBarButtonItem =  UIBarButtonItem(title: "Neues Item", style: .plain, target: self, action: #selector(createItem))
@@ -68,9 +69,9 @@ class Itemview: UIViewController, UITableViewDelegate, UITableViewDataSource  {
         newView.list = list!
         newView.callback = { self.update()}
         let navController = UINavigationController(rootViewController: newView)
-                self.navigationController?.present(navController, animated: true, completion: nil)
+        self.navigationController?.present(navController, animated: true, completion: nil)
     }
-
+    
     //MARK: Table Config
     func numberOfSections(in tableView: UITableView) -> Int {
         return models.count
@@ -95,6 +96,12 @@ class Itemview: UIViewController, UITableViewDelegate, UITableViewDataSource  {
             }
             cell.configure(with: model)
             return cell
+        case .deleteCell(model: let model2):
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: DeleteCell.identifier, for: indexpath) as? DeleteCell else {
+                return UITableViewCell()
+            }
+            cell.configure(with: model2)
+            return cell
         }
     }
     
@@ -104,11 +111,11 @@ class Itemview: UIViewController, UITableViewDelegate, UITableViewDataSource  {
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let deleteAction = UITableViewRowAction(style: .destructive, title: "Löschen", handler: {action, indexPath in
-            self.models[indexPath.section].options.remove(at: indexPath.row)
-            self.tableView.deleteRows(at: [indexPath], with: .automatic)
-            
             let cell = tableView.cellForRow(at: indexPath) as! ItemsCell
             CoreDataStack.shared.managedObjectContext.delete( cell.itemBase!)
+            
+            self.models[indexPath.section].options.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
             self.update()
         })
         return [deleteAction]
@@ -121,6 +128,8 @@ class Itemview: UIViewController, UITableViewDelegate, UITableViewDataSource  {
         
         switch type.self{
         case .itemCell(let model):
+            model.selectHandler()
+        case .deleteCell(let model):
             model.selectHandler()
         }
     }
@@ -144,11 +153,11 @@ class Itemview: UIViewController, UITableViewDelegate, UITableViewDataSource  {
         let date = dateFormatter.string(from: list!.date!)
         
         models.append(Section2(title: date, options: arr))
-        
-      /*  models.append(Section2(title: "Bearbeiten", options: [.itemCell(model: ItemOption(title: "Alle Löschen", subtitle: "", id: "", selectHandler: {
+     
+        models.append(Section2(title: "Bearbeiten", options: [.deleteCell(model: DeleteOption(selectHandler: {
             Util.deleteAllItems(self.list!)
             self.update()
-        }))]))*/
+        }))]))
         
     }
 }

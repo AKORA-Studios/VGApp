@@ -16,6 +16,7 @@ struct Section {
 
 enum ListSectionOption{
     case listCell(model: ListOption)
+    case deleteCell(model: DeleteOption)
 }
 
 struct ListOption{
@@ -33,6 +34,7 @@ struct Section2 {
 
 enum ItemSectionOption{
     case itemCell(model: ItemOption)
+    case deleteCell(model: DeleteOption)
 }
 
 struct ItemOption{
@@ -42,3 +44,16 @@ struct ItemOption{
     let selectHandler: (() -> Void)
 }
 
+
+struct Section3 {
+    let title: String
+    var options: [DeleteSectionOption]
+}
+
+enum DeleteSectionOption{
+    case deleteCell(model: DeleteOption)
+}
+
+struct DeleteOption{
+    let selectHandler: (() -> Void)
+}

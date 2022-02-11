@@ -11,6 +11,7 @@ class ListView: UIViewController, UITableViewDelegate, UITableViewDataSource  {
     private let tableView : UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
         table.register(ListCell.self, forCellReuseIdentifier: ListCell.identifier)
+        table.register(DeleteCell.self, forCellReuseIdentifier: DeleteCell.identifier)
         return table
     }()
     var models = [Section]()
@@ -30,12 +31,12 @@ class ListView: UIViewController, UITableViewDelegate, UITableViewDataSource  {
         self.navigationItem.rightBarButtonItem =  UIBarButtonItem(title: "Neue Liste", style: .plain, target: self, action: #selector(createList))
         
         if #available(iOS 15.0, *) {
-                  let appearence =  UITabBarAppearance()
-                  appearence.configureWithDefaultBackground()
-                  self.tabBarController?.tabBar.scrollEdgeAppearance = appearence
-                  let appearence2 =  UINavigationBarAppearance()
-                  appearence2.configureWithDefaultBackground()
-                  self.navigationController?.navigationBar.scrollEdgeAppearance = appearence2
+            let appearence =  UITabBarAppearance()
+            appearence.configureWithDefaultBackground()
+            self.tabBarController?.tabBar.scrollEdgeAppearance = appearence
+            let appearence2 =  UINavigationBarAppearance()
+            appearence2.configureWithDefaultBackground()
+            self.navigationController?.navigationBar.scrollEdgeAppearance = appearence2
         }
     }
     
@@ -45,7 +46,7 @@ class ListView: UIViewController, UITableViewDelegate, UITableViewDataSource  {
     }
     
     @objc func createList(_ sender:UIButton) {
-       _ = Util.createNewList()
+        _ = Util.createNewList()
         update()
     }
     
@@ -79,6 +80,13 @@ class ListView: UIViewController, UITableViewDelegate, UITableViewDataSource  {
             }
             cell.configure(with: model)
             return cell
+        
+        case .deleteCell(let model):
+                 guard let cell = tableView.dequeueReusableCell(withIdentifier: DeleteCell.identifier, for: indexpath) as? DeleteCell else {
+                     return UITableViewCell()
+                 }
+                 cell.configure(with: model)
+                 return cell
         }
     }
     
@@ -89,6 +97,8 @@ class ListView: UIViewController, UITableViewDelegate, UITableViewDataSource  {
         switch type.self{
         case .listCell(let model):
             model.selectHandler()
+        case .deleteCell(let model):
+            model.selectHandler()
         }
     }
     
@@ -98,11 +108,11 @@ class ListView: UIViewController, UITableViewDelegate, UITableViewDataSource  {
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let deleteAction = UITableViewRowAction(style: .destructive, title: "Löschen", handler: {action, indexPath in
+            let cell = tableView.cellForRow(at: indexPath) as! ListCell
+            CoreDataStack.shared.managedObjectContext.delete(cell.listBase!)
+            
             self.models[indexPath.section].options.remove(at: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
-            
-            let cell = tableView.cellForRow(at: indexPath) as! ListCell
-            CoreDataStack.shared.managedObjectContext.delete( cell.listBase!)
             self.update()
         })
         return [deleteAction]
@@ -125,12 +135,11 @@ class ListView: UIViewController, UITableViewDelegate, UITableViewDataSource  {
         }
         models.append(Section(title: "Listen", options: arr))
         
-        /*
-        models.append(Section(title: "Bearbeiten", options: [.listCell(model: ListOption(title: "Alle Löschen", subtitle: "", selectHandler: {
+        
+        models.append(Section(title: "Bearbeiten", options: [.deleteCell(model: DeleteOption(selectHandler: {
             Util.deleteAllLists()
             self.update()
-        }))]))*/
-        
+        }))]))
     }
     
 }
