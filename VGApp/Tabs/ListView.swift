@@ -39,8 +39,13 @@ class ListView: UIViewController, UITableViewDelegate, UITableViewDataSource  {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        update()
+    }
+    
     @objc func createList(_ sender:UIButton) {
-        Util.createNewList()
+       _ = Util.createNewList()
         update()
     }
     
@@ -87,6 +92,22 @@ class ListView: UIViewController, UITableViewDelegate, UITableViewDataSource  {
         }
     }
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let deleteAction = UITableViewRowAction(style: .destructive, title: "Löschen", handler: {action, indexPath in
+            self.models[indexPath.section].options.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            
+            let cell = tableView.cellForRow(at: indexPath) as! ListCell
+            CoreDataStack.shared.managedObjectContext.delete( cell.listBase!)
+            self.update()
+        })
+        return [deleteAction]
+    }
+    
     func configure(){
         var listArray = CoreData.getAlllLists()!
         
@@ -98,16 +119,17 @@ class ListView: UIViewController, UITableViewDelegate, UITableViewDataSource  {
         listArray = listArray.sorted{$0.date! > $1.date!}
         
         for list in listArray {
-            arr.append(.listCell(model: ListOption(title: dateFormatter.string(from: list.date!), subtitle: String(list.items!.count), selectHandler: {
+            arr.append(.listCell(model: ListOption(title: dateFormatter.string(from: list.date!), subtitle: String(list.items!.count), list: list, selectHandler: {
                 print("hi")
             })))
         }
         models.append(Section(title: "Listen", options: arr))
         
+        /*
         models.append(Section(title: "Bearbeiten", options: [.listCell(model: ListOption(title: "Alle Löschen", subtitle: "", selectHandler: {
             Util.deleteAllLists()
             self.update()
-        }))]))
+        }))]))*/
         
     }
     

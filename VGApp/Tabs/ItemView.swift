@@ -98,6 +98,23 @@ class Itemview: UIViewController, UITableViewDelegate, UITableViewDataSource  {
         }
     }
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let deleteAction = UITableViewRowAction(style: .destructive, title: "Löschen", handler: {action, indexPath in
+            self.models[indexPath.section].options.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            
+            let cell = tableView.cellForRow(at: indexPath) as! ItemsCell
+            CoreDataStack.shared.managedObjectContext.delete( cell.itemBase!)
+            self.update()
+        })
+        return [deleteAction]
+    }
+    
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let type = models[indexPath.section].options[indexPath.row]
@@ -117,7 +134,7 @@ class Itemview: UIViewController, UITableViewDelegate, UITableViewDataSource  {
         //listArray = listArray.sorted{$0.date! > $1.date!}
         
         for item in itemArray {
-            arr.append(.itemCell(model: ItemOption(title: item.name!, subtitle: item.number!, selectHandler: {
+            arr.append(.itemCell(model: ItemOption(title: item.name!, subtitle: item.number!, item: item, selectHandler: {
                 print("hi")
             })))
         }
@@ -128,10 +145,10 @@ class Itemview: UIViewController, UITableViewDelegate, UITableViewDataSource  {
         
         models.append(Section2(title: date, options: arr))
         
-        models.append(Section2(title: "Bearbeiten", options: [.itemCell(model: ItemOption(title: "Alle Löschen", subtitle: "", selectHandler: {
+      /*  models.append(Section2(title: "Bearbeiten", options: [.itemCell(model: ItemOption(title: "Alle Löschen", subtitle: "", id: "", selectHandler: {
             Util.deleteAllItems(self.list!)
             self.update()
-        }))]))
+        }))]))*/
         
     }
 }

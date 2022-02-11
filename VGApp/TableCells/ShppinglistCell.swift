@@ -9,6 +9,7 @@ import UIKit
 
 class ListCell: UITableViewCell {
     static let identifier = "ListCell"
+    var listBase: ShoppingList?
     
     private let label: UILabel = {
         let label = UILabel()
@@ -56,5 +57,6 @@ class ListCell: UITableViewCell {
         
         self.selectionStyle = .none
         self.accessoryType = .none
+        self.listBase = model.list
     }
 }

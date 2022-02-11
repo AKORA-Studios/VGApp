@@ -34,7 +34,7 @@ struct CoreData {
         var allLists: [ShoppingList] = getAlllLists()!
         
         if(allLists.count == 0) {
-            Util.createNewList()
+        _ = Util.createNewList()
         allLists = getAlllLists()!
            }
         

@@ -7,10 +7,11 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 struct Section {
     let title: String
-    let options: [ListSectionOption]
+    var options: [ListSectionOption]
 }
 
 enum ListSectionOption{
@@ -20,13 +21,14 @@ enum ListSectionOption{
 struct ListOption{
     let title: String
     let subtitle: String
+    let list: ShoppingList
     let selectHandler: (() -> Void)
 }
 
 
 struct Section2 {
     let title: String
-    let options: [ItemSectionOption]
+    var options: [ItemSectionOption]
 }
 
 enum ItemSectionOption{
@@ -36,6 +38,7 @@ enum ItemSectionOption{
 struct ItemOption{
     let title: String
     let subtitle: String
+    let item: Item
     let selectHandler: (() -> Void)
 }
 
