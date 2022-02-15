@@ -38,7 +38,7 @@ struct CoreData {
         allLists = getAlllLists()!
            }
         
-        allLists = allLists.sorted(by: {$0.date! < $1.date!})
+        allLists = allLists.sorted(by: {$0.date! > $1.date!})
         return allLists[0]
     }
     
