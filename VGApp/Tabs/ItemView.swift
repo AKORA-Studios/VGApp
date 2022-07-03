@@ -155,9 +155,17 @@ class Itemview: UIViewController, UITableViewDelegate, UITableViewDataSource  {
         
         models.append(Section2(title: date, options: arr))
      
-        models.append(Section2(title: "Bearbeiten", options: [.deleteCell(model: DeleteOption(selectHandler: {
-            Util.deleteAllItems(self.list!)
-            self.update()
+        models.append(Section2(title: " ", options: [.deleteCell(model: DeleteOption(selectHandler: {
+            let deleteAlert = UIAlertController()
+            deleteAlert.message = "Möchtest du wirklich alle Items dieser Liste löschen?"
+            deleteAlert.addAction(UIAlertAction(title: "Nonono", style: .cancel, handler: {_ in
+            }))
+            deleteAlert.addAction(UIAlertAction(title: "Löschen!", style: .destructive, handler: {_ in
+                Util.deleteAllItems(self.list!)
+                self.update()
+            }))
+            self.present(deleteAlert, animated: true, completion: nil)
+        
         }))]))
         
     }

@@ -26,7 +26,7 @@ class ListView: UIViewController, UITableViewDelegate, UITableViewDataSource  {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.frame = view.bounds
-        self.navigationItem.title = "Einkaufsliste"
+        self.navigationItem.title = "Einkaufslisten"
         
         self.navigationItem.rightBarButtonItem =  UIBarButtonItem(title: "Neue Liste", style: .plain, target: self, action: #selector(createList))
         
@@ -133,12 +133,20 @@ class ListView: UIViewController, UITableViewDelegate, UITableViewDataSource  {
             arr.append(.listCell(model: ListOption(title: dateFormatter.string(from: list.date!), subtitle: String(list.items!.count), list: list, selectHandler: {
             })))
         }
-        models.append(Section(title: "Listen", options: arr))
+        models.append(Section(title: "", options: arr))
         
         
-        models.append(Section(title: "Bearbeiten", options: [.deleteCell(model: DeleteOption(selectHandler: {
-            Util.deleteAllLists()
-            self.update()
+        models.append(Section(title: "", options: [.deleteCell(model: DeleteOption(selectHandler: {
+            let deleteAlert = UIAlertController()
+            deleteAlert.message = "Möchtest du wirklich alle Einkaufslisten löschen?"
+            deleteAlert.addAction(UIAlertAction(title: "Nonono", style: .cancel, handler: {_ in
+            }))
+            deleteAlert.addAction(UIAlertAction(title: "Löschen!", style: .destructive, handler: {_ in
+                Util.deleteAllLists()
+                self.update()
+            }))
+            self.present(deleteAlert, animated: true, completion: nil)
+            
         }))]))
     }
     
