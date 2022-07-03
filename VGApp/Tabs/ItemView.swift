@@ -136,8 +136,9 @@ class Itemview: UIViewController, UITableViewDelegate, UITableViewDataSource  {
     
     func configure(){
         if(self.list == nil) { return}
-        let itemArray = CoreData.getListItems(list!)!
+        var itemArray = CoreData.getListItems(list!)!
         if(itemArray.count == 0) { return}
+        itemArray = itemArray.sorted(by: {$0.name! < $1.name!})
         
         var arr: [ItemSectionOption] = []
         
