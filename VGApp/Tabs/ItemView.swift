@@ -140,16 +140,16 @@ class Itemview: UIViewController, UITableViewDelegate, UITableViewDataSource  {
         if(itemArray.count == 0) { return}
         
         var arr: [ItemSectionOption] = []
-        //listArray = listArray.sorted{$0.date! > $1.date!}
         
         for item in itemArray {
             arr.append(.itemCell(model: ItemOption(title: item.name!, subtitle: item.number!, item: item, selectHandler: {
-                print("hi")
+               
             })))
         }
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "E dd.MM.yyyy, HH:mm"
+        dateFormatter.locale = Locale(identifier: "de")
         let date = dateFormatter.string(from: list!.date!)
         
         models.append(Section2(title: date, options: arr))

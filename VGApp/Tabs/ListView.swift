@@ -125,12 +125,12 @@ class ListView: UIViewController, UITableViewDelegate, UITableViewDataSource  {
         if (listArray.count < 1) {return;}
         
         let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "de")
         dateFormatter.dateFormat = "E dd.MM.yyyy, HH:mm"
         listArray = listArray.sorted{$0.date! > $1.date!}
         
         for list in listArray {
             arr.append(.listCell(model: ListOption(title: dateFormatter.string(from: list.date!), subtitle: String(list.items!.count), list: list, selectHandler: {
-                print("hi")
             })))
         }
         models.append(Section(title: "Listen", options: arr))
