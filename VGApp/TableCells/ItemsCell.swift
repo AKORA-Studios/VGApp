@@ -21,7 +21,7 @@ class ItemsCell: UITableViewCell {
         let label = UILabel()
         label.numberOfLines = 1
         label.textAlignment = .right
-        label.textColor = .systemOrange
+        label.textColor = .systemGreen
         return label
     }()
     
