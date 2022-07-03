@@ -9,13 +9,8 @@ import UIKit
 
 class NewItemView: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var itemNameField: UITextField!
-    @IBOutlet weak var number1: UILabel!
-    @IBOutlet weak var number2: UILabel!
-    @IBOutlet weak var number3: UILabel!
-    @IBOutlet weak var number4: UILabel!
     @IBOutlet weak var enterNumberField: UITextField!
     
-    var numberFields: [UILabel] = []
     var noTextField = UITextField()
     var activeLabel: UITextField?
     var list: ShoppingList!
@@ -25,7 +20,6 @@ class NewItemView: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         activeLabel = noTextField
         super.viewDidLoad()
-        numberFields = [number1,number2,number3,number4]
         
         itemNameField.delegate = self
         enterNumberField.delegate = self
@@ -75,16 +69,8 @@ class NewItemView: UIViewController, UITextFieldDelegate {
         if(text.count > 4) {
             sender.text = String(text.prefix(4))
         }
-        
-        let textSplit = sender.text!.map{ String($0)}
-    
-        for i in 0...3 {
-            if(textSplit.count - 1 >= i){
-                numberFields[i].text = textSplit[i]
-            } else {
-                numberFields[i].text = ""
-            }
-        }
     }
+    
+    
     
 }
