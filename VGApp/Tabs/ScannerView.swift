@@ -36,7 +36,9 @@ class ScannerView: UIViewController {
             }))
             scanAlert.addAction(UIAlertAction(title: "Hinzufügen", style: .default, handler: {_ in
                 Util.createItem(CoreData.getLastLlist()!, self.scanAlert.textFields![0].text!, self.lastScanned)
-                self.avCaptureSession.startRunning()
+                DispatchQueue.global(qos: .background).async {
+                    self.avCaptureSession.startRunning()
+                }
             }))
             
             super.viewDidLoad()
@@ -78,7 +80,11 @@ class ScannerView: UIViewController {
                 self.avPreviewLayer.frame = self.view.layer.bounds
                 self.avPreviewLayer.videoGravity = .resizeAspectFill
                 self.view.layer.addSublayer(self.avPreviewLayer)
-                self.avCaptureSession.startRunning()
+                
+                DispatchQueue.global(qos: .background).async {
+                    self.avCaptureSession.startRunning()
+                }
+              
             }
         }
         
@@ -94,7 +100,9 @@ class ScannerView: UIViewController {
             super.viewWillAppear(animated)
             
             if (avCaptureSession?.isRunning == false) {
-                avCaptureSession.startRunning()
+                DispatchQueue.global(qos: .background).async {
+                    self.avCaptureSession.startRunning()
+                }
             }
         }
         
