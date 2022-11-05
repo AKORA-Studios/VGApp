@@ -138,13 +138,11 @@ class Itemview: UIViewController, UITableViewDelegate, UITableViewDataSource  {
         if(self.list == nil) { return}
         var itemArray = CoreData.getListItems(list!)!
         if(itemArray.count == 0) { return}
-        itemArray = itemArray.sorted(by: {$0.name! < $1.name!})
-        
+
         var arr: [ItemSectionOption] = []
         
         for item in itemArray {
             arr.append(.itemCell(model: ItemOption(title: item.name!, subtitle: item.number!, item: item, selectHandler: {
-               
             })))
         }
         
@@ -165,7 +163,7 @@ class Itemview: UIViewController, UITableViewDelegate, UITableViewDataSource  {
                 self.update()
             }))
             self.present(deleteAlert, animated: true, completion: nil)
-        
+
         }))]))
         
     }
