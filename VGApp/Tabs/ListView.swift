@@ -59,7 +59,10 @@ struct ListView: View{
                         
                     }
                 }
+        }.onAppear{
+            models = CoreData.getAlllLists()!
         }
+        
     }
     
     func removeItems(at offsets: IndexSet) {

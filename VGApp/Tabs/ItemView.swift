@@ -61,6 +61,8 @@ struct Itemview: View {
                         
                     }
                 }
+        }.onAppear{
+            items = CoreData.getListItems(CoreData.getLastLlist()!)!
         }
     }
     
