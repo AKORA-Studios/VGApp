@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Yy2-n1-PbV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Yy2-n1-PbV">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -44,13 +45,23 @@
             </objects>
             <point key="canvasLocation" x="1501" y="122"/>
         </scene>
+        <!--List View Hosting Controller-->
+        <scene sceneID="2Xs-Za-eiA">
+            <objects>
+                <hostingController storyboardIdentifier="ListViewHostingController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="0av-MH-I7w" customClass="ListViewHostingController" customModule="VGApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="3SU-sh-xgw"/>
+                </hostingController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ofK-x7-sZp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1500" y="804"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="SI5-MV-VEp">
             <objects>
                 <navigationController id="g6q-it-CLc" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="takeoutbag.and.cup.and.straw" catalog="system" id="kaO-lG-1eG"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="fph-nq-pou">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="48" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -67,7 +78,7 @@
                 <navigationController id="U32-nX-GYf" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="barcode.viewfinder" catalog="system" id="PwU-t0-Cxx"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="THt-K9-phF">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="48" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -165,11 +176,11 @@
                 <navigationController id="o0B-WK-xZu" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="wallet.pass" catalog="system" id="olv-Mr-KMh"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="15d-so-hKn">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="48" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="lxF-fd-xyf" kind="relationship" relationship="rootViewController" id="Ilu-zv-dA6"/>
+                        <segue destination="0av-MH-I7w" kind="relationship" relationship="rootViewController" id="Ueh-o3-A3L"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ePO-Q8-ylb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -190,15 +201,15 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qqU-Yl-ns2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1500" y="804"/>
+            <point key="canvasLocation" x="2970" y="804"/>
         </scene>
     </scenes>
     <resources>
         <image name="barcode.viewfinder" catalog="system" width="128" height="115"/>
-        <image name="takeoutbag.and.cup.and.straw" catalog="system" width="128" height="110"/>
+        <image name="takeoutbag.and.cup.and.straw" catalog="system" width="128" height="109"/>
         <image name="wallet.pass" catalog="system" width="115" height="128"/>
         <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
