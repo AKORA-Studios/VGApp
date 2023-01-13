@@ -90,7 +90,7 @@ class ScannerView: UIViewController {
         
         
         func failed() {
-            let ac = UIAlertController(title: "Scanner not supported", message: "Please use a device with a camera. Because this device does not support scanning a code", preferredStyle: .alert)
+            let ac = UIAlertController(title: "Gerät hat keine Kamera", message: "Bitte verwende ein Gerät mit funktionierender Kamera lol", preferredStyle: .alert)
             ac.addAction(UIAlertAction(title: "OK", style: .default))
             present(ac, animated: true)
             avCaptureSession = nil
