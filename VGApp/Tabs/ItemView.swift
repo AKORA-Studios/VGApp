@@ -10,6 +10,9 @@ import SwiftUI
 
 struct Itemview: View {
     @State var items = CoreData.getListItems(CoreData.getLastLlist()!)!
+    @State var showNewItemSheet = false
+    @State var newName = ""
+    @State var newNumber = ""
     
     var body: some View {
         NavigationView {
@@ -24,7 +27,7 @@ struct Itemview: View {
                 
                 List {
             //Sections
-                        ForEach(items) { item in
+                    ForEach(items.sorted( by: {$0.name! < $1.name!})) { item in
                             HStack{
                                 Text(item.name!)
                                 Spacer()
@@ -55,15 +58,56 @@ struct Itemview: View {
                 .toolbar {
                     Button("Neues Item") {
                         withAnimation {
-                            Util.createItem(CoreData.getLastLlist()!, "name", "1234")
-                            items = CoreData.getListItems(CoreData.getLastLlist()!)!
+                            showNewItemSheet.toggle()
                         }
                         
                     }
                 }
-        }.onAppear{
+        } .sheet(isPresented: $showNewItemSheet) {
+            ScrollView{
+                VStack {
+                    Spacer()
+                    Text("Neues Item").font(.title)
+                    Spacer().frame(height: 50)
+                    ZStack {
+                        TextField(" Name", text: $newName)
+                        RoundedRectangle(cornerRadius: 8).fill(.clear)
+                            .background(RoundedRectangle(cornerRadius: 8).stroke(.green, lineWidth: 2))
+                            .frame(height: 30)
+                    }
+               
+                ZStack{
+                    TextField(" Nummer", text: $newNumber).keyboardType(.numberPad).onChange(of: newNumber) { newValue in
+                        if(newNumber.count > 4){
+                            newNumber = String(newNumber.prefix(4))
+                        }
+                    }
+                    RoundedRectangle(cornerRadius: 8).fill(.clear)
+                        .background(RoundedRectangle(cornerRadius: 8).stroke(.green, lineWidth: 2))
+                        .frame(height: 30)
+                }
+                    Spacer().frame(height: 50)
+                    Button {
+                        Util.createItem(CoreData.getLastLlist()!, newName, newNumber)
+                        items = CoreData.getListItems(CoreData.getLastLlist()!)!
+                        showNewItemSheet.toggle()
+                    } label: {
+                        ZStack{
+                            RoundedRectangle(cornerRadius: 8).fill(.green).frame(height: 40)
+                            Text("Item hinzufügen").foregroundColor(.white)
+                        }
+                    }
+                    Spacer()
+                }.padding(10)
+            }.onAppear{
+                newNumber = ""
+                newName = ""
+            }
+          }
+        .onAppear{
             items = CoreData.getListItems(CoreData.getLastLlist()!)!
         }
+       
     }
     
     func removeItems(at offsets: IndexSet) {
@@ -71,6 +115,10 @@ struct Itemview: View {
             let theItem = items[i]
             CoreData.removeItem(theItem, CoreData.getLastLlist()!)
         }
+    }
+    
+    func createItem(name: String = "neuesItem", number: String = "0000"){
+        
     }
 }
 
