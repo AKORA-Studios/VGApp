@@ -22,7 +22,7 @@ struct ListView: View{
                 
                 List {
                     //Sections
-                    ForEach(models) { list in
+                    ForEach(models.sorted(by: {$0.date! < $1.date!})) { list in
                         HStack{
                             Text(list.date!, style: .date)
                             Text(list.date!, style: .time)
