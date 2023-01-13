@@ -5,167 +5,80 @@
 //  Created by Kiara on 10.02.22.
 //
 
-import UIKit
+import SwiftUI
 
-class Itemview: UIViewController, UITableViewDelegate, UITableViewDataSource  {
-    private let tableView : UITableView = {
-        let table = UITableView(frame: .zero, style: .grouped)
-        table.register(ItemsCell.self, forCellReuseIdentifier: ItemsCell.identifier)
-        table.register(DeleteCell.self, forCellReuseIdentifier: DeleteCell.identifier)
-        return table
-    }()
-    
-    var models = [Section2]()
-    var list: ShoppingList?
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.models = []
-        configure();
-        self.tableView.reloadData();
-        view.addSubview(tableView)
-        
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.frame = view.bounds
-        
-        if #available(iOS 15.0, *) {
-            let appearence =  UITabBarAppearance()
-            appearence.configureWithDefaultBackground()
-            self.tabBarController?.tabBar.scrollEdgeAppearance = appearence
-            let appearence2 =  UINavigationBarAppearance()
-            appearence2.configureWithDefaultBackground()
-            self.navigationController?.navigationBar.scrollEdgeAppearance = appearence2
-        }
-        
-        self.navigationItem.rightBarButtonItem =  UIBarButtonItem(title: "Neues Item", style: .plain, target: self, action: #selector(createItem))
-        
-        update()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        update()
-    }
-    
-    func update() {
-        self.list = CoreData.getLastLlist()
-        if(self.list != nil) {
-            self.navigationItem.title = "Übersicht"
-        } else {
-            self.navigationItem.title = "Keine Liste vorhanden"
-        }
-        self.models = []
-        configure();
-        self.tableView.reloadData();
-    }
-    
-    @objc func createItem(_ sender:UIButton) {
-        if(list == nil) {
-            list = Util.createNewList()
-        }
-        update()
-        let newView = self.storyboard?.instantiateViewController(withIdentifier: "NewItemView") as! NewItemView
-        newView.list = list!
-        newView.callback = { self.update()}
-        let navController = UINavigationController(rootViewController: newView)
-        self.navigationController?.present(navController, animated: true, completion: nil)
-    }
-    
-    //MARK: Table Config
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return models.count
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-    { return models[section].options.count}
-    
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let section = models[section]
-        return section.title
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexpath: IndexPath) -> UITableViewCell{
-        let model = models[indexpath.section].options[indexpath.row]
-        
-        switch model.self{
-        case .itemCell(let model):
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: ItemsCell.identifier, for: indexpath) as? ItemsCell else {
-                return UITableViewCell()
-            }
-            cell.configure(with: model)
-            return cell
-        case .deleteCell(model: let model2):
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: DeleteCell.identifier, for: indexpath) as? DeleteCell else {
-                return UITableViewCell()
-            }
-            cell.configure(with: model2)
-            return cell
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let deleteAction = UITableViewRowAction(style: .destructive, title: "Löschen", handler: {action, indexPath in
-            let cell = tableView.cellForRow(at: indexPath) as! ItemsCell
-            CoreDataStack.shared.managedObjectContext.delete( cell.itemBase!)
-            
-            self.models[indexPath.section].options.remove(at: indexPath.row)
-            self.tableView.deleteRows(at: [indexPath], with: .automatic)
-            self.update()
-        })
-        return [deleteAction]
-    }
-    
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        let type = models[indexPath.section].options[indexPath.row]
-        
-        switch type.self{
-        case .itemCell(let model):
-            model.selectHandler()
-        case .deleteCell(let model):
-            model.selectHandler()
-        }
-    }
-    
-    func configure(){
-        if(self.list == nil) { return}
-        var itemArray = CoreData.getListItems(list!)!
-        if(itemArray.count == 0) { return}
 
-        var arr: [ItemSectionOption] = []
-        
-        for item in itemArray {
-            arr.append(.itemCell(model: ItemOption(title: item.name!, subtitle: item.number!, item: item, selectHandler: {
-            })))
+struct Itemview: View {
+    @State var items = CoreData.getListItems(CoreData.getLastLlist()!)!
+    
+    var body: some View {
+        NavigationView {
+            VStack{
+                
+                
+                if(items.isEmpty){
+                    Spacer()
+                    Text("Keine Items vorhanden").foregroundColor(.gray).font(.largeTitle)
+                    Spacer()
+                }
+                
+                List {
+            //Sections
+                        ForEach(items) { item in
+                            HStack{
+                                Text(item.name!)
+                                Spacer()
+                                Text(item.number!).foregroundColor(.gray)
+                            }
+                        }.onDelete { indexSet in
+                            withAnimation {
+                                removeItems(at: indexSet)
+                                items = CoreData.getListItems(CoreData.getLastLlist()!)!
+                            }
+                        
+                    }
+                    
+                    if(!items.isEmpty){
+                        Text("Alle Items löschen")
+                            .foregroundColor(.red)
+                            .listRowBackground(Color.red.opacity(0.4))
+                            .onTapGesture {
+                                withAnimation {
+                                    Util.deleteAllItems(CoreData.getLastLlist()!)
+                                    items = CoreData.getListItems(CoreData.getLastLlist()!)!
+                                }
+                            }
+                    }
+                }
+            }.navigationTitle("Übersicht")
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    Button("Neues Item") {
+                        withAnimation {
+                            Util.createItem(CoreData.getLastLlist()!, "name", "1234")
+                            items = CoreData.getListItems(CoreData.getLastLlist()!)!
+                        }
+                        
+                    }
+                }
         }
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "E dd.MM.yyyy, HH:mm"
-        dateFormatter.locale = Locale(identifier: "de")
-        let date = dateFormatter.string(from: list!.date!)
-        
-        models.append(Section2(title: date, options: arr))
-     
-        models.append(Section2(title: " ", options: [.deleteCell(model: DeleteOption(selectHandler: {
-            let deleteAlert = UIAlertController()
-            deleteAlert.message = "Möchtest du wirklich alle Items dieser Liste löschen?"
-            deleteAlert.addAction(UIAlertAction(title: "Nonono", style: .cancel, handler: {_ in
-            }))
-            deleteAlert.addAction(UIAlertAction(title: "Löschen!", style: .destructive, handler: {_ in
-                Util.deleteAllItems(self.list!)
-                self.update()
-            }))
-            self.present(deleteAlert, animated: true, completion: nil)
-
-        }))]))
-        
+    }
+    
+    func removeItems(at offsets: IndexSet) {
+        for i in offsets.makeIterator() {
+            let theItem = items[i]
+            CoreData.removeItem(theItem, CoreData.getLastLlist()!)
+        }
     }
 }
 
+class ItemviewwHostingController: UIHostingController<Itemview>  {
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder, rootView: Itemview()
+        )
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+}
