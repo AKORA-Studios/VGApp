@@ -26,6 +26,7 @@ struct ListView: View{
                         HStack{
                             Text(list.date!, style: .date)
                             Text(list.date!, style: .time)
+                            Spacer()
                             Text("Items \(list.items?.count == 0 ? 0 : list.items!.count)").foregroundColor(.gray)
                         }
                     }.onDelete { indexSet in
