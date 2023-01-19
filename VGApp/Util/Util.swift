@@ -10,11 +10,6 @@ import Foundation
 
 struct Util {
     
-    static func getItems(_ list: ShoppingList)-> [Item]? {
-        if(list.items == nil){return []}
-        return list.items!.allObjects as! [Item]
-    }
-    
     static func createNewList() -> ShoppingList{
         let context = CoreDataStack.shared.managedObjectContext
         let newList = ShoppingList(context: context)

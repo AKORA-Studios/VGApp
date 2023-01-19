@@ -27,7 +27,7 @@ struct Itemview: View {
                 
                 List {
             //Sections
-                    ForEach(items.sorted( by: {$0.name! < $1.name!})) { item in
+                    ForEach(items) { item in
                             HStack{
                                 Text(item.name!)
                                 Spacer()

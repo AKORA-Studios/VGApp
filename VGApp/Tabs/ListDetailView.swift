@@ -16,7 +16,7 @@ struct ListDetail: View {
                 Spacer()
                 Text("Inhalt")
                 List {
-                    ForEach(Util.getItems(list)!) { item in
+                    ForEach(CoreData.getListItems(list)!) { item in
                         HStack{
                             Text(item.name ?? "Namenlos")
                             Spacer()
