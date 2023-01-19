@@ -10,6 +10,11 @@ import Foundation
 
 struct Util {
     
+    static func getItems(_ list: ShoppingList)-> [Item]? {
+        if(list.items == nil){return []}
+        return list.items!.allObjects as! [Item]
+    }
+    
     static func createNewList() -> ShoppingList{
         let context = CoreDataStack.shared.managedObjectContext
         let newList = ShoppingList(context: context)
@@ -52,6 +57,14 @@ struct Util {
         list.addToItems(newItem)
         try! context.save()
     }
-    
  
+}
+
+extension Date{
+    func format()->String{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EE dd.MM.yyyy HH:mm"
+        dateFormatter.timeZone = .current
+        return dateFormatter.string(from: self)
+    }
 }

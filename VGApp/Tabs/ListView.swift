@@ -10,6 +10,8 @@ import SwiftUI
 
 struct ListView: View{
     @State var models = CoreData.getAlllLists()!
+    @State var showListDetail = false
+    @State var selectedList: ShoppingList?
     
     var body: some View {
         NavigationView {
@@ -24,11 +26,16 @@ struct ListView: View{
                     //Sections
                     ForEach(models.sorted(by: {$0.date! < $1.date!})) { list in
                         HStack{
-                            Text(list.date!, style: .date)
-                            Text(list.date!, style: .time)
+                            if(models.last == list) {
+                                Image(systemName: "star.fill")
+                            }
+                            Text(list.date!.format())
                             Spacer()
                             Text("Items: \(list.items?.count == 0 ? 0 : list.items!.count)").foregroundColor(.gray)
-                        }
+                        }.onTapGesture {
+                            selectedList = list
+                            showListDetail = true
+                        }.disabled(list.items?.count == 0)
                     }.onDelete { indexSet in
                         withAnimation {
                             removeItems(at: indexSet)
@@ -54,14 +61,23 @@ struct ListView: View{
                 .toolbar {
                     Button("Neue Liste") {
                         withAnimation {
-                            Util.createNewList()
-                            models = CoreData.getAlllLists()!
+                            models.append(Util.createNewList())
                         }
                         
                     }
                 }
         }.onAppear{
             models = CoreData.getAlllLists()!
+        }
+        .sheet(isPresented: $showListDetail) {
+            if(selectedList != nil){
+                ListDetail(list: selectedList!).onDisappear{
+                    selectedList = nil
+                }
+            }
+            if(selectedList == nil){
+                Text("Etwas ist schief gegangen")
+            }
         }
         
     }
