@@ -24,9 +24,9 @@ struct ListView: View{
                 
                 List {
                     //Sections
-                    ForEach(models.sorted(by: {$0.date! < $1.date!})) { list in
+                    ForEach(models) { list in
                         HStack{
-                            if(models.last == list) {
+                            if(models.first == list) {
                                 Image(systemName: "star.fill")
                             }
                             Text(list.date!.format())

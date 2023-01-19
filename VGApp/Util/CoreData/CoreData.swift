@@ -46,7 +46,10 @@ struct CoreData {
     static func getAlllLists() -> [ShoppingList]? {
         let data = getCoreData()!.lists
         if(data == nil) { return []}
-        return data!.allObjects as! [ShoppingList]?
+        let lists = data!.allObjects as! [ShoppingList]?
+        if(lists != nil){
+            return lists!.sorted(by: {$0.date! > $1.date!})
+        } else {return []}
     }
     
     /// addt item to specific shoppinglist
