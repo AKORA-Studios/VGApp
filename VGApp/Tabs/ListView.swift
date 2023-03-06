@@ -29,7 +29,7 @@ struct ListView: View{
                             if(models.first == list) {
                                 Image(systemName: "star.fill")
                             }
-                            Text(list.date!.format())
+                            Text(list.date.format())
                             Spacer()
                             Text("Items: \(list.items?.count == 0 ? 0 : list.items!.count)").foregroundColor(.gray)
                         }.onTapGesture {

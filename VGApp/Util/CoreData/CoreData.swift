@@ -38,7 +38,7 @@ struct CoreData {
         allLists = getAlllLists()!
            }
         
-        allLists = allLists.sorted(by: {$0.date! > $1.date!})
+        allLists = allLists.sorted(by: {$0.date > $1.date})
         return allLists[0]
     }
     
@@ -48,7 +48,7 @@ struct CoreData {
         if(data == nil) { return []}
         let lists = data!.allObjects as! [ShoppingList]?
         if(lists != nil){
-            return lists!.sorted(by: {$0.date! > $1.date!})
+            return lists!.sorted(by: {$0.date > $1.date})
         } else {return []}
     }
     
@@ -94,7 +94,7 @@ struct CoreData {
     static func getListItems(_ list: ShoppingList) -> [Item]? {
         if(list.items == nil){ return []}
         if(list.items!.count == 0) { return []}
-        return (list.items!.allObjects as! [Item]).sorted(by: {$0.name! < $1.name!})
+        return (list.items!.allObjects as! [Item]).sorted(by: {$0.name < $1.name})
     }
     
 }

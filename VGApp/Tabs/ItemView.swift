@@ -29,9 +29,9 @@ struct Itemview: View {
             //Sections
                     ForEach(items) { item in
                             HStack{
-                                Text(item.name!)
+                                Text(item.name)
                                 Spacer()
-                                Text(item.number!).foregroundColor(.gray)
+                                Text(item.number).foregroundColor(.gray)
                             }
                         }.onDelete { indexSet in
                             withAnimation {

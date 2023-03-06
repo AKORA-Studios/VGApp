@@ -2,7 +2,7 @@
 //  ShoppingList+CoreDataProperties.swift
 //  VGApp
 //
-//  Created by Kiara on 08.02.22.
+//  Created by Kiara on 06.03.23.
 //
 //
 
@@ -16,9 +16,9 @@ extension ShoppingList {
         return NSFetchRequest<ShoppingList>(entityName: "ShoppingList")
     }
 
-    @NSManaged public var date: Date?
-    @NSManaged public var listToapp: AppData?
+    @NSManaged public var date: Date
     @NSManaged public var items: NSSet?
+    @NSManaged public var listToapp: AppData
 
 }
 

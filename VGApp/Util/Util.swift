@@ -10,6 +10,11 @@ import Foundation
 
 struct Util {
     
+    static func getSelectedList() -> ShoppingList {
+      //  CoreData.getAlllLists()
+        return createNewList()
+    }
+    
     static func createNewList() -> ShoppingList{
         let context = CoreDataStack.shared.managedObjectContext
         let newList = ShoppingList(context: context)
