@@ -26,33 +26,28 @@ struct ListView: View{
                     ForEach(vm.lists) { list in
                         
                         NavigationLink(destination: ListDetail(list: list)) {
-                        HStack{
-                            if(list.objectID == vm.selected?.objectID) {
-                                Image(systemName: "star.fill")//TODO: whyyyy
+                            HStack{
+                                if(list.objectID == vm.selected?.objectID) {
+                                    Image(systemName: "star.fill")//TODO: whyyyy
+                                }
+                                Text(list.date.format())
+                                Spacer()
+                                Text("Items: \(list.items?.count == 0 ? 0 : list.items!.count)").foregroundColor(.gray)
                             }
-                            Text(list.date.format())
-                            Spacer()
-                            Text("Items: \(list.items?.count == 0 ? 0 : list.items!.count)").foregroundColor(.gray)
+                            
                         }
-                        
+                    }.onDelete { indexSet in
+                        vm.removeItems(at: indexSet)
                     }
-                }.onDelete { indexSet in
-                    withAnimation {
-                        removeItems(at: indexSet)
-                        vm.lists = Util.getLists()
-                    }
-                }
-                
+                    
                     if(!vm.lists.isEmpty){
                         Text("Alle Listen löschen") //TODO: alert
                             .foregroundColor(.red)
                             .listRowBackground(Color.red.opacity(0.4))
                             .disabled(vm.lists.isEmpty)
                             .onTapGesture {
-                                withAnimation {
-                                    Util.deleteAllLists()
-                                    vm.lists = Util.getLists()
-                                }
+                                Util.deleteAllLists()
+                                vm.updateViews()
                             }
                     }
                 }
@@ -62,20 +57,10 @@ struct ListView: View{
                 .toolbar {
                     Button("Neue Liste") {
                         _ = Util.createNewList()
-                        withAnimation {
-                            vm.updateViews()
-                        }
+                        vm.updateViews()
                     }
                 }
         }.onAppear{
-            vm.updateViews()
-        }
-    }
-    
-    func removeItems(at offsets: IndexSet) {
-        for i in offsets.makeIterator() {
-            let theItem = vm.lists[i]
-            CoreData.removeList(theItem)
             vm.updateViews()
         }
     }

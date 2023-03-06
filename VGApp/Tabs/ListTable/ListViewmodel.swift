@@ -5,7 +5,7 @@
 //  Created by Kiara on 06.03.23.
 //
 
-import Foundation
+import SwiftUI
 
 
 class ListViewmodel: ObservableObject {
@@ -14,11 +14,19 @@ class ListViewmodel: ObservableObject {
     @Published var selected: ShoppingList?
     
     func updateViews(){
+        withAnimation{
         self.objectWillChange.send()
         appData = Util.getAppData()
         lists = Util.getLists()
         selected = Util.getSelectedList()
-        print(appData?.selected?.objectID)
-        print(lists.map{$0.objectID})
+        }
+    }
+    
+    func removeItems(at offsets: IndexSet) {
+        for i in offsets.makeIterator() {
+            let theItem = lists[i]
+            CoreData.removeList(theItem)
+            updateViews()
+        }
     }
 }
