@@ -138,7 +138,7 @@
 			children = (
 				F1B2732E29B60B1B00E841F4 /* ListTable */,
 				F1B2732929B6070900E841F4 /* Scanner */,
-				F1678A182979BAE600F676A4 /* ListDetailView.swift */,
+				F1B2732F29B6135C00E841F4 /* ListDeatil */,
 				DDEBB40F27B5C246004D80BB /* ItemView.swift */,
 				DDEE287427B66AA600AC142F /* NewItemView.swift */,
 			);
@@ -172,6 +172,14 @@
 				F1B2732C29B60B1600E841F4 /* ListViewmodel.swift */,
 			);
 			path = ListTable;
+			sourceTree = "<group>";
+		};
+		F1B2732F29B6135C00E841F4 /* ListDeatil */ = {
+			isa = PBXGroup;
+			children = (
+				F1678A182979BAE600F676A4 /* ListDetailView.swift */,
+			);
+			path = ListDeatil;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
