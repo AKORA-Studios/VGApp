@@ -31,6 +31,7 @@
 		F1678A192979BAE600F676A4 /* ListDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1678A182979BAE600F676A4 /* ListDetailView.swift */; };
 		F1B2732829B6046400E841F4 /* VGapp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B2732729B6046400E841F4 /* VGapp.swift */; };
 		F1B2732B29B6071500E841F4 /* ScannerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B2732A29B6071500E841F4 /* ScannerScreen.swift */; };
+		F1B2732D29B60B1600E841F4 /* ListViewmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B2732C29B60B1600E841F4 /* ListViewmodel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +62,7 @@
 		F1678A182979BAE600F676A4 /* ListDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetailView.swift; sourceTree = "<group>"; };
 		F1B2732729B6046400E841F4 /* VGapp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGapp.swift; sourceTree = "<group>"; };
 		F1B2732A29B6071500E841F4 /* ScannerScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerScreen.swift; sourceTree = "<group>"; };
+		F1B2732C29B60B1600E841F4 /* ListViewmodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewmodel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,8 +136,8 @@
 		DDEBB40527B5B3FF004D80BB /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
+				F1B2732E29B60B1B00E841F4 /* ListTable */,
 				F1B2732929B6070900E841F4 /* Scanner */,
-				DDEBB40B27B5B7D8004D80BB /* ListView.swift */,
 				F1678A182979BAE600F676A4 /* ListDetailView.swift */,
 				DDEBB40F27B5C246004D80BB /* ItemView.swift */,
 				DDEE287427B66AA600AC142F /* NewItemView.swift */,
@@ -161,6 +163,15 @@
 				F1B2732A29B6071500E841F4 /* ScannerScreen.swift */,
 			);
 			path = Scanner;
+			sourceTree = "<group>";
+		};
+		F1B2732E29B60B1B00E841F4 /* ListTable */ = {
+			isa = PBXGroup;
+			children = (
+				DDEBB40B27B5B7D8004D80BB /* ListView.swift */,
+				F1B2732C29B60B1600E841F4 /* ListViewmodel.swift */,
+			);
+			path = ListTable;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,6 +247,7 @@
 			files = (
 				DDEBB40C27B5B7D8004D80BB /* ListView.swift in Sources */,
 				DD28465527B2AED8001C883F /* AppData+CoreDataClass.swift in Sources */,
+				F1B2732D29B60B1600E841F4 /* ListViewmodel.swift in Sources */,
 				DD28465D27B2AF19001C883F /* ShoppingList+CoreDataClass.swift in Sources */,
 				DDEE287527B66AA600AC142F /* NewItemView.swift in Sources */,
 				DDEBB40E27B5BB9F004D80BB /* Util.swift in Sources */,

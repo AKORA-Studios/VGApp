@@ -12,15 +12,15 @@ struct VGApp: App {
     var body: some Scene {
         WindowGroup {
             TabView {
-                ScannerScreen()
+             /*   ScannerScreen()
                     .tabItem {
                         Image(systemName: "barcode.viewfinder")
-                    }
+                    }*/
                 Itemview()
                     .tabItem {
                         Image(systemName: "takeoutbag.and.cup.and.straw")
                     }
-                ListView()
+                ListView(vm: ListViewmodel())
                     .tabItem {
                         Image(systemName: "list.bullet.clipboard")
                     }

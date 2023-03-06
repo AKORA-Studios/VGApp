@@ -13,7 +13,7 @@ struct ListDetail: View {
     var body: some View {
         VStack{
             Spacer()
-            Text("Inhalt")
+            Text("Listeninhalt") //TODO: date, items etc., select option
             List {
                 ForEach(CoreData.getListItems(list)!) { item in
                     HStack{
