@@ -7,23 +7,55 @@
 
 import SwiftUI
 
+let icons: [String: Image] = [
+    "carrot": Image(systemName: "carrot"),
+    "apple": Image("apple"),
+    "avocado": Image("avocado"),
+    "banana": Image("banana"),
+    "brocolli": Image("brocolli"),
+    "cherry": Image("cherry"),
+    "citrus": Image("citrus"),
+    "grapes": Image("grapes"),
+    "orange": Image("orange"),
+    "pear": Image("pear"),
+    "strawberry": Image("strawberry"),
+    "tomato": Image("tomato"),
+]
+
+let names: [String: [String]] = [
+    "carrot": ["möhre","möhrem", "karotte", "karotten"],
+    "apple": ["apfel", "äpfel"],
+    "avocado": ["avokado", "avokados"],
+    "banana": ["banane", "bananen"],
+    "brocolli": ["brokolli"],
+    "cherry": ["kirsche", "kirschen"],
+    "citrus": ["zitrone", "zitronen"],
+    "grapes": ["trauben", "weintrauben"],
+    "orange": ["orange", "orangen"],
+    "pear": ["birne", "birnen"],
+    "strawberry": ["erdbeere", "erdbeeren"],
+    "tomato": ["tomate", "tomaten"],
+]
+
 struct IconManager {
-    
-    let icons: [String: Image] = [
-        "carrot": Image(systemName: "carrot")
-    ]
-    
-    let names: [String: [String]] = [
-        "carrot": ["möhre", "karotte"]]
-    
-    func getIcon(_ str: String) -> Image?{
+    static func getIcon(_ str: String) -> Image?{
         var img: Image? = nil
         
         names.forEach { entry in
             if(entry.value.contains(str.lowercased())){
-                img =  icons[entry.key]
+                img = icons[entry.key]
             }
         }
         return img
+    }
+    
+   static func hasIcon(_ str: String) -> Bool{
+       var value: Bool  = false
+        names.forEach { entry in
+            if(entry.value.contains(str.lowercased())){
+                value = true
+            }
+        }
+        return value
     }
 }
