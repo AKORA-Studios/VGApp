@@ -18,6 +18,7 @@ extension AppData {
 
     @NSManaged public var lists: NSSet?
     @NSManaged public var selected: ShoppingList?
+    @NSManaged public var histories: NSSet?
 
 }
 
@@ -35,6 +36,23 @@ extension AppData {
 
     @objc(removeLists:)
     @NSManaged public func removeFromLists(_ values: NSSet)
+
+}
+
+// MARK: Generated accessors for histories
+extension AppData {
+
+    @objc(addHistoriesObject:)
+    @NSManaged public func addToHistories(_ value: Barcodes)
+
+    @objc(removeHistoriesObject:)
+    @NSManaged public func removeFromHistories(_ value: Barcodes)
+
+    @objc(addHistories:)
+    @NSManaged public func addToHistories(_ values: NSSet)
+
+    @objc(removeHistories:)
+    @NSManaged public func removeFromHistories(_ values: NSSet)
 
 }
 

@@ -1,5 +1,5 @@
 //
-//  Item+CoreDataClass.swift
+//  Barcodes+CoreDataClass.swift
 //  VGApp
 //
 //  Created by Kiara on 06.03.23.
@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-@objc(Item)
-public class Item: NSManagedObject {
+@objc(Barcodes)
+public class Barcodes: NSManagedObject {
 
 }

@@ -78,8 +78,8 @@ struct CoreData {
     /// Get all items of a list
     static func getListItems(_ list: ShoppingList) -> [Item] {
         if(list.items == nil){ return []}
-        if(list.items!.count == 0) { return []}
-        return (list.items!.allObjects as! [Item]).sorted(by: {$0.name < $1.name})
+        if(list.items.count == 0) { return []}
+        return (list.items.allObjects as! [Item]).sorted(by: {$0.name < $1.name})
     }
     
 }

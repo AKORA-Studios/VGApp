@@ -9,7 +9,6 @@ import UIKit
 import AVFoundation
 
 class ScannerView: UIViewController {
-    
     var avCaptureSession: AVCaptureSession!
     var avPreviewLayer: AVCaptureVideoPreviewLayer!
     let scanAlert = UIAlertController(title: "Neues Item", message: "Welchen Namen hat das gescannte Objekt?", preferredStyle: .alert)
@@ -17,14 +16,6 @@ class ScannerView: UIViewController {
      
         override func viewDidLoad() {
             self.navigationItem.title = "Barcode Scanner"
-            if #available(iOS 15.0, *) {
-                      let appearence =  UITabBarAppearance()
-                      appearence.configureWithDefaultBackground()
-                      self.tabBarController?.tabBar.scrollEdgeAppearance = appearence
-                      let appearence2 =  UINavigationBarAppearance()
-                      appearence2.configureWithDefaultBackground()
-                      self.navigationController?.navigationBar.scrollEdgeAppearance = appearence2
-            }
             
             scanAlert.addTextField(configurationHandler: {(textfield) in
                 textfield.placeholder = "Name"

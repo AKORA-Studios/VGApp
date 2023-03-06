@@ -17,7 +17,7 @@ extension ShoppingList {
     }
 
     @NSManaged public var date: Date
-    @NSManaged public var items: NSSet?
+    @NSManaged public var items: NSSet
     @NSManaged public var listToapp: AppData
 
 }

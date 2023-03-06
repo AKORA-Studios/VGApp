@@ -2,7 +2,7 @@
 //  ShoppingList+CoreDataClass.swift
 //  VGApp
 //
-//  Created by Kiara on 08.02.22.
+//  Created by Kiara on 06.03.23.
 //
 //
 
