@@ -97,9 +97,13 @@ extension CoreData {
     
     /// addt item to history
     static func addHistory(_ item: Item){
-        let history = Util.getAppData()
+        let history = getHistory()
+        let previous = history.filter{$0.number == item.number}
+        previous.forEach { oldSave in
+            CoreData.removeHistory(oldSave)
+        }
 
-        history.addToHistorys(item)
+        Util.getAppData().addToHistorys(item)
         try! context.save()
     }
     
@@ -108,4 +112,5 @@ extension CoreData {
         let history = Util.getAppData()
         history.removeFromHistorys(item)
     }
+
 }
