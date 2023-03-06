@@ -17,9 +17,8 @@ struct ItemCell: View {
                     .resizable()
                     .frame(width: 25, height: 25)
                     .colorMultiply(.gray)
-                    
             }
-            //IconManager.getIcon(item.name)
+         
             Text(item.name)
             Spacer()
             Text(item.number)

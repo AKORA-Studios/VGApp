@@ -23,11 +23,11 @@ let icons: [String: Image] = [
 ]
 
 let names: [String: [String]] = [
-    "carrot": ["möhre","möhrem", "karotte", "karotten"],
+    "carrot": ["möhre","möhren", "karotte", "karotten"],
     "apple": ["apfel", "äpfel"],
-    "avocado": ["avokado", "avokados"],
+    "avocado": ["avokado", "avokados", "avocado"],
     "banana": ["banane", "bananen"],
-    "brocolli": ["brokolli"],
+    "brocolli": ["brokkoli"],
     "cherry": ["kirsche", "kirschen"],
     "citrus": ["zitrone", "zitronen"],
     "grapes": ["trauben", "weintrauben"],
@@ -40,20 +40,25 @@ let names: [String: [String]] = [
 struct IconManager {
     static func getIcon(_ str: String) -> Image?{
         var img: Image? = nil
-        
+     
         names.forEach { entry in
-            if(entry.value.contains(str.lowercased())){
-                img = icons[entry.key]
+            entry.value.forEach { val in
+                if(val == str.lowercased()){
+                    img = icons[entry.key]
+                }
             }
         }
         return img
     }
     
-   static func hasIcon(_ str: String) -> Bool{
-       var value: Bool  = false
+    static func hasIcon(_ str: String) -> Bool{
+        var value: Bool = false
+        
         names.forEach { entry in
-            if(entry.value.contains(str.lowercased())){
-                value = true
+            entry.value.forEach { val in
+                if(val == str.lowercased()){
+                    value = true
+                }
             }
         }
         return value
