@@ -87,25 +87,25 @@ struct CoreData {
 //MARK: History
 extension CoreData {
     /// Returns an array of all histories
-    static func getHistory() -> [Barcodes] {
-        let data = Util.getAppData().histories
+    static func getHistory() -> [Item] {
+        let data = Util.getAppData().historys
         if(data?.allObjects == nil) { return [] }
         
-        let lists = data?.allObjects as! [Barcodes]? ?? []
+        let lists = data?.allObjects as! [Item]? ?? []
         return lists
     }
     
     /// addt item to history
-    static func addHistory(_ item: Barcodes){
+    static func addHistory(_ item: Item){
         let history = Util.getAppData()
 
-        history.addToHistories(item)
+        history.addToHistorys(item)
         try! context.save()
     }
     
     /// remove item from history
-    static func removeHistory(_ item: Barcodes){
+    static func removeHistory(_ item: Item){
         let history = Util.getAppData()
-        history.removeFromHistories(item)
+        history.removeFromHistorys(item)
     }
 }

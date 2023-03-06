@@ -77,6 +77,10 @@ struct Util {
         newItem.number = codeArr.joined(separator: "")
         newItem.icon = "apple"
         list.addToItems(newItem)
+        
+        //add to history
+        CoreData.addHistory(newItem)
+        
         save()
     }
     

@@ -28,14 +28,6 @@ class ScannerView: UIViewController {
             scanAlert.addAction(UIAlertAction(title: "Hinzufügen", style: .default, handler: {_ in
                 Util.createItem(name: self.scanAlert.textFields![0].text!, code: self.lastScanned)
                 
-                
-                let newItem = Barcodes(context: context)
-                newItem.name = self.scanAlert.textFields![0].text!
-                newItem.code = self.lastScanned
-                CoreData.addHistory(newItem)
-                Util.save()
-                
-                
                 DispatchQueue.global(qos: .background).async {
                     self.avCaptureSession.startRunning()
                 }
@@ -153,7 +145,7 @@ class ScannerView: UIViewController {
         }
         
         func checkCode(_ code: String) -> String? {
-            let all = CoreData.getHistory().filter{$0.code == code}
+            let all = CoreData.getHistory().filter{$0.number == code}
             if(all.isEmpty){ return nil}
             return all.first?.name
         }

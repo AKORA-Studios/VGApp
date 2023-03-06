@@ -25,8 +25,6 @@
 		F1B2733829B61EE700E841F4 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B2733729B61EE700E841F4 /* ItemCell.swift */; };
 		F1B2734B29B652E000E841F4 /* Item+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B2734329B652E000E841F4 /* Item+CoreDataClass.swift */; };
 		F1B2734C29B652E000E841F4 /* Item+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B2734429B652E000E841F4 /* Item+CoreDataProperties.swift */; };
-		F1B2734D29B652E000E841F4 /* Barcodes+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B2734529B652E000E841F4 /* Barcodes+CoreDataClass.swift */; };
-		F1B2734E29B652E000E841F4 /* Barcodes+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B2734629B652E000E841F4 /* Barcodes+CoreDataProperties.swift */; };
 		F1B2734F29B652E000E841F4 /* AppData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B2734729B652E000E841F4 /* AppData+CoreDataClass.swift */; };
 		F1B2735029B652E000E841F4 /* AppData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B2734829B652E000E841F4 /* AppData+CoreDataProperties.swift */; };
 		F1B2735129B652E000E841F4 /* ShoppingList+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B2734929B652E000E841F4 /* ShoppingList+CoreDataClass.swift */; };
@@ -56,8 +54,6 @@
 		F1B2733729B61EE700E841F4 /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		F1B2734329B652E000E841F4 /* Item+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		F1B2734429B652E000E841F4 /* Item+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
-		F1B2734529B652E000E841F4 /* Barcodes+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Barcodes+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
-		F1B2734629B652E000E841F4 /* Barcodes+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Barcodes+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		F1B2734729B652E000E841F4 /* AppData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppData+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		F1B2734829B652E000E841F4 /* AppData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppData+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		F1B2734929B652E000E841F4 /* ShoppingList+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShoppingList+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
@@ -113,8 +109,6 @@
 			children = (
 				F1B2734329B652E000E841F4 /* Item+CoreDataClass.swift */,
 				F1B2734429B652E000E841F4 /* Item+CoreDataProperties.swift */,
-				F1B2734529B652E000E841F4 /* Barcodes+CoreDataClass.swift */,
-				F1B2734629B652E000E841F4 /* Barcodes+CoreDataProperties.swift */,
 				F1B2734729B652E000E841F4 /* AppData+CoreDataClass.swift */,
 				F1B2734829B652E000E841F4 /* AppData+CoreDataProperties.swift */,
 				F1B2734929B652E000E841F4 /* ShoppingList+CoreDataClass.swift */,
@@ -268,7 +262,6 @@
 				F1B2733829B61EE700E841F4 /* ItemCell.swift in Sources */,
 				DDEBB40E27B5BB9F004D80BB /* Util.swift in Sources */,
 				F1678A192979BAE600F676A4 /* ListDetailView.swift in Sources */,
-				F1B2734D29B652E000E841F4 /* Barcodes+CoreDataClass.swift in Sources */,
 				F1B2734B29B652E000E841F4 /* Item+CoreDataClass.swift in Sources */,
 				DD28462B27B2AD6C001C883F /* CoreDataStack.swift in Sources */,
 				F1B2732B29B6071500E841F4 /* ScannerScreen.swift in Sources */,
@@ -281,7 +274,6 @@
 				DD28463027B2AD8A001C883F /* Model.xcdatamodeld in Sources */,
 				F1B2734C29B652E000E841F4 /* Item+CoreDataProperties.swift in Sources */,
 				F1B2734F29B652E000E841F4 /* AppData+CoreDataClass.swift in Sources */,
-				F1B2734E29B652E000E841F4 /* Barcodes+CoreDataProperties.swift in Sources */,
 				F1B2733629B61D4400E841F4 /* IconManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

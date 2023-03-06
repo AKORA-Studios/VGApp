@@ -16,11 +16,13 @@ extension AppData {
         return NSFetchRequest<AppData>(entityName: "AppData")
     }
 
+    @NSManaged public var histories: NSSet?
     @NSManaged public var lists: NSSet?
     @NSManaged public var selected: ShoppingList?
-    @NSManaged public var histories: NSSet?
+    @NSManaged public var historys: NSSet?
 
 }
+
 
 // MARK: Generated accessors for lists
 extension AppData {
@@ -39,20 +41,20 @@ extension AppData {
 
 }
 
-// MARK: Generated accessors for histories
+// MARK: Generated accessors for historys
 extension AppData {
 
-    @objc(addHistoriesObject:)
-    @NSManaged public func addToHistories(_ value: Barcodes)
+    @objc(addHistorysObject:)
+    @NSManaged public func addToHistorys(_ value: Item)
 
-    @objc(removeHistoriesObject:)
-    @NSManaged public func removeFromHistories(_ value: Barcodes)
+    @objc(removeHistorysObject:)
+    @NSManaged public func removeFromHistorys(_ value: Item)
 
-    @objc(addHistories:)
-    @NSManaged public func addToHistories(_ values: NSSet)
+    @objc(addHistorys:)
+    @NSManaged public func addToHistorys(_ values: NSSet)
 
-    @objc(removeHistories:)
-    @NSManaged public func removeFromHistories(_ values: NSSet)
+    @objc(removeHistorys:)
+    @NSManaged public func removeFromHistorys(_ values: NSSet)
 
 }
 
