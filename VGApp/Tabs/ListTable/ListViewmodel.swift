@@ -26,7 +26,16 @@ class ListViewmodel: ObservableObject {
         for i in offsets.makeIterator() {
             let theItem = lists[i]
             CoreData.removeList(theItem)
+            if(selected == theItem){
+                Util.getAppData().selected = nil
+            }
             updateViews()
         }
+    }
+    
+    func addList(){
+        let newList = Util.createNewList()
+        Util.getAppData().selected = newList
+        updateViews()
     }
 }

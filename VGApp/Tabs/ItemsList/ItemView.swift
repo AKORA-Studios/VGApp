@@ -9,7 +9,8 @@ import SwiftUI
 
 
 struct Itemview: View {
-    @State var items = CoreData.getListItems(CoreData.getLastLlist()!)!
+    @ObservedObject var vm: ItemViewmodel
+    
     @State var showNewItemSheet = false
     @State var newName = ""
     @State var newNumber = ""
@@ -18,38 +19,29 @@ struct Itemview: View {
         NavigationView {
             VStack{
                 
-                
-                if(items.isEmpty){
+                if(vm.items.isEmpty){
                     Spacer()
                     Text("Keine Items vorhanden").foregroundColor(.gray).font(.largeTitle)
                     Spacer()
                 }
                 
                 List {
-            //Sections
-                    ForEach(items) { item in
-                            HStack{
-                                Text(item.name)
-                                Spacer()
-                                Text(item.number).foregroundColor(.gray)
-                            }
-                        }.onDelete { indexSet in
-                            withAnimation {
-                                removeItems(at: indexSet)
-                                items = CoreData.getListItems(CoreData.getLastLlist()!)!
-                            }
-                        
+                    ForEach(vm.items) { item in
+                        HStack{
+                            Text(item.name)
+                            Spacer()
+                            Text(item.number).foregroundColor(.gray)
+                        }
+                    }.onDelete { indexSet in
+                        vm.removeItems(at: indexSet)
                     }
                     
-                    if(!items.isEmpty){
+                    if(!vm.items.isEmpty){
                         Text("Alle Items löschen")
                             .foregroundColor(.red)
                             .listRowBackground(Color.red.opacity(0.4))
                             .onTapGesture {
-                                withAnimation {
-                                    Util.deleteAllItems(CoreData.getLastLlist()!)
-                                    items = CoreData.getListItems(CoreData.getLastLlist()!)!
-                                }
+                                vm.deleteItems()
                             }
                     }
                 }
@@ -75,21 +67,21 @@ struct Itemview: View {
                             .background(RoundedRectangle(cornerRadius: 8).stroke(.green, lineWidth: 2))
                             .frame(height: 30)
                     }
-               
-                ZStack{
-                    TextField(" Nummer", text: $newNumber).keyboardType(.numberPad).onChange(of: newNumber) { newValue in
-                        if(newNumber.count > 4){
-                            newNumber = String(newNumber.prefix(4))
+                    
+                    ZStack{
+                        TextField(" Nummer", text: $newNumber).keyboardType(.numberPad).onChange(of: newNumber) { newValue in
+                            if(newNumber.count > 4){
+                                newNumber = String(newNumber.prefix(4))
+                            }
                         }
+                        RoundedRectangle(cornerRadius: 8).fill(.clear)
+                            .background(RoundedRectangle(cornerRadius: 8).stroke(.green, lineWidth: 2))
+                            .frame(height: 30)
                     }
-                    RoundedRectangle(cornerRadius: 8).fill(.clear)
-                        .background(RoundedRectangle(cornerRadius: 8).stroke(.green, lineWidth: 2))
-                        .frame(height: 30)
-                }
                     Spacer().frame(height: 50)
                     Button {
-                        Util.createItem(CoreData.getLastLlist()!, newName, newNumber)
-                        items = CoreData.getListItems(CoreData.getLastLlist()!)!
+                        Util.createItem(name: newName, code: newNumber)
+                        vm.updateViews()
                         showNewItemSheet.toggle()
                     } label: {
                         ZStack{
@@ -103,32 +95,13 @@ struct Itemview: View {
                 newNumber = ""
                 newName = ""
             }
-          }
-        .onAppear{
-            items = CoreData.getListItems(CoreData.getLastLlist()!)!
         }
-       
-    }
-    
-    func removeItems(at offsets: IndexSet) {
-        for i in offsets.makeIterator() {
-            let theItem = items[i]
-            CoreData.removeItem(theItem, CoreData.getLastLlist()!)
+        .onAppear{
+            vm.updateViews()
         }
     }
     
     func createItem(name: String = "neuesItem", number: String = "0000"){
         
-    }
-}
-
-class ItemviewwHostingController: UIHostingController<Itemview>  {
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder, rootView: Itemview()
-        )
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
     }
 }

@@ -23,6 +23,7 @@ struct ListView: View{
                 List {
                     //TODO: Sections after month maybe?
                     ForEach(vm.lists) { list in
+                        let itemsArr = Util.getItems(list)
                         
                         NavigationLink(destination: ListDetail(list: list)) {
                             HStack{
@@ -31,7 +32,7 @@ struct ListView: View{
                                 }
                                 Text(list.date.format())
                                 Spacer()
-                                Text("Items: \(list.items?.count == 0 ? 0 : list.items!.count)").foregroundColor(.gray)
+                                Text("Items: \(itemsArr.count)").foregroundColor(.gray)
                             }
                             
                         }
@@ -55,8 +56,7 @@ struct ListView: View{
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     Button("Neue Liste") {
-                        _ = Util.createNewList()
-                        vm.updateViews()
+                        vm.addList()
                     }
                 }
         }.onAppear{

@@ -12,14 +12,15 @@ struct ListDetail: View {
     
     var body: some View {
         VStack{
-    //TODO: items etc., select option
-            HStack {
-                Text("Erstellungsdatum: ")
-                Spacer()
-                Text(list.date.format())
-            }
+            //TODO: items etc., select option
             List {
-                ForEach(CoreData.getListItems(list)!) { item in
+                HStack {
+                    Text("Erstellungsdatum: ")
+                    Spacer()
+                    Text(list.date.format())
+                }
+                
+                ForEach(CoreData.getListItems(list)) { item in
                     HStack{
                         Text(item.name)
                         Spacer()
@@ -27,7 +28,7 @@ struct ListDetail: View {
                     }
                 }
             }
-        }.padding()
-            .navigationTitle("Listeninhalt")
+        }
+        .navigationTitle("Listeninhalt")
     }
 }

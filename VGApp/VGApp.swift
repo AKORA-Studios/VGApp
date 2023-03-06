@@ -16,7 +16,7 @@ struct VGApp: App {
                     .tabItem {
                         Image(systemName: "barcode.viewfinder")
                     }*/
-                Itemview()
+                Itemview(vm: ItemViewmodel())
                     .tabItem {
                         Image(systemName: "takeoutbag.and.cup.and.straw")
                     }

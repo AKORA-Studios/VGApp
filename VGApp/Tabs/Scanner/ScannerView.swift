@@ -35,7 +35,7 @@ class ScannerView: UIViewController {
                 self.avCaptureSession.startRunning()
             }))
             scanAlert.addAction(UIAlertAction(title: "Hinzufügen", style: .default, handler: {_ in
-                Util.createItem(CoreData.getLastLlist()!, self.scanAlert.textFields![0].text!, self.lastScanned)
+                Util.createItem(name: self.scanAlert.textFields![0].text!, code: self.lastScanned)
                 DispatchQueue.global(qos: .background).async {
                     self.avCaptureSession.startRunning()
                 }

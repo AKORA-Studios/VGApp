@@ -11,14 +11,16 @@ let context = CoreDataStack.shared.managedObjectContext
 
 struct Util {
     
-    
+    static func save(){
+        try! context.save()
+    }
     
     static func getAppData() -> AppData{
         return CoreData.getCoreData()!
     }
     
     static func getLists() -> [ShoppingList] {
-        return getAppData().lists?.allObjects as! [ShoppingList]
+        return CoreData.getAlllLists()
     }
     
     static func getSelectedList() -> ShoppingList {
@@ -31,7 +33,7 @@ struct Util {
     
     static func setSelectedList(_ list: ShoppingList = createNewList()){
         getAppData().selected = list
-        try! context.save()
+        save()
     }
     
     static func createNewList() -> ShoppingList{
@@ -41,22 +43,27 @@ struct Util {
         newList.items = []
         
         CoreData.addList(newList)
-        try! context.save()
+        save()
         return newList
+    }
+    
+    static func getItems(_ list: ShoppingList = getSelectedList()) -> [Item]{
+        return CoreData.getListItems(list)
     }
     
     static func deleteAllLists(){
         let appData = getAppData()
+        appData.selected = nil
         appData.lists = []
-        try! context.save()
+        save()
     }
     
     static func deleteAllItems(_ list: ShoppingList) {
         list.items = []
-        try! context.save()
+        save()
     }
     
-    static func createItem(_ list: ShoppingList, _ name: String, _ code: String){
+    static func createItem(_ list: ShoppingList = getSelectedList(), name: String, code: String){
         var codeArr = code.map{ String($0)}
         
         for _ in 1...4{
@@ -70,7 +77,7 @@ struct Util {
         newItem.number = codeArr.joined(separator: "")
         newItem.icon = "apple"
         list.addToItems(newItem)
-        try! context.save()
+        save()
     }
     
 }

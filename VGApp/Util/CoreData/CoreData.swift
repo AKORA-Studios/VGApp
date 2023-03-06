@@ -12,13 +12,11 @@ struct CoreData {
     
     /// Returns basic App CoreData
     static func getCoreData() -> AppData? {
-        let context = CoreDataStack.shared.managedObjectContext
-        
         var items: [AppData]
         do {
             items = try context.fetch(AppData.fetchRequest())
             
-            if(items.count == 0){
+            if(items.isEmpty){
                 let item = AppData(context: context)
                 try! context.save()
                 return item
@@ -29,21 +27,8 @@ struct CoreData {
         return nil
     }
     
-    /// Returns the latest List, sorted by date
-    static func getLastLlist() -> ShoppingList? {
-        var allLists: [ShoppingList] = getAlllLists()!
-        
-        if(allLists.count == 0) {
-        _ = Util.createNewList()
-        allLists = getAlllLists()!
-           }
-        
-        allLists = allLists.sorted(by: {$0.date > $1.date})
-        return allLists[0]
-    }
-    
     /// Returns an array of all Lists
-    static func getAlllLists() -> [ShoppingList]? {
+    static func getAlllLists() -> [ShoppingList] {
         let data = getCoreData()!.lists
         if(data == nil) { return []}
         let lists = data!.allObjects as! [ShoppingList]?
@@ -54,29 +39,29 @@ struct CoreData {
     
     /// addt item to specific shoppinglist
     static func addItem(_ item: Item, _ list: ShoppingList){
-        let context = CoreDataStack.shared.managedObjectContext
+      //  let context = CoreDataStack.shared.managedObjectContext
         let allLists = getAlllLists()
-        if(allLists == nil) { return }
+        if(allLists.isEmpty) { return }
         
-        let data = (getAlllLists()!.filter{$0.objectID == list.objectID})[0]
+        let data = (getAlllLists().filter{$0.objectID == list.objectID})[0]
         data.addToItems(item)
         try! context.save()
     }
     
     /// remove item form specific shoppinglist
     static func removeItem(_ item: Item, _ list: ShoppingList){
-        let context = CoreDataStack.shared.managedObjectContext
+        //let context = CoreDataStack.shared.managedObjectContext
         let allLists = getAlllLists()
-        if(allLists == nil) { return }
+        if(allLists.isEmpty) { return }
         
-        let data = (getAlllLists()!.filter{$0.objectID == list.objectID})[0]
+        let data = (getAlllLists().filter{$0.objectID == list.objectID})[0]
         data.removeFromItems(item)
         try! context.save()
     }
     
     /// create list
     static func addList(_ list: ShoppingList){
-        let context = CoreDataStack.shared.managedObjectContext
+     //   let context = CoreDataStack.shared.managedObjectContext
         let data = getCoreData()!
         data.addToLists(list)
         try! context.save()
@@ -84,14 +69,14 @@ struct CoreData {
     
     /// delete list
     static func removeList(_ list: ShoppingList){
-        let context = CoreDataStack.shared.managedObjectContext
+      //  let context = CoreDataStack.shared.managedObjectContext
         let data = getCoreData()
         data?.removeFromLists(list)
         try! context.save()
     }
     
     /// Get all items of a list
-    static func getListItems(_ list: ShoppingList) -> [Item]? {
+    static func getListItems(_ list: ShoppingList) -> [Item] {
         if(list.items == nil){ return []}
         if(list.items!.count == 0) { return []}
         return (list.items!.allObjects as! [Item]).sorted(by: {$0.name < $1.name})
