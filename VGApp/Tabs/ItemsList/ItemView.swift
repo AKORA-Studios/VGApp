@@ -27,11 +27,7 @@ struct Itemview: View {
                 
                 List {
                     ForEach(vm.items) { item in
-                        HStack{
-                            Text(item.name)
-                            Spacer()
-                            Text(item.number).foregroundColor(.gray)
-                        }
+                        ItemCell(item: item)
                     }.onDelete { indexSet in
                         vm.removeItems(at: indexSet)
                     }

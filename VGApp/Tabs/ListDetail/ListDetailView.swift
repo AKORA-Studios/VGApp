@@ -21,11 +21,7 @@ struct ListDetail: View {
                 }
                 
                 ForEach(CoreData.getListItems(list)) { item in
-                    HStack{
-                        Text(item.name)
-                        Spacer()
-                        Text(item.number).foregroundColor(.gray)
-                    }
+                    ItemCell(item: item)
                 }
             }
         }
