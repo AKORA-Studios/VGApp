@@ -23,7 +23,6 @@
 		F1B2733429B613DC00E841F4 /* ItemViewmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B2733329B613DC00E841F4 /* ItemViewmodel.swift */; };
 		F1B2733629B61D4400E841F4 /* IconManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B2733529B61D4400E841F4 /* IconManager.swift */; };
 		F1B2733829B61EE700E841F4 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B2733729B61EE700E841F4 /* ItemCell.swift */; };
-		F1B2733A29B650A200E841F4 /* HistoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B2733929B650A200E841F4 /* HistoryManager.swift */; };
 		F1B2734B29B652E000E841F4 /* Item+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B2734329B652E000E841F4 /* Item+CoreDataClass.swift */; };
 		F1B2734C29B652E000E841F4 /* Item+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B2734429B652E000E841F4 /* Item+CoreDataProperties.swift */; };
 		F1B2734D29B652E000E841F4 /* Barcodes+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B2734529B652E000E841F4 /* Barcodes+CoreDataClass.swift */; };
@@ -55,7 +54,6 @@
 		F1B2733329B613DC00E841F4 /* ItemViewmodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewmodel.swift; sourceTree = "<group>"; };
 		F1B2733529B61D4400E841F4 /* IconManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconManager.swift; sourceTree = "<group>"; };
 		F1B2733729B61EE700E841F4 /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
-		F1B2733929B650A200E841F4 /* HistoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryManager.swift; sourceTree = "<group>"; };
 		F1B2734329B652E000E841F4 /* Item+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		F1B2734429B652E000E841F4 /* Item+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		F1B2734529B652E000E841F4 /* Barcodes+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Barcodes+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
@@ -134,7 +132,6 @@
 				DD28462827B2AD35001C883F /* CoreData */,
 				DDEBB40D27B5BB9F004D80BB /* Util.swift */,
 				F1B2733529B61D4400E841F4 /* IconManager.swift */,
-				F1B2733929B650A200E841F4 /* HistoryManager.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -281,7 +278,6 @@
 				F1B2735029B652E000E841F4 /* AppData+CoreDataProperties.swift in Sources */,
 				DD28462D27B2AD7A001C883F /* CoreData.swift in Sources */,
 				DDEBB41027B5C246004D80BB /* ItemView.swift in Sources */,
-				F1B2733A29B650A200E841F4 /* HistoryManager.swift in Sources */,
 				DD28463027B2AD8A001C883F /* Model.xcdatamodeld in Sources */,
 				F1B2734C29B652E000E841F4 /* Item+CoreDataProperties.swift in Sources */,
 				F1B2734F29B652E000E841F4 /* AppData+CoreDataClass.swift in Sources */,

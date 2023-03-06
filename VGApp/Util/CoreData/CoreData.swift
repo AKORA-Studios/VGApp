@@ -77,9 +77,35 @@ struct CoreData {
     
     /// Get all items of a list
     static func getListItems(_ list: ShoppingList) -> [Item] {
-        if(list.items == nil){ return []}
+        if(list.items.allObjects.isEmpty){ return []}
         if(list.items.count == 0) { return []}
         return (list.items.allObjects as! [Item]).sorted(by: {$0.name < $1.name})
     }
     
+}
+
+//MARK: History
+extension CoreData {
+    /// Returns an array of all histories
+    static func getHistory() -> [Barcodes] {
+        let data = Util.getAppData().histories
+        if(data?.allObjects == nil) { return [] }
+        
+        let lists = data?.allObjects as! [Barcodes]? ?? []
+        return lists
+    }
+    
+    /// addt item to history
+    static func addHistory(_ item: Barcodes){
+        let history = Util.getAppData()
+
+        history.addToHistories(item)
+        try! context.save()
+    }
+    
+    /// remove item from history
+    static func removeHistory(_ item: Barcodes){
+        let history = Util.getAppData()
+        history.removeFromHistories(item)
+    }
 }

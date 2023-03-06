@@ -11,7 +11,7 @@ import AVFoundation
 class ScannerView: UIViewController {
     var avCaptureSession: AVCaptureSession!
     var avPreviewLayer: AVCaptureVideoPreviewLayer!
-    let scanAlert = UIAlertController(title: "Neues Item", message: "Welchen Namen hat das gescannte Objekt?", preferredStyle: .alert)
+    let scanAlert = UIAlertController(title: "Neues Item hinzufügen", message: "", preferredStyle: .alert)
     var lastScanned: String = ""
      
         override func viewDidLoad() {
@@ -27,6 +27,15 @@ class ScannerView: UIViewController {
             }))
             scanAlert.addAction(UIAlertAction(title: "Hinzufügen", style: .default, handler: {_ in
                 Util.createItem(name: self.scanAlert.textFields![0].text!, code: self.lastScanned)
+                
+                
+                let newItem = Barcodes(context: context)
+                newItem.name = self.scanAlert.textFields![0].text!
+                newItem.code = self.lastScanned
+                CoreData.addHistory(newItem)
+                Util.save()
+                
+                
                 DispatchQueue.global(qos: .background).async {
                     self.avCaptureSession.startRunning()
                 }
@@ -133,7 +142,7 @@ class ScannerView: UIViewController {
         func found(code: String) {
             self.lastScanned = processsString(code)
             avCaptureSession.stopRunning()
-            scanAlert.textFields![0].text = ""
+            scanAlert.textFields![0].text = checkCode(self.lastScanned)
             present(scanAlert, animated: true, completion: nil)
         }
         
@@ -141,5 +150,11 @@ class ScannerView: UIViewController {
             if(str.count < 4){ return "0000"}
             let newStr = str.dropLast()
             return String(newStr.suffix(4))
+        }
+        
+        func checkCode(_ code: String) -> String? {
+            let all = CoreData.getHistory().filter{$0.code == code}
+            if(all.isEmpty){ return nil}
+            return all.first?.name
         }
     }
