@@ -32,6 +32,7 @@
 		F1B2735029B652E000E841F4 /* AppData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B2734829B652E000E841F4 /* AppData+CoreDataProperties.swift */; };
 		F1B2735129B652E000E841F4 /* ShoppingList+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B2734929B652E000E841F4 /* ShoppingList+CoreDataClass.swift */; };
 		F1B2735229B652E000E841F4 /* ShoppingList+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B2734A29B652E000E841F4 /* ShoppingList+CoreDataProperties.swift */; };
+		F1B2735429B6560200E841F4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1B2735329B6560200E841F4 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +64,7 @@
 		F1B2734829B652E000E841F4 /* AppData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppData+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		F1B2734929B652E000E841F4 /* ShoppingList+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShoppingList+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		F1B2734A29B652E000E841F4 /* ShoppingList+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShoppingList+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		F1B2735329B6560200E841F4 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				DDEBB40527B5B3FF004D80BB /* Tabs */,
 				DD28461B27B2ACF4001C883F /* Assets.xcassets */,
 				DD28461D27B2ACF4001C883F /* LaunchScreen.storyboard */,
+				F1B2735329B6560200E841F4 /* Main.storyboard */,
 				DD28462027B2ACF4001C883F /* Info.plist */,
 			);
 			path = VGApp;
@@ -249,6 +252,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD28461F27B2ACF4001C883F /* LaunchScreen.storyboard in Resources */,
+				F1B2735429B6560200E841F4 /* Main.storyboard in Resources */,
 				DD28461C27B2ACF4001C883F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
