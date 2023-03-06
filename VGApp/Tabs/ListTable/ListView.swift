@@ -25,7 +25,7 @@ struct ListView: View{
                     ForEach(vm.lists) { list in
                         let itemsArr = Util.getItems(list)
                         
-                        NavigationLink(destination: ListDetail(list: list)) {
+                        NavigationLink(destination: ListDetail(vm: ListDetailViewModel(list: list)).onDisappear(perform: vm.updateViews)) {
                             HStack{
                                 if(list.objectID == vm.selected?.objectID) {
                                     Image(systemName: "star.fill")//TODO: whyyyy

@@ -15,7 +15,6 @@ class ItemViewmodel: ObservableObject {
         withAnimation {
             self.objectWillChange.send()
             list = Util.getSelectedList()
-            print(list?.items?.count)
             items = Util.getItems()
         }
     }

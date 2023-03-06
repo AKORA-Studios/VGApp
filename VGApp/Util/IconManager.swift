@@ -21,7 +21,6 @@ struct IconManager {
         
         names.forEach { entry in
             if(entry.value.contains(str.lowercased())){
-                print(entry.value)
                 img =  icons[entry.key]
             }
         }
