@@ -31,6 +31,7 @@
 		DDEE287727B68C0700AC142F /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDEE287627B68C0600AC142F /* ScannerView.swift */; };
 		DDEE287927B6B17600AC142F /* DeleteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDEE287827B6B17600AC142F /* DeleteCell.swift */; };
 		F1678A192979BAE600F676A4 /* ListDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1678A182979BAE600F676A4 /* ListDetailView.swift */; };
+		F1B2732829B6046400E841F4 /* VGapp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B2732729B6046400E841F4 /* VGapp.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +62,7 @@
 		DDEE287627B68C0600AC142F /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
 		DDEE287827B6B17600AC142F /* DeleteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteCell.swift; sourceTree = "<group>"; };
 		F1678A182979BAE600F676A4 /* ListDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetailView.swift; sourceTree = "<group>"; };
+		F1B2732729B6046400E841F4 /* VGapp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGapp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 		DD28460E27B2ACF0001C883F /* VGApp */ = {
 			isa = PBXGroup;
 			children = (
+				F1B2732729B6046400E841F4 /* VGapp.swift */,
 				DD28466227B2AF80001C883F /* VGApp.entitlements */,
 				DD28462927B2AD4D001C883F /* Util */,
 				DD28460F27B2ACF0001C883F /* AppDelegate.swift */,
@@ -240,6 +243,7 @@
 				DDEBB41227B5C40B004D80BB /* ItemsCell.swift in Sources */,
 				DD28465E27B2AF19001C883F /* ShoppingList+CoreDataProperties.swift in Sources */,
 				DD28461027B2ACF0001C883F /* AppDelegate.swift in Sources */,
+				F1B2732829B6046400E841F4 /* VGapp.swift in Sources */,
 				DD28461227B2ACF0001C883F /* SceneDelegate.swift in Sources */,
 				DDEBB40A27B5B788004D80BB /* ShppinglistCell.swift in Sources */,
 				DDEE287927B6B17600AC142F /* DeleteCell.swift in Sources */,
