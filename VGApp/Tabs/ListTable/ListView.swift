@@ -10,7 +10,6 @@ import SwiftUI
 
 struct ListView: View{
     @ObservedObject var vm: ListViewmodel
-    @State var showListDetail = false
     
     var body: some View {
         NavigationView {
