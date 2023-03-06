@@ -13,6 +13,9 @@ struct VGApp: App {
         WindowGroup {
             TabView {
                 ListView()
+                    .tabItem {
+                        Set
+                    }
             }
         }
     }

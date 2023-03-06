@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DD28461027B2ACF0001C883F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD28460F27B2ACF0001C883F /* AppDelegate.swift */; };
-		DD28461227B2ACF0001C883F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD28461127B2ACF0001C883F /* SceneDelegate.swift */; };
 		DD28461727B2ACF0001C883F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD28461527B2ACF0001C883F /* Main.storyboard */; };
 		DD28461C27B2ACF4001C883F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD28461B27B2ACF4001C883F /* Assets.xcassets */; };
 		DD28461F27B2ACF4001C883F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD28461D27B2ACF4001C883F /* LaunchScreen.storyboard */; };
@@ -36,8 +34,6 @@
 
 /* Begin PBXFileReference section */
 		DD28460C27B2ACF0001C883F /* VGApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VGApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		DD28460F27B2ACF0001C883F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DD28461127B2ACF0001C883F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		DD28461627B2ACF0001C883F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DD28461B27B2ACF4001C883F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DD28461E27B2ACF4001C883F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -98,8 +94,6 @@
 				F1B2732729B6046400E841F4 /* VGapp.swift */,
 				DD28466227B2AF80001C883F /* VGApp.entitlements */,
 				DD28462927B2AD4D001C883F /* Util */,
-				DD28460F27B2ACF0001C883F /* AppDelegate.swift */,
-				DD28461127B2ACF0001C883F /* SceneDelegate.swift */,
 				DDEBB40827B5B75C004D80BB /* TableCells */,
 				DDEBB40527B5B3FF004D80BB /* Tabs */,
 				DD28461527B2ACF0001C883F /* Main.storyboard */,
@@ -242,9 +236,7 @@
 				DDEE287727B68C0700AC142F /* ScannerView.swift in Sources */,
 				DDEBB41227B5C40B004D80BB /* ItemsCell.swift in Sources */,
 				DD28465E27B2AF19001C883F /* ShoppingList+CoreDataProperties.swift in Sources */,
-				DD28461027B2ACF0001C883F /* AppDelegate.swift in Sources */,
 				F1B2732829B6046400E841F4 /* VGapp.swift in Sources */,
-				DD28461227B2ACF0001C883F /* SceneDelegate.swift in Sources */,
 				DDEBB40A27B5B788004D80BB /* ShppinglistCell.swift in Sources */,
 				DDEE287927B6B17600AC142F /* DeleteCell.swift in Sources */,
 				DD28462D27B2AD7A001C883F /* CoreData.swift in Sources */,
