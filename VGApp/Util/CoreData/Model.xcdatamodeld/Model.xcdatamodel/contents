@@ -11,7 +11,7 @@
         <attribute name="number" attributeType="String"/>
         <relationship name="itemTolist" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ShoppingList" inverseName="items" inverseEntity="ShoppingList"/>
     </entity>
-    <entity name="RecycleItem" representedClassName="RecycleItem" syncable="YES" codeGenerationType="class">
+    <entity name="RecycleItem" representedClassName="RecycleItem" syncable="YES">
         <attribute name="recType" attributeType="String" defaultValueString="1"/>
     </entity>
     <entity name="ShoppingList" representedClassName="ShoppingList" syncable="YES">
