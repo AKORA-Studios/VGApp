@@ -11,6 +11,12 @@ class ItemViewmodel: ObservableObject {
     @Published var list: ShoppingList?
     @Published var items: [Item] = []
     
+    @Published var showNewItemSheet = false
+    @Published var showNewRecycleSheet = false
+    
+    @Published var newName = ""
+    @Published var newNumber = ""
+    
     func updateViews(){
         withAnimation {
             self.objectWillChange.send()
