@@ -11,8 +11,8 @@ struct ItemCell: View {
     let item: Item
     
     var body: some View {
-        HStack{
-            if(IconManager.hasIcon(item.name)){
+        HStack {
+            if IconManager.hasIcon(item.name) {
                 IconManager.getIcon(item.name)!
                     .resizable()
                     .frame(width: 25, height: 25)

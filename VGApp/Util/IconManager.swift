@@ -19,11 +19,11 @@ let icons: [String: Image] = [
     "orange": Image("orange"),
     "pear": Image("pear"),
     "strawberry": Image("strawberry"),
-    "tomato": Image("tomato"),
+    "tomato": Image("tomato")
 ]
 
 let names: [String: [String]] = [
-    "carrot": ["möhre","möhren", "karotte", "karotten"],
+    "carrot": ["möhre", "möhren", "karotte", "karotten"],
     "apple": ["apfel", "äpfel"],
     "avocado": ["avokado", "avokados", "avocado"],
     "banana": ["banane", "bananen"],
@@ -34,16 +34,16 @@ let names: [String: [String]] = [
     "orange": ["orange", "orangen"],
     "pear": ["birne", "birnen"],
     "strawberry": ["erdbeere", "erdbeeren"],
-    "tomato": ["tomate", "tomaten"],
+    "tomato": ["tomate", "tomaten"]
 ]
 
 struct IconManager {
-    static func getIcon(_ str: String) -> Image?{
-        var img: Image? = nil
+    static func getIcon(_ str: String) -> Image? {
+        var img: Image?
      
         names.forEach { entry in
             entry.value.forEach { val in
-                if(val == str.lowercased()){
+                if val == str.lowercased() {
                     img = icons[entry.key]
                 }
             }
@@ -51,12 +51,12 @@ struct IconManager {
         return img
     }
     
-    static func hasIcon(_ str: String) -> Bool{
+    static func hasIcon(_ str: String) -> Bool {
         var value: Bool = false
         
         names.forEach { entry in
             entry.value.forEach { val in
-                if(val == str.lowercased()){
+                if val == str.lowercased() {
                     value = true
                 }
             }

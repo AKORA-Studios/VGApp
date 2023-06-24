@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 struct UIViewScanner: UIViewControllerRepresentable {
     typealias UIViewControllerType = ScannerView
     @State var scannedCode: String?

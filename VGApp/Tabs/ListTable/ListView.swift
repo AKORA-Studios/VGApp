@@ -7,28 +7,27 @@
 
 import SwiftUI
 
-
-struct ListView: View{
+struct ListView: View {
     @ObservedObject var vm: ListViewmodel
     
     var body: some View {
         NavigationView {
-            VStack{
-                if(vm.lists.isEmpty){
+            VStack {
+                if vm.lists.isEmpty {
                     Spacer()
                     Text("Keine Listen vorhanden").foregroundColor(.gray).font(.largeTitle)
                     Spacer()
                 }
                 
                 List {
-                    //TODO: Sections after month maybe?
+                    // TODO: Sections after month maybe?
                     ForEach(vm.lists) { list in
                         let itemsArr = Util.getItems(list)
                         
                         NavigationLink(destination: ListDetail(vm: ListDetailViewModel(list: list)).onDisappear(perform: vm.updateViews)) {
-                            HStack{
-                                if(list.objectID == vm.selected?.objectID) {
-                                    Image(systemName: "star.fill")//TODO: whyyyy
+                            HStack {
+                                if list.objectID == vm.selected?.objectID {
+                                    Image(systemName: "star.fill")// TODO: whyyyy
                                 }
                                 Text(list.date.format())
                                 Spacer()
@@ -40,8 +39,8 @@ struct ListView: View{
                         vm.removeItems(at: indexSet)
                     }
                     
-                    if(!vm.lists.isEmpty){
-                        Text("Alle Listen löschen") //TODO: alert
+                    if !vm.lists.isEmpty {
+                        Text("Alle Listen löschen") // TODO: alert
                             .foregroundColor(.red)
                             .listRowBackground(Color.red.opacity(0.4))
                             .disabled(vm.lists.isEmpty)
@@ -59,7 +58,7 @@ struct ListView: View{
                         vm.addList()
                     }
                 }
-        }.onAppear{
+        }.onAppear {
             vm.updateViews()
         }
     }

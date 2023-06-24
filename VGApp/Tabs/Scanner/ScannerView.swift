@@ -49,7 +49,7 @@ class ScannerView: UIViewController {
                     return
                 }
                 
-                if (self.avCaptureSession.canAddInput(avVideoInput)) {
+                if self.avCaptureSession.canAddInput(avVideoInput) {
                     self.avCaptureSession.addInput(avVideoInput)
                 } else {
                     self.failed()
@@ -58,7 +58,7 @@ class ScannerView: UIViewController {
                 
                 let metadataOutput = AVCaptureMetadataOutput()
                 
-                if (self.avCaptureSession.canAddOutput(metadataOutput)) {
+                if self.avCaptureSession.canAddOutput(metadataOutput) {
                     self.avCaptureSession.addOutput(metadataOutput)
                     
                     metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
@@ -80,7 +80,6 @@ class ScannerView: UIViewController {
             }
         }
         
-        
         func failed() {
             let ac = UIAlertController(title: "Gerät hat keine Kamera", message: "Bitte verwende ein Gerät mit funktionierender Kamera lol", preferredStyle: .alert)
             ac.addAction(UIAlertAction(title: "OK", style: .default))
@@ -91,7 +90,7 @@ class ScannerView: UIViewController {
         override func viewWillAppear(_ animated: Bool) {
             super.viewWillAppear(animated)
             
-            if (avCaptureSession?.isRunning == false) {
+            if avCaptureSession?.isRunning == false {
                 DispatchQueue.global(qos: .background).async {
                     self.avCaptureSession.startRunning()
                 }
@@ -101,7 +100,7 @@ class ScannerView: UIViewController {
         override func viewWillDisappear(_ animated: Bool) {
             super.viewWillDisappear(animated)
             
-            if (avCaptureSession?.isRunning == true) {
+            if avCaptureSession?.isRunning == true {
                 avCaptureSession.stopRunning()
             }
         }
@@ -117,7 +116,7 @@ class ScannerView: UIViewController {
     }
 
 // evertyhign scanner stuff from http://www.wepstech.com/bar-qr-code-ios-with-swift-5/
-    extension ScannerView : AVCaptureMetadataOutputObjectsDelegate {
+    extension ScannerView: AVCaptureMetadataOutputObjectsDelegate {
         func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
             avCaptureSession.stopRunning()
             
@@ -139,14 +138,14 @@ class ScannerView: UIViewController {
         }
         
         func processsString(_ str: String) -> String {
-            if(str.count < 4){ return "0000"}
+            if str.count < 4 { return "0000"}
             let newStr = str.dropLast()
             return String(newStr.suffix(4))
         }
         
         func checkCode(_ code: String) -> String? {
-            let all = CoreData.getHistory().filter{$0.number == code}
-            if(all.isEmpty){ return nil}
+            let all = CoreData.getHistory().filter {$0.number == code}
+            if all.isEmpty {return nil}
             return all.first?.name
         }
     }

@@ -7,14 +7,13 @@
 
 import SwiftUI
 
-
 class ListViewmodel: ObservableObject {
     @Published var lists: [ShoppingList] = []
     @Published var appData: AppData?
     @Published var selected: ShoppingList?
     
-    func updateViews(){
-        withAnimation{
+    func updateViews() {
+        withAnimation {
         self.objectWillChange.send()
         appData = Util.getAppData()
         lists = Util.getLists()
@@ -26,14 +25,14 @@ class ListViewmodel: ObservableObject {
         for i in offsets.makeIterator() {
             let theItem = lists[i]
             CoreData.removeList(theItem)
-            if(selected == theItem){
+            if selected == theItem {
                 Util.getAppData().selected = nil
             }
             updateViews()
         }
     }
     
-    func addList(){
+    func addList() {
         let newList = Util.createNewList()
         Util.getAppData().selected = newList
         updateViews()

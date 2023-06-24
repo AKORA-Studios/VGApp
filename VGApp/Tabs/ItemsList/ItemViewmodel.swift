@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum sheetType {
+enum SHEETTYPE {
     case newItem
     case newRecycle
 }
@@ -15,19 +15,19 @@ enum sheetType {
 class ItemViewmodel: ObservableObject {
     @Published var list: ShoppingList?
     @Published var items: [Item] = []
-    
+
     @Published var showsSheet = false
-    @Published var selectedSheetType = sheetType.newItem
-    
+    @Published var selectedSheetType = SHEETTYPE.newItem
+
     // new Item
     @Published var newName = ""
     @Published var newNumber = ""
-    
+
     // new recycle
-    @Published var newRecycleType = 0//RecycleTypes.bottle
+    @Published var newRecycleType = 0
     @Published var typeArr: [RecycleTypes] = []
-    
-    func updateViews(){
+
+    func updateViews() {
         withAnimation {
             self.objectWillChange.send()
             list = Util.getSelectedList()
@@ -35,8 +35,8 @@ class ItemViewmodel: ObservableObject {
         }
         typeArr = RecycleTypes.allCases
     }
-    
-    func deleteItems(){
+
+    func deleteItems() {
         guard let list = list else {
             return
         }
@@ -44,7 +44,7 @@ class ItemViewmodel: ObservableObject {
         Util.save()
         updateViews()
     }
-    
+
     func removeItems(at offsets: IndexSet) {
         for i in offsets.makeIterator() {
             let theItem = items[i]
@@ -53,24 +53,24 @@ class ItemViewmodel: ObservableObject {
         }
         updateViews()
     }
-    
-    func showNewRecycleSheet(){
+
+    func showNewRecycleSheet() {
         selectedSheetType = .newRecycle
         withAnimation { showsSheet = true }
     }
-    
+
     func showNewItemSheet() {
         selectedSheetType = .newItem
         withAnimation { showsSheet = true }
     }
-    
+
     func addRecyle() {
         let newRecyle = typeArr[newRecycleType]
         CoreData.addRecycle(list!, type: newRecyle)
         Util.save()
         withAnimation { showsSheet = false }
     }
-    
+
     func createItem() {
         Util.createItem(name: newName, code: newNumber)
         updateViews()

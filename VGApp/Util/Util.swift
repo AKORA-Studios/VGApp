@@ -17,11 +17,11 @@ enum RecycleTypes: String, CaseIterable {
 
 struct Util {
     
-    static func save(){
+    static func save() {
         try! context.save()
     }
     
-    static func getAppData() -> AppData{
+    static func getAppData() -> AppData {
         return CoreData.getCoreData()!
     }
     
@@ -37,12 +37,12 @@ struct Util {
         return list
     }
     
-    static func setSelectedList(_ list: ShoppingList = createNewList()){
+    static func setSelectedList(_ list: ShoppingList = createNewList()) {
         getAppData().selected = list
         save()
     }
     
-    static func createNewList() -> ShoppingList{
+    static func createNewList() -> ShoppingList {
         let newList = ShoppingList(context: context)
         
         newList.date = Date()
@@ -53,11 +53,11 @@ struct Util {
         return newList
     }
     
-    static func getItems(_ list: ShoppingList = getSelectedList()) -> [Item]{
+    static func getItems(_ list: ShoppingList = getSelectedList()) -> [Item] {
         return CoreData.getListItems(list)
     }
     
-    static func deleteAllLists(){
+    static func deleteAllLists() {
         let appData = getAppData()
         appData.selected = nil
         appData.lists = []
@@ -69,11 +69,11 @@ struct Util {
         save()
     }
     
-    static func createItem(_ list: ShoppingList = getSelectedList(), name: String, code: String){
-        var codeArr = code.map{ String($0)}
+    static func createItem(_ list: ShoppingList = getSelectedList(), name: String, code: String) {
+        var codeArr = code.map {String($0)}
         
-        for _ in 1...4{
-            if(codeArr.count < 4){
+        for _ in 1...4 {
+            if codeArr.count < 4 {
                 codeArr.append("0")
             }
         }
@@ -84,7 +84,7 @@ struct Util {
         newItem.icon = "apple"
         list.addToItems(newItem)
         
-        //add to history
+        // add to history
         CoreData.addHistory(newItem)
         
         save()
@@ -103,8 +103,8 @@ struct Util {
     
 }
 
-extension Date{
-    func format()->String{
+extension Date {
+    func format() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EE dd.MM.yy HH:mm"
         dateFormatter.timeZone = .current

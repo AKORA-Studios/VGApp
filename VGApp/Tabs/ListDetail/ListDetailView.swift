@@ -11,7 +11,7 @@ struct ListDetail: View {
     @ObservedObject var vm: ListDetailViewModel
     
     var body: some View {
-        VStack{
+        VStack {
             List {
                 Section {
                     HStack {
@@ -47,7 +47,7 @@ struct ListDetail: View {
             }
         }
         .navigationTitle("Listeninhalt")
-        .onAppear{
+        .onAppear {
             vm.checkActive()
         }
     }
@@ -68,7 +68,6 @@ struct ListDetail: View {
     }
 }
 
-
 class ListDetailViewModel: ObservableObject {
     @Published var list: ShoppingList
     @Published var isActive = false
@@ -81,8 +80,8 @@ class ListDetailViewModel: ObservableObject {
         isActive = Util.getAppData().selected == list
     }
     
-    func changeSelection(){
-        if(isActive){
+    func changeSelection() {
+        if isActive {
             Util.getAppData().selected = nil
             Util.save()
         } else {

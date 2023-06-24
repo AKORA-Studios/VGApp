@@ -7,13 +7,12 @@
 
 import SwiftUI
 
-
 struct Itemview: View {
     @ObservedObject var vm: ItemViewmodel
     
     var body: some View {
         NavigationView {
-            VStack{
+            VStack {
                 if vm.items.isEmpty {
                     Spacer()
                     Text("Keine Items vorhanden")
@@ -67,13 +66,13 @@ struct Itemview: View {
                 newRecycleView()
             }
         }
-        .onAppear{
+        .onAppear {
             vm.updateViews()
         }
     }
     
     func newItemView() -> some View {
-        ScrollView{
+        ScrollView {
             VStack {
                 Spacer()
                 Text("Neues Item").font(.title)
@@ -85,8 +84,8 @@ struct Itemview: View {
                         .frame(height: 30)
                 }
                 
-                ZStack{
-                    TextField(" Nummer", text: $vm.newNumber).keyboardType(.numberPad).onChange(of: vm.newNumber) { newValue in
+                ZStack {
+                    TextField(" Nummer", text: $vm.newNumber).keyboardType(.numberPad).onChange(of: vm.newNumber) { _ in
                         if vm.newNumber.count > 4 {
                             vm.newNumber = String(vm.newNumber.prefix(4))
                         }
@@ -99,14 +98,14 @@ struct Itemview: View {
                 Button {
                     vm.createItem()
                 } label: {
-                    ZStack{
+                    ZStack {
                         RoundedRectangle(cornerRadius: 8).fill(.green).frame(height: 40)
                         Text("Item hinzufügen").foregroundColor(.white)
                     }
                 }
                 Spacer()
             }.padding(10)
-        }.onAppear{
+        }.onAppear {
             vm.updateViews()
         }
     }
@@ -145,7 +144,7 @@ struct Itemview: View {
             Button {
                 vm.addRecyle()
             } label: {
-                ZStack{
+                ZStack {
                     RoundedRectangle(cornerRadius: 8).fill(.green).frame(height: 40)
                     Text("Leergut hinzufügen").foregroundColor(.white)
                 }
