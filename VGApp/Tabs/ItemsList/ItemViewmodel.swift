@@ -7,15 +7,25 @@
 
 import SwiftUI
 
+enum sheetType {
+    case newItem
+    case newRecycle
+}
+
 class ItemViewmodel: ObservableObject {
     @Published var list: ShoppingList?
     @Published var items: [Item] = []
     
-    @Published var showNewItemSheet = false
-    @Published var showNewRecycleSheet = false
+    @Published var showsSheet = false
+    @Published var selectedSheetType = sheetType.newItem
     
+    // new Item
     @Published var newName = ""
     @Published var newNumber = ""
+    
+    // new recycle
+    @Published var newRecycleType = 0//RecycleTypes.bottle
+    @Published var typeArr: [RecycleTypes] = []
     
     func updateViews(){
         withAnimation {
@@ -23,6 +33,7 @@ class ItemViewmodel: ObservableObject {
             list = Util.getSelectedList()
             items = Util.getItems()
         }
+        typeArr = RecycleTypes.allCases
     }
     
     func deleteItems(){
@@ -30,6 +41,7 @@ class ItemViewmodel: ObservableObject {
            return
         }
         Util.deleteAllItems(list)
+        Util.save()
         updateViews()
     }
     
@@ -41,5 +53,27 @@ class ItemViewmodel: ObservableObject {
         }
         updateViews()
     }
+    
+    func showNewRecycleSheet(){
+        selectedSheetType = .newRecycle
+        withAnimation { showsSheet = true }
+    }
+    
+    func showNewItemSheet() {
+        selectedSheetType = .newItem
+        withAnimation { showsSheet = true }
+    }
+    
+    func addRecyle() {
+        let newRecyle = typeArr[newRecycleType]
+        CoreData.addRecycle(list!, type: newRecyle)
+        Util.save()
+        withAnimation { showsSheet = false }
+    }
+    
+    func createItem() {
+        Util.createItem(name: newName, code: newNumber)
+        updateViews()
+        withAnimation { showsSheet = false }
+    }
 }
-

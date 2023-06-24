@@ -16,7 +16,9 @@ struct Itemview: View {
             VStack{
                 if vm.items.isEmpty {
                     Spacer()
-                    Text("Keine Items vorhanden").foregroundColor(.gray).font(.largeTitle)
+                    Text("Keine Items vorhanden")
+                        .foregroundColor(.gray)
+                        .font(.largeTitle)
                     Spacer()
                 }
                 
@@ -31,7 +33,7 @@ struct Itemview: View {
                         recycleSection()
                     }
                     
-                    if(!vm.items.isEmpty){
+                    if !vm.items.isEmpty {
                         Text("Alle Items löschen")
                             .foregroundColor(.red)
                             .listRowBackground(Color.red.opacity(0.4))
@@ -46,25 +48,25 @@ struct Itemview: View {
                     
                     ToolbarItem(placement: .automatic) {
                         Button("+ Item") {
-                            withAnimation {
-                                vm.showNewItemSheet.toggle()
-                            }
+                            vm.showNewItemSheet()
                         }
                     }
                     
                     ToolbarItem(placement: .navigationBarLeading) {
                         Button("+ Leergut") {
-                            withAnimation {
-                                vm.showNewItemSheet.toggle()
-                            }
+                            vm.showNewRecycleSheet()
                         }
                     }
-                    
-                    
                 }
         }
-        .sheet(isPresented: $vm.showNewItemSheet) {newItemView()}
-        .sheet(isPresented: $vm.showNewRecycleSheet) {newRecycleView()}
+        .sheet(isPresented: $vm.showsSheet) {
+            switch vm.selectedSheetType {
+            case .newItem:
+                newItemView()
+            case .newRecycle:
+                newRecycleView()
+            }
+        }
         .onAppear{
             vm.updateViews()
         }
@@ -95,9 +97,7 @@ struct Itemview: View {
                 }
                 Spacer().frame(height: 50)
                 Button {
-                    Util.createItem(name: vm.newName, code: vm.newNumber)
-                    vm.updateViews()
-                    vm.showNewItemSheet.toggle()
+                    vm.createItem()
                 } label: {
                     ZStack{
                         RoundedRectangle(cornerRadius: 8).fill(.green).frame(height: 40)
@@ -107,8 +107,7 @@ struct Itemview: View {
                 Spacer()
             }.padding(10)
         }.onAppear{
-            vm.newNumber = ""
-            vm.newName = ""
+            vm.updateViews()
         }
     }
     
@@ -118,13 +117,40 @@ struct Itemview: View {
         return  Section(header: Text("Recycle")) {
             ForEach(RecycleTypes.allCases, id: \.self) { type in
                 if dict[type] != 0 {
-                Text(String(dict[type] ?? 0))
+                    HStack {
+                        Text(Util.recTypeName(type))
+                        Spacer()
+                        Text(String(dict[type] ?? 0))
+                    }
                 }
             }
         }
     }
     
     func newRecycleView() -> some View {
-        Text("ayo")
+        VStack {
+    
+            Text("Neues Leergut").font(.title)
+                .padding(.bottom, 20)
+                .padding(.top, 20)
+            
+            Picker("Leergut Typ", selection: $vm.newRecycleType) {
+                ForEach(Array(vm.typeArr.enumerated()), id: \.offset) { index, type in
+                    Text(Util.recTypeName(type)).tag(index)
+                }
+            }.pickerStyle(.segmented)
+                .colorMultiply(.green)
+                .padding(.bottom, 30)
+            
+            Button {
+                vm.addRecyle()
+            } label: {
+                ZStack{
+                    RoundedRectangle(cornerRadius: 8).fill(.green).frame(height: 40)
+                    Text("Leergut hinzufügen").foregroundColor(.white)
+                }
+            }
+        }
+        .padding()
     }
 }

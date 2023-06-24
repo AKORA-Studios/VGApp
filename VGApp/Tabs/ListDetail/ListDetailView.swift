@@ -57,7 +57,11 @@ struct ListDetail: View {
         return  Section(header: Text("Recycle")) {
             ForEach(RecycleTypes.allCases, id: \.self) { type in
                 if dict[type] != 0 {
-                Text(String(dict[type] ?? 0))
+                    HStack {
+                        Text(Util.recTypeName(type))
+                        Spacer()
+                        Text(String(dict[type] ?? 0))
+                    }
                 }
             }
         }
