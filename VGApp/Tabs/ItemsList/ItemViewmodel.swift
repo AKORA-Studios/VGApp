@@ -38,7 +38,7 @@ class ItemViewmodel: ObservableObject {
     
     func deleteItems(){
         guard let list = list else {
-           return
+            return
         }
         Util.deleteAllItems(list)
         Util.save()
@@ -75,5 +75,7 @@ class ItemViewmodel: ObservableObject {
         Util.createItem(name: newName, code: newNumber)
         updateViews()
         withAnimation { showsSheet = false }
+        newName = ""
+        newNumber = ""
     }
 }
