@@ -82,6 +82,22 @@ struct CoreData {
         return (list.items.allObjects as! [Item]).sorted(by: {$0.name < $1.name})
     }
     
+    static func addRecycle(_ list: ShoppingList, type: RecycleTypes) {
+        let newRecycle = RecycleItem(context: context)
+        newRecycle.recType = type.rawValue
+        list.addToListToRecycle(newRecycle)
+    }
+    
+    static func removeRecycle(_ list: ShoppingList, type: RecycleTypes) {
+        
+    }
+    
+    static func getRecylces(_ list: ShoppingList) -> [RecycleItem] {
+        let data = list.listToRecycle
+        if data == nil { return [] }
+        let lists = data!.allObjects as! [ShoppingList]?
+    }
+    
 }
 
 //MARK: History

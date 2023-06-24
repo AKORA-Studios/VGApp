@@ -9,6 +9,12 @@ import Foundation
 
 let context = CoreDataStack.shared.managedObjectContext
 
+enum RecycleTypes: String {
+    case yoghurtGlass = "1"
+    case bottle = "2"
+    case crate = "3"
+}
+
 struct Util {
     
     static func save(){
