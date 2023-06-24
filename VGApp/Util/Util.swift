@@ -9,6 +9,12 @@ import Foundation
 
 let context = CoreDataStack.shared.managedObjectContext
 
+enum RecycleTypes: String, CaseIterable {
+    case yoghurtglass = "1"
+    case bottle = "2"
+    case crate = "3"
+}
+
 struct Util {
     
     static func save(){
@@ -28,7 +34,7 @@ struct Util {
             setSelectedList()
             return getAppData().selected!
         }
-       return list
+        return list
     }
     
     static func setSelectedList(_ list: ShoppingList = createNewList()){
@@ -82,6 +88,17 @@ struct Util {
         CoreData.addHistory(newItem)
         
         save()
+    }
+    
+    static func recTypeName(_ type: RecycleTypes) -> String {
+        switch type {
+        case .yoghurtglass:
+            return "Jogurtglas"
+        case .bottle:
+            return "Flasche"
+        case .crate:
+            return "Kasten"
+        }
     }
     
 }

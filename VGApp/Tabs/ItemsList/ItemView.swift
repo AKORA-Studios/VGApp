@@ -11,17 +11,14 @@ import SwiftUI
 struct Itemview: View {
     @ObservedObject var vm: ItemViewmodel
     
-    @State var showNewItemSheet = false
-    @State var newName = ""
-    @State var newNumber = ""
-    
     var body: some View {
         NavigationView {
             VStack{
-                
-                if(vm.items.isEmpty){
+                if vm.items.isEmpty {
                     Spacer()
-                    Text("Keine Items vorhanden").foregroundColor(.gray).font(.largeTitle)
+                    Text("Keine Items vorhanden")
+                        .foregroundColor(.gray)
+                        .font(.largeTitle)
                     Spacer()
                 }
                 
@@ -32,7 +29,11 @@ struct Itemview: View {
                         vm.removeItems(at: indexSet)
                     }
                     
-                    if(!vm.items.isEmpty){
+                    if vm.list != nil && !CoreData.getRecylces(vm.list!).isEmpty {
+                        recycleSection()
+                    }
+                    
+                    if !vm.items.isEmpty {
                         Text("Alle Items löschen")
                             .foregroundColor(.red)
                             .listRowBackground(Color.red.opacity(0.4))
@@ -44,52 +45,26 @@ struct Itemview: View {
             }.navigationTitle("Übersicht")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
-                    Button("Neues Item") {
-                        withAnimation {
-                            showNewItemSheet.toggle()
+                    
+                    ToolbarItem(placement: .automatic) {
+                        Button("+ Item") {
+                            vm.showNewItemSheet()
                         }
-                        
-                    }
-                }
-        } .sheet(isPresented: $showNewItemSheet) {
-            ScrollView{
-                VStack {
-                    Spacer()
-                    Text("Neues Item").font(.title)
-                    Spacer().frame(height: 50)
-                    ZStack {
-                        TextField(" Name", text: $newName)
-                        RoundedRectangle(cornerRadius: 8).fill(.clear)
-                            .background(RoundedRectangle(cornerRadius: 8).stroke(.green, lineWidth: 2))
-                            .frame(height: 30)
                     }
                     
-                    ZStack{
-                        TextField(" Nummer", text: $newNumber).keyboardType(.numberPad).onChange(of: newNumber) { newValue in
-                            if(newNumber.count > 4){
-                                newNumber = String(newNumber.prefix(4))
-                            }
-                        }
-                        RoundedRectangle(cornerRadius: 8).fill(.clear)
-                            .background(RoundedRectangle(cornerRadius: 8).stroke(.green, lineWidth: 2))
-                            .frame(height: 30)
-                    }
-                    Spacer().frame(height: 50)
-                    Button {
-                        Util.createItem(name: newName, code: newNumber)
-                        vm.updateViews()
-                        showNewItemSheet.toggle()
-                    } label: {
-                        ZStack{
-                            RoundedRectangle(cornerRadius: 8).fill(.green).frame(height: 40)
-                            Text("Item hinzufügen").foregroundColor(.white)
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button("+ Leergut") {
+                            vm.showNewRecycleSheet()
                         }
                     }
-                    Spacer()
-                }.padding(10)
-            }.onAppear{
-                newNumber = ""
-                newName = ""
+                }
+        }
+        .sheet(isPresented: $vm.showsSheet) {
+            switch vm.selectedSheetType {
+            case .newItem:
+                newItemView()
+            case .newRecycle:
+                newRecycleView()
             }
         }
         .onAppear{
@@ -97,7 +72,85 @@ struct Itemview: View {
         }
     }
     
-    func createItem(name: String = "neuesItem", number: String = "0000"){
+    func newItemView() -> some View {
+        ScrollView{
+            VStack {
+                Spacer()
+                Text("Neues Item").font(.title)
+                Spacer().frame(height: 50)
+                ZStack {
+                    TextField(" Name", text: $vm.newName)
+                    RoundedRectangle(cornerRadius: 8).fill(.clear)
+                        .background(RoundedRectangle(cornerRadius: 8).stroke(.green, lineWidth: 2))
+                        .frame(height: 30)
+                }
+                
+                ZStack{
+                    TextField(" Nummer", text: $vm.newNumber).keyboardType(.numberPad).onChange(of: vm.newNumber) { newValue in
+                        if vm.newNumber.count > 4 {
+                            vm.newNumber = String(vm.newNumber.prefix(4))
+                        }
+                    }
+                    RoundedRectangle(cornerRadius: 8).fill(.clear)
+                        .background(RoundedRectangle(cornerRadius: 8).stroke(.green, lineWidth: 2))
+                        .frame(height: 30)
+                }
+                Spacer().frame(height: 50)
+                Button {
+                    vm.createItem()
+                } label: {
+                    ZStack{
+                        RoundedRectangle(cornerRadius: 8).fill(.green).frame(height: 40)
+                        Text("Item hinzufügen").foregroundColor(.white)
+                    }
+                }
+                Spacer()
+            }.padding(10)
+        }.onAppear{
+            vm.updateViews()
+        }
+    }
+    
+    func recycleSection() -> some View {
+        let dict = CoreData.getRecylcesDict(vm.list!)
         
+        return  Section(header: Text("Recycle")) {
+            ForEach(RecycleTypes.allCases, id: \.self) { type in
+                if dict[type] != 0 {
+                    HStack {
+                        Text(Util.recTypeName(type))
+                        Spacer()
+                        Text(String(dict[type] ?? 0))
+                    }
+                }
+            }
+        }
+    }
+    
+    func newRecycleView() -> some View {
+        VStack {
+    
+            Text("Neues Leergut").font(.title)
+                .padding(.bottom, 20)
+                .padding(.top, 20)
+            
+            Picker("Leergut Typ", selection: $vm.newRecycleType) {
+                ForEach(Array(vm.typeArr.enumerated()), id: \.offset) { index, type in
+                    Text(Util.recTypeName(type)).tag(index)
+                }
+            }.pickerStyle(.segmented)
+                .colorMultiply(.green)
+                .padding(.bottom, 30)
+            
+            Button {
+                vm.addRecyle()
+            } label: {
+                ZStack{
+                    RoundedRectangle(cornerRadius: 8).fill(.green).frame(height: 40)
+                    Text("Leergut hinzufügen").foregroundColor(.white)
+                }
+            }
+        }
+        .padding()
     }
 }

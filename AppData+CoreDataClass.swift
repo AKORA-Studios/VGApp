@@ -2,7 +2,7 @@
 //  AppData+CoreDataClass.swift
 //  VGApp
 //
-//  Created by Kiara on 06.03.23.
+//  Created by Kiara on 24.06.23.
 //
 //
 

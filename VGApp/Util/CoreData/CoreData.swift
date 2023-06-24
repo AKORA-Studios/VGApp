@@ -16,7 +16,7 @@ struct CoreData {
         do {
             items = try context.fetch(AppData.fetchRequest())
             
-            if(items.isEmpty){
+            if items.isEmpty {
                 let item = AppData(context: context)
                 try! context.save()
                 return item
@@ -29,19 +29,21 @@ struct CoreData {
     
     /// Returns an array of all Lists
     static func getAlllLists() -> [ShoppingList] {
-        let data = getCoreData()!.lists
-        if(data == nil) { return []}
-        let lists = data!.allObjects as! [ShoppingList]?
-        if(lists != nil){
-            return lists!.sorted(by: {$0.date > $1.date})
-        } else {return []}
+        guard let data = getCoreData()!.lists else {
+            return []
+        }
+        
+        guard let lists = data.allObjects as! [ShoppingList]? else {
+            return []
+        }
+        
+        return lists.sorted(by: {$0.date > $1.date})
     }
     
     /// addt item to specific shoppinglist
     static func addItem(_ item: Item, _ list: ShoppingList){
-      //  let context = CoreDataStack.shared.managedObjectContext
         let allLists = getAlllLists()
-        if(allLists.isEmpty) { return }
+        if allLists.isEmpty { return }
         
         let data = (getAlllLists().filter{$0.objectID == list.objectID})[0]
         data.addToItems(item)
@@ -50,9 +52,8 @@ struct CoreData {
     
     /// remove item form specific shoppinglist
     static func removeItem(_ item: Item, _ list: ShoppingList){
-        //let context = CoreDataStack.shared.managedObjectContext
         let allLists = getAlllLists()
-        if(allLists.isEmpty) { return }
+        if allLists.isEmpty { return }
         
         let data = (getAlllLists().filter{$0.objectID == list.objectID})[0]
         data.removeFromItems(item)
@@ -61,7 +62,6 @@ struct CoreData {
     
     /// create list
     static func addList(_ list: ShoppingList){
-     //   let context = CoreDataStack.shared.managedObjectContext
         let data = getCoreData()!
         data.addToLists(list)
         try! context.save()
@@ -69,7 +69,6 @@ struct CoreData {
     
     /// delete list
     static func removeList(_ list: ShoppingList){
-      //  let context = CoreDataStack.shared.managedObjectContext
         let data = getCoreData()
         data?.removeFromLists(list)
         try! context.save()
@@ -77,9 +76,43 @@ struct CoreData {
     
     /// Get all items of a list
     static func getListItems(_ list: ShoppingList) -> [Item] {
-        if(list.items.allObjects.isEmpty){ return []}
-        if(list.items.count == 0) { return []}
-        return (list.items.allObjects as! [Item]).sorted(by: {$0.name < $1.name})
+        guard let items = list.items else {
+            return []
+        }
+        if items.allObjects.isEmpty { return []}
+        
+        return (items.allObjects as! [Item]).sorted(by: {$0.name < $1.name})
+    }
+    
+    static func addRecycle(_ list: ShoppingList, type: RecycleTypes) {
+        let newRecycle = RecycleItem(context: context)
+        newRecycle.recType = type.rawValue
+        list.addToListToRecycle(newRecycle)
+    }
+    
+    static func removeRecycle(_ list: ShoppingList, type: RecycleTypes) {
+        let items = getRecylces(list).filter {$0.recType == type.rawValue}
+        if items.isEmpty {
+            return print("TypeRemove: Type not found")
+        }
+        list.removeFromListToRecycle(items[0])
+    }
+    
+    static func getRecylces(_ list: ShoppingList) -> [RecycleItem] {
+        guard let data = list.listToRecycle else { return [] }
+        return data.allObjects as! [RecycleItem]
+    }
+    
+    static func getRecylcesDict(_ list: ShoppingList) -> [RecycleTypes: Int] {
+        var dict: [RecycleTypes: Int] = [:]
+        for type in RecycleTypes.allCases { dict[type] = 0 }
+
+        let data = getRecylces(list)
+        
+        for type in RecycleTypes.allCases {
+            dict[type] = data.filter {$0.recType == type.rawValue}.count
+        }
+        return dict
     }
     
 }
@@ -88,11 +121,11 @@ struct CoreData {
 extension CoreData {
     /// Returns an array of all histories
     static func getHistory() -> [Item] {
-        let data = Util.getAppData().historys
-        if(data?.allObjects == nil) { return [] }
+        guard let data = Util.getAppData().historys else {
+            return []
+        }
         
-        let lists = data?.allObjects as! [Item]? ?? []
-        return lists
+        return data.allObjects as! [Item]
     }
     
     /// addt item to history
@@ -102,7 +135,7 @@ extension CoreData {
         previous.forEach { oldSave in
             CoreData.removeHistory(oldSave)
         }
-
+        
         Util.getAppData().addToHistorys(item)
         try! context.save()
     }
@@ -112,5 +145,5 @@ extension CoreData {
         let history = Util.getAppData()
         history.removeFromHistorys(item)
     }
-
+    
 }

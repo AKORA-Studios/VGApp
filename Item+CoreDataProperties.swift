@@ -2,7 +2,7 @@
 //  Item+CoreDataProperties.swift
 //  VGApp
 //
-//  Created by Kiara on 06.03.23.
+//  Created by Kiara on 24.06.23.
 //
 //
 
@@ -19,7 +19,7 @@ extension Item {
     @NSManaged public var icon: String
     @NSManaged public var name: String
     @NSManaged public var number: String
-    @NSManaged public var itemTolist: ShoppingList
+    @NSManaged public var itemTolist: ShoppingList?
 
 }
 

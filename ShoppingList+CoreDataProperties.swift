@@ -2,7 +2,7 @@
 //  ShoppingList+CoreDataProperties.swift
 //  VGApp
 //
-//  Created by Kiara on 06.03.23.
+//  Created by Kiara on 24.06.23.
 //
 //
 
@@ -17,8 +17,9 @@ extension ShoppingList {
     }
 
     @NSManaged public var date: Date
-    @NSManaged public var items: NSSet
-    @NSManaged public var listToapp: AppData
+    @NSManaged public var items: NSSet?
+    @NSManaged public var listToapp: AppData?
+    @NSManaged public var listToRecycle: NSSet?
 
 }
 
@@ -36,6 +37,23 @@ extension ShoppingList {
 
     @objc(removeItems:)
     @NSManaged public func removeFromItems(_ values: NSSet)
+
+}
+
+// MARK: Generated accessors for listToRecycle
+extension ShoppingList {
+
+    @objc(addListToRecycleObject:)
+    @NSManaged public func addToListToRecycle(_ value: RecycleItem)
+
+    @objc(removeListToRecycleObject:)
+    @NSManaged public func removeFromListToRecycle(_ value: RecycleItem)
+
+    @objc(addListToRecycle:)
+    @NSManaged public func addToListToRecycle(_ values: NSSet)
+
+    @objc(removeListToRecycle:)
+    @NSManaged public func removeFromListToRecycle(_ values: NSSet)
 
 }
 
