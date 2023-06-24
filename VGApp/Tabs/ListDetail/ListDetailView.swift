@@ -27,10 +27,14 @@ struct ListDetail: View {
                     }
                 }
                 
-                Section {
+                Section(header: Text("Items")) {
                     ForEach(CoreData.getListItems(vm.list)) { item in
                         ItemCell(item: item)
                     }
+                }
+                
+                if !CoreData.getRecylces(vm.list).isEmpty {
+                    recycleSection()
                 }
                 
                 Section {
@@ -45,6 +49,17 @@ struct ListDetail: View {
         .navigationTitle("Listeninhalt")
         .onAppear{
             vm.checkActive()
+        }
+    }
+    
+    func recycleSection() -> some View {
+        let dict = CoreData.getRecylcesDict(vm.list)
+        return  Section(header: Text("Recycle")) {
+            ForEach(RecycleTypes.allCases, id: \.self) { type in
+                if dict[type] != 0 {
+                Text(String(dict[type] ?? 0))
+                }
+            }
         }
     }
 }

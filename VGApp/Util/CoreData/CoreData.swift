@@ -103,6 +103,18 @@ struct CoreData {
         return data.allObjects as! [RecycleItem]
     }
     
+    static func getRecylcesDict(_ list: ShoppingList) -> [RecycleTypes: Int] {
+        var dict: [RecycleTypes: Int] = [:]
+        for type in RecycleTypes.allCases { dict[type] = 0 }
+
+        let data = getRecylces(list)
+        
+        for type in RecycleTypes.allCases {
+            dict[type] = data.filter {$0.recType == type.rawValue}.count
+        }
+        return dict
+    }
+    
 }
 
 //MARK: History
