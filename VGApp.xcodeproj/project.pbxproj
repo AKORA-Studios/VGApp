@@ -31,7 +31,6 @@
 		F1B2733429B613DC00E841F4 /* ItemViewmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B2733329B613DC00E841F4 /* ItemViewmodel.swift */; };
 		F1B2733629B61D4400E841F4 /* IconManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B2733529B61D4400E841F4 /* IconManager.swift */; };
 		F1B2733829B61EE700E841F4 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B2733729B61EE700E841F4 /* ItemCell.swift */; };
-		F1B2735429B6560200E841F4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1B2735329B6560200E841F4 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,7 +61,6 @@
 		F1B2733329B613DC00E841F4 /* ItemViewmodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewmodel.swift; sourceTree = "<group>"; };
 		F1B2733529B61D4400E841F4 /* IconManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconManager.swift; sourceTree = "<group>"; };
 		F1B2733729B61EE700E841F4 /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
-		F1B2735329B6560200E841F4 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,7 +100,6 @@
 				DDEBB40527B5B3FF004D80BB /* Tabs */,
 				DD28461B27B2ACF4001C883F /* Assets.xcassets */,
 				DD28461D27B2ACF4001C883F /* LaunchScreen.storyboard */,
-				F1B2735329B6560200E841F4 /* Main.storyboard */,
 				DD28462027B2ACF4001C883F /* Info.plist */,
 			);
 			path = VGApp;
@@ -249,7 +246,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD28461F27B2ACF4001C883F /* LaunchScreen.storyboard in Resources */,
-				F1B2735429B6560200E841F4 /* Main.storyboard in Resources */,
 				DD28461C27B2ACF4001C883F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -430,7 +426,6 @@
 				INFOPLIST_KEY_NSCameraUsageDescription = "Scan Barcodes";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -461,7 +456,6 @@
 				INFOPLIST_KEY_NSCameraUsageDescription = "Scan Barcodes";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
