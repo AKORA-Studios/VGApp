@@ -43,15 +43,15 @@ struct ListView: View {
                             }
                         }
                     }
-              
+                    
                     if !vm.lists.isEmpty {
-                        Text("Alle Listen löschen") // TODO: alert, on dlete to new lists appear?
+                        Text("Alle Listen löschen")
                             .foregroundColor(.red)
                             .listRowBackground(Color.red.opacity(0.4))
                             .disabled(vm.lists.isEmpty)
                             .onTapGesture {
-                                Util.deleteAllLists()
-                                vm.updateViews()
+                                vm.showDeleteAlert = true
+                                
                             }
                     }
                 }.listStyle(.insetGrouped)
@@ -63,9 +63,27 @@ struct ListView: View {
                         vm.addList()
                     }
                 }
-        }.onAppear {
+        }
+        .alert(isPresented: $vm.showDeleteAlert) {
+            deleteAlert()
+        }
+        .onAppear {
             vm.updateViews()
         }
+    }
+    
+    func deleteAlert() -> Alert {
+        Alert(
+            title: Text("Title"),
+            message: Text("Message"),
+            primaryButton: .destructive(Text("Löschen"), action: {
+                Util.deleteAllLists()
+                vm.updateViews()
+            }),
+            secondaryButton: .default(Text("Stop"), action: {
+                
+            })
+        )
     }
 }
 

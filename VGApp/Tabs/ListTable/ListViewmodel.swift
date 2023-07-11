@@ -13,6 +13,8 @@ class ListViewmodel: ObservableObject {
     @Published var appData: AppData?
     @Published var selected: ShoppingList?
     
+    @Published var showDeleteAlert = false
+    
     func updateViews() {
         withAnimation {
         self.objectWillChange.send()
