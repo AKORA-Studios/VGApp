@@ -20,27 +20,32 @@ struct ListView: View {
                 }
                 
                 List {
-                    // TODO: Sections after month maybe?
-                    ForEach(vm.lists) { list in
-                        let itemsArr = Util.getItems(list)
-                        
-                        NavigationLink(destination: ListDetail(vm: ListDetailViewModel(list: list)).onDisappear(perform: vm.updateViews)) {
-                            HStack {
-                                if list.objectID == vm.selected?.objectID {
-                                    Image(systemName: "star.fill")// TODO: whyyyy
+                    ForEach(vm.listSections, id: \.self) { date in
+                        if !vm.getListsForMonth(date).isEmpty {
+                            Section(header: Text(date)) {
+                                ForEach(vm.getListsForMonth(date)) { list in
+                                    let itemsArr = Util.getItems(list)
+                                    
+                                    NavigationLink(destination: ListDetail(vm: ListDetailViewModel(list: list)).onDisappear(perform: vm.updateViews)) {
+                                        HStack {
+                                            if list.objectID == vm.selected?.objectID {
+                                                Image(systemName: "star.fill")
+                                            }
+                                            Text(list.date.format())
+                                            Spacer()
+                                            Text("Items: \(itemsArr.count)").foregroundColor(.gray)
+                                        }
+                                        
+                                    }
+                                }.onDelete { indexSet in
+                                    vm.removeItems(at: indexSet)
                                 }
-                                Text(list.date.format())
-                                Spacer()
-                                Text("Items: \(itemsArr.count)").foregroundColor(.gray)
                             }
-                            
                         }
-                    }.onDelete { indexSet in
-                        vm.removeItems(at: indexSet)
                     }
-                    
+              
                     if !vm.lists.isEmpty {
-                        Text("Alle Listen löschen") // TODO: alert
+                        Text("Alle Listen löschen") // TODO: alert, on dlete to new lists appear?
                             .foregroundColor(.red)
                             .listRowBackground(Color.red.opacity(0.4))
                             .disabled(vm.lists.isEmpty)
@@ -49,7 +54,7 @@ struct ListView: View {
                                 vm.updateViews()
                             }
                     }
-                }
+                }.listStyle(.insetGrouped)
                 
             }.navigationTitle("Einkauflisten")
                 .navigationBarTitleDisplayMode(.inline)

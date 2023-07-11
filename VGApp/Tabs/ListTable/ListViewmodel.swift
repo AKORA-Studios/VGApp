@@ -9,6 +9,7 @@ import SwiftUI
 
 class ListViewmodel: ObservableObject {
     @Published var lists: [ShoppingList] = []
+    @Published var listSections: [String] = []
     @Published var appData: AppData?
     @Published var selected: ShoppingList?
     
@@ -17,6 +18,7 @@ class ListViewmodel: ObservableObject {
         self.objectWillChange.send()
         appData = Util.getAppData()
         lists = Util.getLists()
+        listSections = getMonths()
         selected = Util.getSelectedList()
         }
     }
@@ -36,5 +38,27 @@ class ListViewmodel: ObservableObject {
         let newList = Util.createNewList()
         Util.getAppData().selected = newList
         updateViews()
+    }
+    
+    func getMonths() -> [String] {
+        let myArray = lists.map { getMonthString($0.date) }
+        return myArray
+            .enumerated()
+            .filter { myArray.firstIndex(of: $0.1) == $0.0 }
+            .map { $0.1 }
+    }
+    
+    func getMonthString(_ month: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM - yy"
+        
+        return formatter.string(from: month)
+    }
+    
+    func getListsForMonth(_ month: String) -> [ShoppingList] {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM - yy"
+        
+        return lists.filter { formatter.string(from: $0.date) == month}
     }
 }

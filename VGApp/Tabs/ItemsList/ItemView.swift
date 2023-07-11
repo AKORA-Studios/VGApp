@@ -40,7 +40,7 @@ struct Itemview: View {
                                 vm.deleteItems()
                             }
                     }
-                }
+                }.listStyle(.insetGrouped)
             }.navigationTitle("Übersicht")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
@@ -79,13 +79,17 @@ struct Itemview: View {
                 Spacer().frame(height: 50)
                 ZStack {
                     TextField(" Name", text: $vm.newName)
+                        .padding()
                     RoundedRectangle(cornerRadius: 8).fill(.clear)
                         .background(RoundedRectangle(cornerRadius: 8).stroke(.green, lineWidth: 2))
                         .frame(height: 30)
                 }
                 
                 ZStack {
-                    TextField(" Nummer", text: $vm.newNumber).keyboardType(.numberPad).onChange(of: vm.newNumber) { _ in
+                    TextField(" Nummer", text: $vm.newNumber)
+                        .padding()
+                        .keyboardType(.numberPad)
+                        .onChange(of: vm.newNumber) { _ in
                         if vm.newNumber.count > 4 {
                             vm.newNumber = String(vm.newNumber.prefix(4))
                         }
