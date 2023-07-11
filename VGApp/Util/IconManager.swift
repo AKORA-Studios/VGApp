@@ -43,7 +43,7 @@ struct IconManager {
      
         names.forEach { entry in
             entry.value.forEach { val in
-                if val == str.lowercased() {
+                if str.lowercased().contains(val) {
                     img = icons[entry.key]
                 }
             }
@@ -56,7 +56,7 @@ struct IconManager {
         
         names.forEach { entry in
             entry.value.forEach { val in
-                if val == str.lowercased() {
+                if str.lowercased().contains(val) {
                     value = true
                 }
             }

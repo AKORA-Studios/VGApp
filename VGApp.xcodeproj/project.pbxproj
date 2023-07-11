@@ -25,6 +25,8 @@
 		F12680742A477F6E007931B6 /* AppData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F126806C2A477F6E007931B6 /* AppData+CoreDataClass.swift */; };
 		F12680752A477F6E007931B6 /* AppData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F126806D2A477F6E007931B6 /* AppData+CoreDataProperties.swift */; };
 		F1678A192979BAE600F676A4 /* ListDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1678A182979BAE600F676A4 /* ListDetailView.swift */; };
+		F1B060032A5DFEAD007EBB75 /* VGAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B060022A5DFEAD007EBB75 /* VGAppTests.swift */; };
+		F1B0600A2A5DFEEA007EBB75 /* IconMangerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B060092A5DFEEA007EBB75 /* IconMangerTests.swift */; };
 		F1B2732829B6046400E841F4 /* VGapp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B2732729B6046400E841F4 /* VGapp.swift */; };
 		F1B2732B29B6071500E841F4 /* ScannerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B2732A29B6071500E841F4 /* ScannerScreen.swift */; };
 		F1B2732D29B60B1600E841F4 /* ListViewmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B2732C29B60B1600E841F4 /* ListViewmodel.swift */; };
@@ -32,6 +34,16 @@
 		F1B2733629B61D4400E841F4 /* IconManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B2733529B61D4400E841F4 /* IconManager.swift */; };
 		F1B2733829B61EE700E841F4 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B2733729B61EE700E841F4 /* ItemCell.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F1B060042A5DFEAD007EBB75 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD28460427B2ACF0001C883F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DD28460B27B2ACF0001C883F;
+			remoteInfo = VGApp;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		DD28460C27B2ACF0001C883F /* VGApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VGApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -55,6 +67,9 @@
 		F126806C2A477F6E007931B6 /* AppData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppData+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		F126806D2A477F6E007931B6 /* AppData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppData+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		F1678A182979BAE600F676A4 /* ListDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetailView.swift; sourceTree = "<group>"; };
+		F1B060002A5DFEAD007EBB75 /* VGAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VGAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1B060022A5DFEAD007EBB75 /* VGAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGAppTests.swift; sourceTree = "<group>"; };
+		F1B060092A5DFEEA007EBB75 /* IconMangerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconMangerTests.swift; sourceTree = "<group>"; };
 		F1B2732729B6046400E841F4 /* VGapp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGapp.swift; sourceTree = "<group>"; };
 		F1B2732A29B6071500E841F4 /* ScannerScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerScreen.swift; sourceTree = "<group>"; };
 		F1B2732C29B60B1600E841F4 /* ListViewmodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewmodel.swift; sourceTree = "<group>"; };
@@ -71,6 +86,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F1B05FFD2A5DFEAD007EBB75 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -78,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				DD28460E27B2ACF0001C883F /* VGApp */,
+				F1B060012A5DFEAD007EBB75 /* VGAppTests */,
 				DD28460D27B2ACF0001C883F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -86,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				DD28460C27B2ACF0001C883F /* VGApp.app */,
+				F1B060002A5DFEAD007EBB75 /* VGAppTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -152,6 +176,15 @@
 			path = TableCells;
 			sourceTree = "<group>";
 		};
+		F1B060012A5DFEAD007EBB75 /* VGAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				F1B060022A5DFEAD007EBB75 /* VGAppTests.swift */,
+				F1B060092A5DFEEA007EBB75 /* IconMangerTests.swift */,
+			);
+			path = VGAppTests;
+			sourceTree = "<group>";
+		};
 		F1B2732929B6070900E841F4 /* Scanner */ = {
 			isa = PBXGroup;
 			children = (
@@ -208,6 +241,24 @@
 			productReference = DD28460C27B2ACF0001C883F /* VGApp.app */;
 			productType = "com.apple.product-type.application";
 		};
+		F1B05FFF2A5DFEAD007EBB75 /* VGAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F1B060082A5DFEAD007EBB75 /* Build configuration list for PBXNativeTarget "VGAppTests" */;
+			buildPhases = (
+				F1B05FFC2A5DFEAD007EBB75 /* Sources */,
+				F1B05FFD2A5DFEAD007EBB75 /* Frameworks */,
+				F1B05FFE2A5DFEAD007EBB75 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F1B060052A5DFEAD007EBB75 /* PBXTargetDependency */,
+			);
+			name = VGAppTests;
+			productName = VGAppTests;
+			productReference = F1B060002A5DFEAD007EBB75 /* VGAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -215,11 +266,15 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1320;
+				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1320;
 				TargetAttributes = {
 					DD28460B27B2ACF0001C883F = {
 						CreatedOnToolsVersion = 13.2.1;
+					};
+					F1B05FFF2A5DFEAD007EBB75 = {
+						CreatedOnToolsVersion = 14.3.1;
+						TestTargetID = DD28460B27B2ACF0001C883F;
 					};
 				};
 			};
@@ -237,6 +292,7 @@
 			projectRoot = "";
 			targets = (
 				DD28460B27B2ACF0001C883F /* VGApp */,
+				F1B05FFF2A5DFEAD007EBB75 /* VGAppTests */,
 			);
 		};
 /* End PBXProject section */
@@ -248,6 +304,13 @@
 			files = (
 				DD28461F27B2ACF4001C883F /* LaunchScreen.storyboard in Resources */,
 				DD28461C27B2ACF4001C883F /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F1B05FFE2A5DFEAD007EBB75 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,7 +366,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F1B05FFC2A5DFEAD007EBB75 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F1B0600A2A5DFEEA007EBB75 /* IconMangerTests.swift in Sources */,
+				F1B060032A5DFEAD007EBB75 /* VGAppTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F1B060052A5DFEAD007EBB75 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DD28460B27B2ACF0001C883F /* VGApp */;
+			targetProxy = F1B060042A5DFEAD007EBB75 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		DD28461D27B2ACF4001C883F /* LaunchScreen.storyboard */ = {
@@ -493,6 +573,46 @@
 			};
 			name = Release;
 		};
+		F1B060062A5DFEAD007EBB75 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 93TVBDWQK4;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "akora-studios.VGAppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VGApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/VGApp";
+			};
+			name = Debug;
+		};
+		F1B060072A5DFEAD007EBB75 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 93TVBDWQK4;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "akora-studios.VGAppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VGApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/VGApp";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -510,6 +630,15 @@
 			buildConfigurations = (
 				DD28462427B2ACF4001C883F /* Debug */,
 				DD28462527B2ACF4001C883F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F1B060082A5DFEAD007EBB75 /* Build configuration list for PBXNativeTarget "VGAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F1B060062A5DFEAD007EBB75 /* Debug */,
+				F1B060072A5DFEAD007EBB75 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
