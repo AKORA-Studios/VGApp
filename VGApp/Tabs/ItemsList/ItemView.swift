@@ -37,7 +37,7 @@ struct Itemview: View {
                             .foregroundColor(.red)
                             .listRowBackground(Color.red.opacity(0.4))
                             .onTapGesture {
-                                vm.deleteItems()
+                                vm.showDeleteAlert = true
                             }
                     }
                 }.listStyle(.insetGrouped)
@@ -66,9 +66,25 @@ struct Itemview: View {
                 newRecycleView()
             }
         }
+        .alert(isPresented: $vm.showDeleteAlert) {
+            deleteAlert()
+        }
         .onAppear {
             vm.updateViews()
         }
+    }
+    
+    func deleteAlert() -> Alert {
+        Alert(
+            title: Text("Löschen"),
+            message: Text("Sicher das du alle Items dieser Liste löschen möchtest?"),
+            primaryButton: .destructive(Text("Löschen"), action: {
+                vm.deleteItems()
+            }),
+            secondaryButton: .default(Text("Stop"), action: {
+                
+            })
+        )
     }
     
     func newItemView() -> some View {

@@ -26,6 +26,8 @@ class ItemViewmodel: ObservableObject {
     // new recycle
     @Published var newRecycleType = 0
     @Published var typeArr: [RecycleTypes] = []
+    
+    @Published var showDeleteAlert = false
 
     func updateViews() {
         withAnimation {

@@ -66,6 +66,7 @@ struct Util {
     
     static func deleteAllItems(_ list: ShoppingList) {
         list.items = []
+        list.listToRecycle = []
         save()
     }
     

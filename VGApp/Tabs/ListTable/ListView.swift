@@ -74,8 +74,8 @@ struct ListView: View {
     
     func deleteAlert() -> Alert {
         Alert(
-            title: Text("Title"),
-            message: Text("Message"),
+            title: Text("Löschen"),
+            message: Text("Sicher das du alle Listen löschen möchtest?"),
             primaryButton: .destructive(Text("Löschen"), action: {
                 Util.deleteAllLists()
                 vm.updateViews()
