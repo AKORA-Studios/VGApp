@@ -25,6 +25,7 @@
 		F12680742A477F6E007931B6 /* AppData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F126806C2A477F6E007931B6 /* AppData+CoreDataClass.swift */; };
 		F12680752A477F6E007931B6 /* AppData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F126806D2A477F6E007931B6 /* AppData+CoreDataProperties.swift */; };
 		F1678A192979BAE600F676A4 /* ListDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1678A182979BAE600F676A4 /* ListDetailView.swift */; };
+		F1AAD8B22A617E46006F51FB /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AAD8B12A617E46006F51FB /* DateExtension.swift */; };
 		F1B060032A5DFEAD007EBB75 /* VGAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B060022A5DFEAD007EBB75 /* VGAppTests.swift */; };
 		F1B0600A2A5DFEEA007EBB75 /* IconMangerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B060092A5DFEEA007EBB75 /* IconMangerTests.swift */; };
 		F1B2732829B6046400E841F4 /* VGapp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B2732729B6046400E841F4 /* VGapp.swift */; };
@@ -67,6 +68,7 @@
 		F126806C2A477F6E007931B6 /* AppData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppData+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		F126806D2A477F6E007931B6 /* AppData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppData+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		F1678A182979BAE600F676A4 /* ListDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetailView.swift; sourceTree = "<group>"; };
+		F1AAD8B12A617E46006F51FB /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		F1B060002A5DFEAD007EBB75 /* VGAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VGAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1B060022A5DFEAD007EBB75 /* VGAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGAppTests.swift; sourceTree = "<group>"; };
 		F1B060092A5DFEEA007EBB75 /* IconMangerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconMangerTests.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 				DD28462827B2AD35001C883F /* CoreData */,
 				DDEBB40D27B5BB9F004D80BB /* Util.swift */,
 				F1B2733529B61D4400E841F4 /* IconManager.swift */,
+				F1AAD8B12A617E46006F51FB /* DateExtension.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -355,6 +358,7 @@
 				DD28462B27B2AD6C001C883F /* CoreDataStack.swift in Sources */,
 				F1B2732B29B6071500E841F4 /* ScannerScreen.swift in Sources */,
 				F126806E2A477F6E007931B6 /* ShoppingList+CoreDataClass.swift in Sources */,
+				F1AAD8B22A617E46006F51FB /* DateExtension.swift in Sources */,
 				DDEE287727B68C0700AC142F /* ScannerView.swift in Sources */,
 				F12680742A477F6E007931B6 /* AppData+CoreDataClass.swift in Sources */,
 				F1B2732829B6046400E841F4 /* VGapp.swift in Sources */,
