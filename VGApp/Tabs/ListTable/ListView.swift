@@ -15,7 +15,7 @@ struct ListView: View {
             VStack {
                 if vm.lists.isEmpty {
                     Spacer()
-                    Text("Keine Listen vorhanden").foregroundColor(.gray).font(.largeTitle)
+                    Text("listView_noLists").foregroundColor(.gray).font(.largeTitle)
                     Spacer()
                 }
                 
@@ -33,7 +33,7 @@ struct ListView: View {
                                             }
                                             Text(list.date.format())
                                             Spacer()
-                                            Text("Items: \(itemsArr.count)").foregroundColor(.gray)
+                                            Text("listView_itemCount\(itemsArr.count)").foregroundColor(.gray)
                                         }
                                         
                                     }
@@ -45,7 +45,7 @@ struct ListView: View {
                     }
                     
                     if !vm.lists.isEmpty {
-                        Text("Alle Listen löschen")
+                        Text("listView_deleteAllLists")
                             .foregroundColor(.red)
                             .listRowBackground(Color.red.opacity(0.4))
                             .disabled(vm.lists.isEmpty)
@@ -56,10 +56,10 @@ struct ListView: View {
                     }
                 }.listStyle(.insetGrouped)
                 
-            }.navigationTitle("Einkauflisten")
+            }.navigationTitle("listView_title")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
-                    Button("Neue Liste") {
+                    Button("listView_newList") {
                         vm.addList()
                     }
                 }
@@ -74,13 +74,13 @@ struct ListView: View {
     
     func deleteAlert() -> Alert {
         Alert(
-            title: Text("Löschen"),
-            message: Text("Sicher das du alle Listen löschen möchtest?"),
-            primaryButton: .destructive(Text("Löschen"), action: {
+            title: Text("alert_title_delete"),
+            message: Text("listView_deleteAll_AlertTitle"),
+            primaryButton: .destructive(Text("alert_action_delete"), action: {
                 Util.deleteAllLists()
                 vm.updateViews()
             }),
-            secondaryButton: .default(Text("Stop"), action: {
+            secondaryButton: .default(Text("alert_action_cancel"), action: {
                 
             })
         )

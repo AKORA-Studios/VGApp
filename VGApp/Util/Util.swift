@@ -94,11 +94,11 @@ struct Util {
     static func recTypeName(_ type: RecycleTypes) -> String {
         switch type {
         case .yoghurtglass:
-            return "Jogurtglas"
+            return "recycleType_glas".localized
         case .bottle:
-            return "Flasche"
+            return "recycleType_bottle".localized
         case .crate:
-            return "Kasten"
+            return "recycleType_crate".localized
         }
     }
     

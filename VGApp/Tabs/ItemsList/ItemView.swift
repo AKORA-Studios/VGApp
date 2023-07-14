@@ -78,7 +78,7 @@ struct Itemview: View {
         Alert(
             title: Text("alert_title_delete"),
             message: Text("itemView_deleteAll_AlertTitle"),
-            primaryButton: .destructive(Text("alert_actin_delete"), action: {
+            primaryButton: .destructive(Text("alert_action_delete"), action: {
                 vm.deleteItems()
             }),
             secondaryButton: .default(Text("alert_action_cancel"), action: {
