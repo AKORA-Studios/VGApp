@@ -1,0 +1,32 @@
+/* 
+  Localizable.strings
+  VGApp
+
+  Created by Kiara on 14.07.23.
+  
+*/
+// General
+// Alerts
+"alert_title_delete"="Löschen?";
+"alert_action_cancel"="Stop";
+"alert_actin_delete"="Löschen";
+
+// ItemView
+"itemView_title"="Übersicht";
+"itemView_newRecycle_title"="+ Leergut";
+"itemView_newItem_title"="+ Item";
+"itemView_noItems"="Keine Items vorhanden";
+"itemView_deleteAllItems"="Alle Items löschen";
+"itemView_section_recycle"="Recycle";
+
+"itemView_deleteAll_AlertTitle"="Sicher das du alle Items dieser Liste löschen möchtest?";
+
+
+"newItem_title"="Neues Item";
+"newItem_item_name"="Name";
+"newItem_item_code"="Nummer";
+"newItem_add_button_title"="Item hinzufügen";
+
+"newRecycle_title"="Neues Leergut";
+"newRecycle_recycle_type"="Leergut Typ";
+"newRecycle_add_button_title"="Leergut hinzufügen";
