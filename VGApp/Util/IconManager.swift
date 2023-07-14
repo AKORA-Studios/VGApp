@@ -8,7 +8,7 @@
 import SwiftUI
 
 let icons: [String: Image] = [
-    "carrot": Image(systemName: "carrot"),
+    "carrot": Image("carrot"),
     "apple": Image("apple"),
     "avocado": Image("avocado"),
     "banana": Image("banana"),
@@ -19,7 +19,12 @@ let icons: [String: Image] = [
     "orange": Image("orange"),
     "pear": Image("pear"),
     "strawberry": Image("strawberry"),
-    "tomato": Image("tomato")
+    "tomato": Image("tomato"),
+    
+    // recycle
+    "glass": Image("glass"),
+    "yogurt": Image("yogurt"),
+    "crate": Image("crate")
 ]
 
 let names: [String: [String]] = [
@@ -34,17 +39,22 @@ let names: [String: [String]] = [
     "orange": ["orange", "orangen"],
     "pear": ["birne", "birnen"],
     "strawberry": ["erdbeere", "erdbeeren"],
-    "tomato": ["tomate", "tomaten"]
+    "tomato": ["tomate", "tomaten"],
+    
+    "glass": ["glass"],
+    "yogurt": ["yogurt"],
+    "crate": ["crate"]
 ]
 
 struct IconManager {
-    static func getIcon(_ str: String) -> Image? {
-        var img: Image?
+    static func getIcon(_ str: String) -> Image {
+        var img = Image(systemName: "questionmark.diamond")
      
         names.forEach { entry in
             entry.value.forEach { val in
                 if str.lowercased().contains(val) {
-                    img = icons[entry.key]
+                    guard let icon = icons[entry.key] else { return }
+                    img = icon
                 }
             }
         }
@@ -62,5 +72,16 @@ struct IconManager {
             }
         }
         return value
+    }
+    
+    static func recycleIcon(_ type: RecycleTypes) -> Image? {
+        switch type {
+        case .yoghurtglass:
+            return getIcon("yogurt")
+        case .bottle:
+            return getIcon("glass")
+        case .crate:
+            return getIcon("crate")
+        }
     }
 }

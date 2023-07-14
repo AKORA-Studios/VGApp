@@ -133,6 +133,11 @@ struct Itemview: View {
         return  Section(header: Text("itemView_section_recycle")) {
             ForEach(vm.usedRecycleTypes, id: \.self) { type in
                 HStack {
+                    IconManager.recycleIcon(type)!
+                        .resizable()
+                        .frame(width: 25, height: 25)
+                        .colorMultiply(.gray)
+                    
                     Text(Util.recTypeName(type))
                     Spacer()
                     Text(String(vm.recycleDict[type] ?? 0))
