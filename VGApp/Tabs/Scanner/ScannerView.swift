@@ -11,21 +11,21 @@ import AVFoundation
 class ScannerView: UIViewController {
     var avCaptureSession: AVCaptureSession!
     var avPreviewLayer: AVCaptureVideoPreviewLayer!
-    let scanAlert = UIAlertController(title: "Neues Item hinzufügen", message: "", preferredStyle: .alert)
+    let scanAlert = UIAlertController(title: "alert_title_scannerAddNew".localized, message: "", preferredStyle: .alert)
     var lastScanned: String = ""
      
         override func viewDidLoad() {
-            self.navigationItem.title = "Barcode Scanner"
+            self.navigationItem.title = "scannerView_title".localized
             
             scanAlert.addTextField(configurationHandler: {(textfield) in
-                textfield.placeholder = "Name"
+                textfield.placeholder = "scannerView_item_placeholder_name".localized
             })
             
-            scanAlert.addAction(UIAlertAction(title: "Abbrechen", style: .cancel, handler: {_ in
+            scanAlert.addAction(UIAlertAction(title: "alert_action_scanner_cancel".localized, style: .cancel, handler: {_ in
                 self.scanAlert.dismiss(animated: true, completion: nil)
                 self.avCaptureSession.startRunning()
             }))
-            scanAlert.addAction(UIAlertAction(title: "Hinzufügen", style: .default, handler: {_ in
+            scanAlert.addAction(UIAlertAction(title: "alert_action_add".localized, style: .default, handler: {_ in
                 Util.createItem(name: self.scanAlert.textFields![0].text!, code: self.lastScanned)
                 
                 DispatchQueue.global(qos: .background).async {
@@ -81,8 +81,8 @@ class ScannerView: UIViewController {
         }
         
         func failed() {
-            let ac = UIAlertController(title: "Gerät hat keine Kamera", message: "Bitte verwende ein Gerät mit funktionierender Kamera lol", preferredStyle: .alert)
-            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            let ac = UIAlertController(title: "alert_title_scanner_noCamera".localized, message: "alert_message_scanner_noCamera".localized, preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "alert_action_ok".localized, style: .default))
             present(ac, animated: true)
             avCaptureSession = nil
         }

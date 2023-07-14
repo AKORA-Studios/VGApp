@@ -1,0 +1,65 @@
+/* 
+  Localizable.strings
+  VGApp
+
+  Created by Kiara on 14.07.23.
+  
+*/
+// General
+// RecycleNames
+"recycleType_glas"="Joghurtglas";
+"recycleType_bottle"="Flasche";
+"recycleType_crate"="Kasten";
+
+// Alerts
+"alert_title_delete"="Löschen?";
+"alert_action_cancel"="Stop";
+"alert_action_delete"="Löschen";
+"alert_action_ok"="OK";
+
+"alert_title_scannerAddNew"="Neues Item hinzufügen";
+"alert_action_scanner_cancel"="Abbrechen";
+"alert_action_add"="Hinzufügen";
+"alert_title_scanner_noCamera"="Gerät hat keine Kamera";
+"alert_message_scanner_noCamera"="Bitte verwende ein Gerät mit funktionierender Kamera lol";
+
+// ListView
+"listView_title"="Einkauflisten";
+"listView_newList"="Neue Liste";
+"listView_noLists"="Keine Listen vorhanden";
+"listView_itemCount%lld"="Items: %lld";
+"listView_deleteAllLists"="Alle Listen löschen";
+"listView_deleteAll_AlertTitle"="Sicher das du alle Listen löschen möchtest?";
+
+// ScannerView
+"scannerView_title"="Barcode Scanner";
+"scannerView_item_placeholder_name"="Name";
+"scannerView_title"="Barcode Scanner";
+
+// ListDetailView
+"listDetailView_title"="Listeninhalt";
+"listDetailView_list_creationDate"="Erstellungsdatum: ";
+"listDetailView_list_isActive"="Ist Liste Aktiv: ";
+"listDetailView_list_isActive_yes"="ja";
+"listDetailView_list_isActive_no"="nein";
+"listDetailView_list_isActive_ChangeTo_no"="Liste deaktivieren";
+"listDetailView_list_isActive_ChangeTo_yes"="Liste aktivieren";
+
+// ItemView
+"itemView_title"="Übersicht";
+"itemView_newRecycle_title"="+ Leergut";
+"itemView_newItem_title"="+ Item";
+"itemView_noItems"="Keine Items vorhanden";
+"itemView_deleteAllItems"="Alle Items löschen";
+"itemView_section_recycle"="Leergut";
+
+"itemView_deleteAll_AlertTitle"="Sicher das du alle Items dieser Liste löschen möchtest?";
+
+"newItem_title"="Neues Item";
+"newItem_item_name"="Name";
+"newItem_item_code"="Nummer";
+"newItem_add_button_title"="Item hinzufügen";
+
+"newRecycle_title"="Neues Leergut";
+"newRecycle_recycle_type"="Leergut Typ";
+"newRecycle_add_button_title"="Leergut hinzufügen";

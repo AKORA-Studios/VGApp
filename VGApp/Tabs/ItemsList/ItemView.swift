@@ -15,7 +15,7 @@ struct Itemview: View {
             VStack {
                 if vm.items.isEmpty {
                     Spacer()
-                    Text("Keine Items vorhanden")
+                    Text("itemView_noItems")
                         .foregroundColor(.gray)
                         .font(.largeTitle)
                     Spacer()
@@ -33,7 +33,7 @@ struct Itemview: View {
                     }
                     
                     if !vm.items.isEmpty {
-                        Text("Alle Items löschen")
+                        Text("itemView_deleteAllItems")
                             .foregroundColor(.red)
                             .listRowBackground(Color.red.opacity(0.4))
                             .onTapGesture {
@@ -41,18 +41,18 @@ struct Itemview: View {
                             }
                     }
                 }.listStyle(.insetGrouped)
-            }.navigationTitle("Übersicht")
+            }.navigationTitle("itemView_title")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     
                     ToolbarItem(placement: .automatic) {
-                        Button("+ Item") {
+                        Button("itemView_newItem_title") {
                             vm.showNewItemSheet()
                         }
                     }
                     
                     ToolbarItem(placement: .navigationBarLeading) {
-                        Button("+ Leergut") {
+                        Button("itemView_newRecycle_title") {
                             vm.showNewRecycleSheet()
                         }
                     }
@@ -76,13 +76,12 @@ struct Itemview: View {
     
     func deleteAlert() -> Alert {
         Alert(
-            title: Text("Löschen"),
-            message: Text("Sicher das du alle Items dieser Liste löschen möchtest?"),
-            primaryButton: .destructive(Text("Löschen"), action: {
+            title: Text("alert_title_delete"),
+            message: Text("itemView_deleteAll_AlertTitle"),
+            primaryButton: .destructive(Text("alert_action_delete"), action: {
                 vm.deleteItems()
             }),
-            secondaryButton: .default(Text("Stop"), action: {
-                
+            secondaryButton: .default(Text("alert_action_cancel"), action: {
             })
         )
     }
@@ -91,10 +90,10 @@ struct Itemview: View {
         ScrollView {
             VStack {
                 Spacer()
-                Text("Neues Item").font(.title)
+                Text("newItem_title").font(.title)
                 Spacer().frame(height: 50)
                 ZStack {
-                    TextField(" Name", text: $vm.newName)
+                    TextField("newItem_item_name", text: $vm.newName)
                         .padding()
                     RoundedRectangle(cornerRadius: 8).fill(.clear)
                         .background(RoundedRectangle(cornerRadius: 8).stroke(.green, lineWidth: 2))
@@ -102,7 +101,7 @@ struct Itemview: View {
                 }
                 
                 ZStack {
-                    TextField(" Nummer", text: $vm.newNumber)
+                    TextField("newItem_item_code", text: $vm.newNumber)
                         .padding()
                         .keyboardType(.numberPad)
                         .onChange(of: vm.newNumber) { _ in
@@ -120,7 +119,7 @@ struct Itemview: View {
                 } label: {
                     ZStack {
                         RoundedRectangle(cornerRadius: 8).fill(.green).frame(height: 40)
-                        Text("Item hinzufügen").foregroundColor(.white)
+                        Text("newItem_add_button_title").foregroundColor(.white)
                     }
                 }
                 Spacer()
@@ -131,7 +130,7 @@ struct Itemview: View {
     }
     
     func recycleSection() -> some View {
-        return  Section(header: Text("Recycle")) {
+        return  Section(header: Text("itemView_section_recycle")) {
             ForEach(vm.usedRecycleTypes, id: \.self) { type in
                 HStack {
                     Text(Util.recTypeName(type))
@@ -151,12 +150,11 @@ struct Itemview: View {
     
     func newRecycleView() -> some View {
         VStack {
-            
-            Text("Neues Leergut").font(.title)
+            Text("newRecycle_title").font(.title)
                 .padding(.bottom, 20)
                 .padding(.top, 20)
             
-            Picker("Leergut Typ", selection: $vm.newRecycleType) {
+            Picker("newRecycle_recycle_type", selection: $vm.newRecycleType) {
                 ForEach(Array(vm.typeArr.enumerated()), id: \.offset) { index, type in
                     Text(Util.recTypeName(type)).tag(index)
                 }
@@ -170,7 +168,7 @@ struct Itemview: View {
             } label: {
                 ZStack {
                     RoundedRectangle(cornerRadius: 8).fill(.green).frame(height: 40)
-                    Text("Leergut hinzufügen").foregroundColor(.white)
+                    Text("newRecycle_add_button_title").foregroundColor(.white)
                 }
             }
         }

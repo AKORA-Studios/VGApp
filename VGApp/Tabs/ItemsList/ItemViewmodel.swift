@@ -75,8 +75,6 @@ class ItemViewmodel: ObservableObject {
     }
     
     func removeItems(at offsets: IndexSet) {
-        print("called remove")
-        
         for i in offsets.makeIterator() {
             let theItem = items[i]
             CoreData.removeItem(theItem, list!)

@@ -15,14 +15,14 @@ struct ListDetail: View {
             List {
                 Section {
                     HStack {
-                        Text("Erstellungsdatum: ")
+                        Text("listDetailView_list_creationDate")
                         Spacer()
                         Text(vm.list.date.format())
                     }
                     HStack {
-                        Text("Ist Liste Aktiv: ")
+                        Text("listDetailView_list_isActive")
                         Spacer()
-                        Text(vm.isActive ? "ja" : "nein")
+                        Text(vm.isActive ? "listDetailView_list_isActive_yes" : "listDetailView_list_isActive_no")
                             .foregroundColor(vm.isActive ? .green : .red)
                     }
                 }
@@ -38,7 +38,7 @@ struct ListDetail: View {
                 }
                 
                 Section {
-                    Text(vm.isActive ? "Liste deaktivieren" : "Liste aktivieren")
+                    Text(vm.isActive ? "listDetailView_list_isActive_ChangeTo_no" : "listDetailView_list_isActive_ChangeTo_yes")
                         .foregroundColor(vm.isActive ? .red : .green)
                         .onTapGesture {
                             vm.changeSelection()
@@ -46,7 +46,7 @@ struct ListDetail: View {
                 }
             }
         }
-        .navigationTitle("Listeninhalt")
+        .navigationTitle("listDetailView_title")
         .onAppear {
             vm.checkActive()
         }
@@ -54,7 +54,7 @@ struct ListDetail: View {
     
     func recycleSection() -> some View {
         let dict = CoreData.getRecylcesDict(vm.list)
-        return  Section(header: Text("Recycle")) {
+        return  Section(header: Text("itemView_section_recycle")) {
             ForEach(RecycleTypes.allCases, id: \.self) { type in
                 if dict[type] != 0 {
                     HStack {
