@@ -13,7 +13,7 @@ struct ItemCell: View {
     var body: some View {
         HStack {
             if IconManager.hasIcon(item.name) {
-                IconManager.getIcon(item.name)!
+                IconManager.getIcon(item.name)
                     .resizable()
                     .frame(width: 25, height: 25)
                     .colorMultiply(.gray)
