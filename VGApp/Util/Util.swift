@@ -37,7 +37,11 @@ struct Util {
     /// - Returns: current active ShopingLists
     static func getSelectedList() -> ShoppingList {
         guard let list = getAppData().selected else {
-            setSelectedList()
+            if getLists().isEmpty {
+                setSelectedList()
+                return getAppData().selected!
+            }
+            setSelectedList(getLists()[0])
             return getAppData().selected!
         }
         return list
