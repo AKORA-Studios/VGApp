@@ -69,7 +69,10 @@ struct CoreData {
     static func removeList(_ list: ShoppingList) {
         let data = getCoreData()
         data?.removeFromLists(list)
-        try! context.save()
+        if data?.selected == list {
+            data?.selected = nil
+        }
+        Util.save()
     }
     
     /// Get all items of a list

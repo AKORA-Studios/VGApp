@@ -44,6 +44,7 @@
 "listDetailView_list_isActive_no"="nein";
 "listDetailView_list_isActive_ChangeTo_no"="Liste deaktivieren";
 "listDetailView_list_isActive_ChangeTo_yes"="Liste aktivieren";
+"listDetailView_list_delete"="Liste löschen";
 
 // ItemView
 "itemView_title"="Übersicht";

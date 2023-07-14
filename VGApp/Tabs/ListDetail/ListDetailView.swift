@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ListDetail: View {
+    @Environment(\.presentationMode) var presentationMode
     @ObservedObject var vm: ListDetailViewModel
     
     var body: some View {
@@ -27,12 +28,16 @@ struct ListDetail: View {
                     }
                 }
                 
-                Section(header: Text("Items")) {
-                    ForEach(CoreData.getListItems(vm.list)) { item in
-                        ItemCell(item: item)
+                if vm.items.isEmpty {
+                    Text("itemView_noItems")
+                } else {
+                    Section(header: Text("Items")) {
+                        ForEach(vm.items) { item in
+                            ItemCell(item: item)
+                        }
                     }
                 }
-                
+              
                 if !CoreData.getRecylces(vm.list).isEmpty {
                     recycleSection()
                 }
@@ -43,12 +48,19 @@ struct ListDetail: View {
                         .onTapGesture {
                             vm.changeSelection()
                         }
+                    
+                    Text("listDetailView_list_delete")
+                        .foregroundColor(.red)
+                        .onTapGesture {
+                            self.presentationMode.wrappedValue.dismiss()
+                            CoreData.removeList(vm.list)
+                        }
                 }
             }
         }
         .navigationTitle("listDetailView_title")
         .onAppear {
-            vm.checkActive()
+            vm.update()
         }
     }
     
@@ -70,10 +82,17 @@ struct ListDetail: View {
 
 class ListDetailViewModel: ObservableObject {
     @Published var list: ShoppingList
+    @Published var items: [Item] = []
     @Published var isActive = false
     
     init(list: ShoppingList) {
         self.list = list
+        update()
+    }
+    
+    func update() {
+        items = CoreData.getListItems(list)
+        checkActive()
     }
     
     func checkActive() {
