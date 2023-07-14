@@ -10,7 +10,7 @@ import Foundation
 extension Date {
     func format() -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EE dd.MM.yy HH:mm"
+        dateFormatter.dateFormat = "EE dd. HH:mm"
         dateFormatter.timeZone = .current
         return dateFormatter.string(from: self)
     }

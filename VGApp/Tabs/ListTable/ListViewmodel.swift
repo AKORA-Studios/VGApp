@@ -52,14 +52,14 @@ class ListViewmodel: ObservableObject {
     
     func getMonthString(_ month: Date) -> String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "MM - yy"
+        formatter.dateFormat = "MMMM - yy"
         
         return formatter.string(from: month)
     }
     
     func getListsForMonth(_ month: String) -> [ShoppingList] {
         let formatter = DateFormatter()
-        formatter.dateFormat = "MM - yy"
+        formatter.dateFormat = "MMMM - yy"
         
         return lists.filter { formatter.string(from: $0.date) == month}
     }
