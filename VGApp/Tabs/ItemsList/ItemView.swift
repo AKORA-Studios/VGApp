@@ -106,10 +106,10 @@ struct Itemview: View {
                         .padding()
                         .keyboardType(.numberPad)
                         .onChange(of: vm.newNumber) { _ in
-                        if vm.newNumber.count > 4 {
-                            vm.newNumber = String(vm.newNumber.prefix(4))
+                            if vm.newNumber.count > 4 {
+                                vm.newNumber = String(vm.newNumber.prefix(4))
+                            }
                         }
-                    }
                     RoundedRectangle(cornerRadius: 8).fill(.clear)
                         .background(RoundedRectangle(cornerRadius: 8).stroke(.green, lineWidth: 2))
                         .frame(height: 30)
@@ -131,16 +131,19 @@ struct Itemview: View {
     }
     
     func recycleSection() -> some View {
-        let dict = CoreData.getRecylcesDict(vm.list!)
-        
         return  Section(header: Text("Recycle")) {
-            ForEach(RecycleTypes.allCases, id: \.self) { type in
-                if dict[type] != 0 {
-                    HStack {
-                        Text(Util.recTypeName(type))
-                        Spacer()
-                        Text(String(dict[type] ?? 0))
-                    }
+            ForEach(vm.usedRecycleTypes, id: \.self) { type in
+                HStack {
+                    Text(Util.recTypeName(type))
+                    Spacer()
+                    Text(String(vm.recycleDict[type] ?? 0))
+                } .swipeActions(edge: .trailing) {
+                    Button(action: { vm.addRecyle(for: type) }) {
+                        Label("+", systemImage: "plus")
+                    }.tint(.green)
+                    Button(action: { vm.removeRecyle(for: type) }) {
+                        Label("-", systemImage: "minus")
+                    }.tint(.red)
                 }
             }
         }
@@ -148,7 +151,7 @@ struct Itemview: View {
     
     func newRecycleView() -> some View {
         VStack {
-    
+            
             Text("Neues Leergut").font(.title)
                 .padding(.bottom, 20)
                 .padding(.top, 20)
@@ -163,6 +166,7 @@ struct Itemview: View {
             
             Button {
                 vm.addRecyle()
+                vm.setUsedRecyleTypesArr()
             } label: {
                 ZStack {
                     RoundedRectangle(cornerRadius: 8).fill(.green).frame(height: 40)
