@@ -10,13 +10,15 @@ import XCTest
 import SwiftUI
 
 class IconMangerTests: XCTestCase {
+    let notFoundImage = Image(systemName: "questionmark.diamond")
     
     func test_noIcon() {
-        XCTAssertEqual(IconManager.getIcon("nononono"), nil)
+        XCTAssertEqual(IconManager.getIcon("nononono"), notFoundImage)
     }
     
     func test_IconExists() {
-        XCTAssertEqual(IconManager.getIcon("karotte uwu"), Image(systemName: "carrot"))
+        print(IconManager.getIcon("karotte uwu"))
+        XCTAssertEqual(IconManager.getIcon("karotte uwu"), Image("carrot"))
     }
 
 }
