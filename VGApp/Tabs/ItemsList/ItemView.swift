@@ -159,23 +159,13 @@ struct Itemview: View {
                 .padding(.bottom, 20)
                 .padding(.top, 20)
             
-            Picker("newRecycle_recycle_type", selection: $vm.newRecycleType) {
-                ForEach(Array(vm.typeArr.enumerated()), id: \.offset) { index, type in
-                    Text(Util.recTypeName(type)).tag(index)
-                }
-            }.pickerStyle(.segmented)
-                .colorMultiply(.green)
-                .padding(.bottom, 30)
-            
-            Button {
-                vm.addRecyle()
-                vm.setUsedRecyleTypesArr()
-            } label: {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 8).fill(.green).frame(height: 40)
-                    Text("newRecycle_add_button_title").foregroundColor(.white)
-                }
+            ForEach(Array(vm.typeArr.enumerated()), id: \.offset) {  _, type in
+                Button(Util.recTypeName(type)) {
+                    vm.addRecyle(type)
+                    vm.setUsedRecyleTypesArr()
+                }.buttonStyle(.bordered)
             }
+            .padding(.bottom, 30)
         }
         .padding()
     }

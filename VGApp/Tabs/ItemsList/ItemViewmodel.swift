@@ -93,9 +93,8 @@ class ItemViewmodel: ObservableObject {
         withAnimation { showsSheet = true }
     }
     
-    func addRecyle() {
-        let newRecyle = typeArr[newRecycleType]
-        CoreData.addRecycle(list!, type: newRecyle)
+    func addRecyle(_ type: RecycleTypes) {
+        CoreData.addRecycle(list!, type: type)
         Util.save()
         withAnimation { showsSheet = false }
     }
