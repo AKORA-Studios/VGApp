@@ -28,8 +28,10 @@ struct Itemview: View {
                         vm.removeItems(at: indexSet)
                     }
                     
-                    if vm.list != nil && !CoreData.getRecylces(vm.list!).isEmpty {
-                        recycleSection()
+                    if let list = vm.list {
+                        if !CoreData.getRecylces(list).isEmpty {
+                            recycleSection()
+                        }
                     }
                     
                     if !vm.items.isEmpty {
