@@ -25,9 +25,9 @@
 		F12680742A477F6E007931B6 /* AppData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F126806C2A477F6E007931B6 /* AppData+CoreDataClass.swift */; };
 		F12680752A477F6E007931B6 /* AppData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F126806D2A477F6E007931B6 /* AppData+CoreDataProperties.swift */; };
 		F1678A192979BAE600F676A4 /* ListDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1678A182979BAE600F676A4 /* ListDetailView.swift */; };
+		F1AAD8B22A617E46006F51FB /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AAD8B12A617E46006F51FB /* DateExtension.swift */; };
 		F1AAD8B42A617FBC006F51FB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F1AAD8B32A617FBC006F51FB /* Localizable.strings */; };
 		F1AAD8B62A6183C7006F51FB /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AAD8B52A6183C7006F51FB /* StringExtension.swift */; };
-		F1AAD8B22A617E46006F51FB /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AAD8B12A617E46006F51FB /* DateExtension.swift */; };
 		F1B060032A5DFEAD007EBB75 /* VGAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B060022A5DFEAD007EBB75 /* VGAppTests.swift */; };
 		F1B0600A2A5DFEEA007EBB75 /* IconMangerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B060092A5DFEEA007EBB75 /* IconMangerTests.swift */; };
 		F1B2732829B6046400E841F4 /* VGapp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B2732729B6046400E841F4 /* VGapp.swift */; };
@@ -70,9 +70,9 @@
 		F126806C2A477F6E007931B6 /* AppData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppData+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		F126806D2A477F6E007931B6 /* AppData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppData+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		F1678A182979BAE600F676A4 /* ListDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetailView.swift; sourceTree = "<group>"; };
+		F1AAD8B12A617E46006F51FB /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		F1AAD8B32A617FBC006F51FB /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = Util/Localizable.strings; sourceTree = "<group>"; };
 		F1AAD8B52A6183C7006F51FB /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
-		F1AAD8B12A617E46006F51FB /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		F1B060002A5DFEAD007EBB75 /* VGAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VGAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1B060022A5DFEAD007EBB75 /* VGAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGAppTests.swift; sourceTree = "<group>"; };
 		F1B060092A5DFEEA007EBB75 /* IconMangerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconMangerTests.swift; sourceTree = "<group>"; };
@@ -123,8 +123,8 @@
 		DD28460E27B2ACF0001C883F /* VGApp */ = {
 			isa = PBXGroup;
 			children = (
-				F1B2732729B6046400E841F4 /* VGapp.swift */,
 				DD28466227B2AF80001C883F /* VGApp.entitlements */,
+				F1B2732729B6046400E841F4 /* VGapp.swift */,
 				DD28462927B2AD4D001C883F /* Util */,
 				DDEBB40827B5B75C004D80BB /* TableCells */,
 				DDEBB40527B5B3FF004D80BB /* Tabs */,
