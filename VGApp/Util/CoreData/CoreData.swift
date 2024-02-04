@@ -82,7 +82,7 @@ struct CoreData {
         }
         if items.allObjects.isEmpty { return []}
         
-        return (items.allObjects as! [Item]).sorted(by: {$0.name < $1.name})
+        return (items.allObjects as! [Item]).sorted(by: {$0.name.lowercased() < $1.name.lowercased()})
     }
     
     static func addRecycle(_ list: ShoppingList, type: RecycleTypes) {
