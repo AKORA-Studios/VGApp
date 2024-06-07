@@ -5,7 +5,6 @@
 # VGApp
 
 Scannen von Barcodes in Bioläden, sodass man diese nicht mehr nervig auf Zettel schreiben muss :3
-Min iOS Version: 15.0
 
 ## Showcase
 
@@ -20,3 +19,18 @@ Min iOS Version: 15.0
 <img src="./ShowcaseImages/ListOverview.png"  height="700" width="323" vspace="10"/>
 </p>
 </details>
+
+
+## How to Install and Run the Project
+
+```
+git clone https://github.com/AKORA-Studios/VGApp
+```
+
+- Open the workspace file in Xcode
+- Use **CMD + R** to run the app sheme named "VGApp"
+
+## Requirements
+
+- iOS 15.0+
+- Xcode Xcode 12.1
