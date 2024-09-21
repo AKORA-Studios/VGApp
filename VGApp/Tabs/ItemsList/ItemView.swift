@@ -98,7 +98,7 @@ struct Itemview: View {
                     TextField("newItem_item_name", text: $vm.newName)
                         .padding()
                     RoundedRectangle(cornerRadius: 8).fill(.clear)
-                        .background(RoundedRectangle(cornerRadius: 8).stroke(.green, lineWidth: 2))
+                        .background(RoundedRectangle(cornerRadius: 8).stroke(.green, lineWidth: 1))
                         .frame(height: 30)
                 }
                 
@@ -112,7 +112,7 @@ struct Itemview: View {
                             }
                         }
                     RoundedRectangle(cornerRadius: 8).fill(.clear)
-                        .background(RoundedRectangle(cornerRadius: 8).stroke(.green, lineWidth: 2))
+                        .background(RoundedRectangle(cornerRadius: 8).stroke(.green, lineWidth: 1))
                         .frame(height: 30)
                 }
                 Spacer().frame(height: 50)
@@ -162,12 +162,14 @@ struct Itemview: View {
                 .padding(.top, 20)
             
             ForEach(Array(vm.typeArr.enumerated()), id: \.offset) {  _, type in
-                Button(Util.recTypeName(type)) {
+                Button {
                     vm.addRecyle(type)
                     vm.setUsedRecyleTypesArr()
+                } label: {
+                    Text(Util.recTypeName(type)).frame(minWidth: 200, maxWidth: .infinity)
                 }.buttonStyle(.bordered)
             }
-            .padding(.bottom, 30)
+            .padding(.bottom, 30).frame(maxWidth: .infinity)
         }
         .padding()
     }
