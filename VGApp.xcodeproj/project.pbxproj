@@ -36,6 +36,7 @@
 		F1B2733429B613DC00E841F4 /* ItemViewmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B2733329B613DC00E841F4 /* ItemViewmodel.swift */; };
 		F1B2733629B61D4400E841F4 /* IconManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B2733529B61D4400E841F4 /* IconManager.swift */; };
 		F1B2733829B61EE700E841F4 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B2733729B61EE700E841F4 /* ItemCell.swift */; };
+		F1D675BF2CB51D76001B9FD6 /* ButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D675BE2CB51D76001B9FD6 /* ButtonStyle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,7 @@
 		F1B2733329B613DC00E841F4 /* ItemViewmodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewmodel.swift; sourceTree = "<group>"; };
 		F1B2733529B61D4400E841F4 /* IconManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconManager.swift; sourceTree = "<group>"; };
 		F1B2733729B61EE700E841F4 /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
+		F1D675BE2CB51D76001B9FD6 /* ButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +164,7 @@
 				F1B2733529B61D4400E841F4 /* IconManager.swift */,
 				F1AAD8B52A6183C7006F51FB /* StringExtension.swift */,
 				F1AAD8B12A617E46006F51FB /* DateExtension.swift */,
+				F1D675BE2CB51D76001B9FD6 /* ButtonStyle.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -359,6 +362,7 @@
 				F1B2733829B61EE700E841F4 /* ItemCell.swift in Sources */,
 				F12680752A477F6E007931B6 /* AppData+CoreDataProperties.swift in Sources */,
 				DDEBB40E27B5BB9F004D80BB /* Util.swift in Sources */,
+				F1D675BF2CB51D76001B9FD6 /* ButtonStyle.swift in Sources */,
 				F12680712A477F6E007931B6 /* Item+CoreDataProperties.swift in Sources */,
 				F12680732A477F6E007931B6 /* RecycleItem+CoreDataProperties.swift in Sources */,
 				F1678A192979BAE600F676A4 /* ListDetailView.swift in Sources */,

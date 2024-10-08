@@ -161,15 +161,29 @@ struct Itemview: View {
                 .padding(.bottom, 20)
                 .padding(.top, 20)
             
+            HStack {
+                Button("-") {
+                    if vm.recycleCount > 1 {
+                        vm.recycleCount -= 1
+                    }
+                }.buttonStyle(RecycleButtonStyle()).disabled(vm.recycleCount <= 1)
+                Text(String(vm.recycleCount)).frame(minWidth: 60)
+                Button("+") {
+                    vm.recycleCount += 1
+                }.buttonStyle(RecycleButtonStyle())
+            }
+            
+            Spacer()
+            
             ForEach(Array(vm.typeArr.enumerated()), id: \.offset) {  _, type in
                 Button {
                     vm.addRecyle(type)
-                    vm.setUsedRecyleTypesArr()
                 } label: {
-                    Text(Util.recTypeName(type)).frame(minWidth: 200, maxWidth: .infinity)
-                }.buttonStyle(.bordered)
+                    Text(Util.recTypeName(type)).frame(maxWidth: .infinity)
+                }.buttonStyle(RecycleOptionButtonStyle())
             }
             .padding(.bottom, 30).frame(maxWidth: .infinity)
+            Spacer()
         }
         .padding()
     }

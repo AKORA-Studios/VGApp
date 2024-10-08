@@ -28,6 +28,7 @@ class ItemViewmodel: ObservableObject {
     @Published var typeArr: [RecycleTypes] = []
     @Published var usedRecycleTypes: [RecycleTypes] = []
     @Published var recycleDict: [RecycleTypes: Int] = [:]
+    @Published var recycleCount: Int = 1
     
     @Published var showDeleteAlert = false
     
@@ -94,9 +95,15 @@ class ItemViewmodel: ObservableObject {
     }
     
     func addRecyle(_ type: RecycleTypes) {
-        CoreData.addRecycle(list!, type: type)
+        guard let list = list else { return }
+        for _ in 1...recycleCount {
+            CoreData.addRecycle(list, type: type)
+        }
+        recycleCount = 1
         Util.save()
         withAnimation { showsSheet = false }
+       // updateViews()
+        setUsedRecyleTypesArr()
     }
     
     func createItem() {
