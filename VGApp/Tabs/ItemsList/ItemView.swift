@@ -24,6 +24,9 @@ struct Itemview: View {
                 List {
                     ForEach(vm.items) { item in
                         ItemCell(item: item)
+                            .onTapGesture {
+                                vm.showEditItemSheet(item)
+                            }
                     }.onDelete { indexSet in
                         vm.removeItems(at: indexSet)
                     }
@@ -66,6 +69,8 @@ struct Itemview: View {
                 newItemView()
             case .newRecycle:
                 newRecycleView()
+            case .editItem:
+                editItemView()
             }
         }
         .alert(isPresented: $vm.showDeleteAlert) {
@@ -129,6 +134,48 @@ struct Itemview: View {
         }.onAppear {
             vm.updateViews()
         }
+    }
+    
+    func editItemView() -> some View {
+        NavigationView(content: {
+            VStack {
+                ZStack {
+                    TextField("newItem_item_name", text: $vm.toBeEditedItem_Name)
+                        .padding()
+                    RoundedRectangle(cornerRadius: 8).fill(.clear)
+                        .background(RoundedRectangle(cornerRadius: 8).stroke(.green, lineWidth: 1))
+                        .frame(height: 30)
+                }
+                
+                ZStack {
+                    TextField("newItem_item_code", text: $vm.toBeEditedItem_Number)
+                        .padding()
+                        .keyboardType(.numberPad)
+                        .onChange(of: vm.toBeEditedItem_Number) { _ in
+                            if vm.toBeEditedItem_Number.count > 4 {
+                                vm.toBeEditedItem_Number = String(vm.toBeEditedItem_Number.prefix(4))
+                            }
+                        }
+                    RoundedRectangle(cornerRadius: 8).fill(.clear)
+                        .background(RoundedRectangle(cornerRadius: 8).stroke(.green, lineWidth: 1))
+                        .frame(height: 30)
+                }
+                Spacer().frame(height: 50)
+                Button {
+                    vm.saveEditedItem()
+                } label: {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 8).fill(.green).frame(height: 40)
+                        Text("editItem_add_button_title").foregroundColor(.white)
+                    }
+                }
+                navigationStyling("editItem_title".localized)
+                
+            }.padding()
+                .onAppear {
+                    vm.updateViews()
+                }
+        })
     }
     
     func recycleSection() -> some View {

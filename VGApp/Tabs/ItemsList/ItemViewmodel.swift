@@ -10,6 +10,7 @@ import SwiftUI
 enum SHEETTYPE {
     case newItem
     case newRecycle
+    case editItem
 }
 
 class ItemViewmodel: ObservableObject {
@@ -29,6 +30,11 @@ class ItemViewmodel: ObservableObject {
     @Published var usedRecycleTypes: [RecycleTypes] = []
     @Published var recycleDict: [RecycleTypes: Int] = [:]
     @Published var recycleCount: Int = 1
+    
+    // edit Item
+    @Published var toBeEditedItem: Item?
+    @Published var toBeEditedItem_Name: String = ""
+    @Published var toBeEditedItem_Number: String = "0000"
     
     @Published var showDeleteAlert = false
     
@@ -92,6 +98,32 @@ class ItemViewmodel: ObservableObject {
     func showNewItemSheet() {
         selectedSheetType = .newItem
         withAnimation { showsSheet = true }
+    }
+    
+    func showEditItemSheet(_ item: Item) {
+        toBeEditedItem = item
+        toBeEditedItem_Name = item.name
+        toBeEditedItem_Number = item.number
+        
+        selectedSheetType = .editItem
+        withAnimation { showsSheet = true }
+    }
+    
+    func saveEditedItem() {
+        guard let list = list else { return }
+        guard let toBeEditedItem = toBeEditedItem else { return }
+        
+        // remove old one
+        CoreData.removeItem(toBeEditedItem, list)
+    
+        // create new one
+        Util.createItem(name: toBeEditedItem_Name, code: toBeEditedItem_Number)
+        withAnimation { showsSheet = false }
+        toBeEditedItem_Name = ""
+        toBeEditedItem_Number = ""
+        
+        Util.save()
+        updateViews()
     }
     
     func addRecyle(_ type: RecycleTypes) {
