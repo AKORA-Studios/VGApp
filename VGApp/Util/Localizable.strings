@@ -35,7 +35,7 @@
 "scannerView_title"="Barcode Scanner";
 "scannerView_item_placeholder_name"="Name";
 "scannerView_title"="Barcode Scanner";
-"scannerView_nocamera"="Dieses Gerät besitzt keine Kamera oder die nötigen Berechtigungen wurdne nicht erteilt";
+"scannerView_nocamera"="Dieses Gerät besitzt keine Kamera oder die nötigen Berechtigungen wurden nicht erteilt";
 
 // ListDetailView
 "listDetailView_title"="Listeninhalt";

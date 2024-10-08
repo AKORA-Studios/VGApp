@@ -14,6 +14,7 @@ let icons: [String: Image] = [
     "banana": Image("banana"),
     "brocolli": Image("brocolli"),
     "pepper": Image("pepper"),
+    "pepper_sharp": Image("pepper 1"),
     "cherry": Image("cherry"),
     "lemon": Image("lemon"),
     "grapes": Image("grapes"),
@@ -38,7 +39,9 @@ let names: [String: [String]] = [
     "lemon": ["zitrone", "zitronen"],
     "grapes": ["trauben", "weintrauben"],
     "orange": ["orange", "orangen"],
+    "pepper_sharp": ["paprikasspitz", "paprikaspitz"],
     "pepper": ["paprika", "paprikas"],
+   
     "pear": ["birne", "birnen"],
     "strawberry": ["erdbeere", "erdbeeren"],
     "tomato": ["tomate", "tomaten"],
@@ -54,7 +57,7 @@ struct IconManager {
      
         names.forEach { entry in
             entry.value.forEach { val in
-                if str.lowercased().contains(val) {
+                if str.lowercased().replacingOccurrences(of: " ", with: "").contains(val) {
                     guard let icon = icons[entry.key] else { return }
                     img = icon
                 }
@@ -68,7 +71,7 @@ struct IconManager {
         
         names.forEach { entry in
             entry.value.forEach { val in
-                if str.lowercased().contains(val) {
+                if str.lowercased().replacingOccurrences(of: " ", with: "").contains(val) {
                     value = true
                 }
             }
