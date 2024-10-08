@@ -7,6 +7,7 @@
 Scannen von Barcodes in Bioläden, sodass man diese nicht mehr nervig auf Zettel schreiben muss :3
 
 ## Features
+
 - Scannen von barcodes und das daraus elsen der Gemüse/Obst-Nummer
 - speichern von Einkäufen
 - speichern von abgegebenen Pfand
@@ -17,19 +18,19 @@ Scannen von Barcodes in Bioläden, sodass man diese nicht mehr nervig auf Zettel
 <details open>
   <summary>Pictures</summary>
 
-<p>
 <img src="./ShowcaseImages/ItemList.png" height="700" width="323" hspace="10"/>
-<img src="./ShowcaseImages/ItemList_swipe.png"  height="700" width="323"/>
+<img src="./ShowcaseImages/ItemList_swipe.png" height="700" width="323"/>
 
-<img src="./ShowcaseImages/ListDetail.png"  height="700" width="323" hspace="10" vspace="10"/>
-<img src="./ShowcaseImages/ListOverview.png"  height="700" width="323" vspace="10"/>
-</p>
+<img src="./ShowcaseImages/ListDetail.png" height="700" width="323" hspace="10" vspace="10"/>
+<img src="./ShowcaseImages/ListOverview.png" height="700" width="323" vspace="10"/>
+
+<img src="./ShowcaseImages/AddRecycle.png" height="700" width="323" vspace="10"/>
+
 </details>
-
 
 ## How to Install and Run the Project
 
-```
+```CMD
 git clone https://github.com/AKORA-Studios/VGApp
 ```
 
@@ -40,3 +41,9 @@ git clone https://github.com/AKORA-Studios/VGApp
 
 - iOS 15.0+
 - Xcode Xcode 12.1
+  
+## Contributors
+
+<a href = "https://github.com/AKORA-Studios/VGApp/graphs/contributors">
+  <img src = "https://contrib.rocks/image?repo=AKORA-Studios/VGApp"/>
+</a>
