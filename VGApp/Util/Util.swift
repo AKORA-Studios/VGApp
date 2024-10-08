@@ -79,6 +79,10 @@ struct Util {
         return CoreData.getListItems(list)
     }
     
+    static func getRecycleCount(_ list: ShoppingList = getSelectedList()) -> Int {
+        return CoreData.getRecylces(list).count
+    }
+    
     /// Delete all ShoppingLists from CoreData
     static func deleteAllLists() {
         let appData = getAppData()

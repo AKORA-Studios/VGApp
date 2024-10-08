@@ -33,7 +33,11 @@ struct ListView: View {
                                             }
                                             Text(list.date.format())
                                             Spacer()
+                                            Text("Recycle: \(Util.getRecycleCount(list))")
+                                                .foregroundColor(.gray)
+                                                .font(.footnote)
                                             Text("listView_itemCount\(itemsArr.count)").foregroundColor(.gray)
+                                                .font(.footnote)
                                         }
                                         
                                     }
