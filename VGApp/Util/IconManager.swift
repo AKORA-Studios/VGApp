@@ -13,8 +13,8 @@ let icons: [String: Image] = [
     "avocado": Image("avocado"),
     "banana": Image("banana"),
     "brocolli": Image("brocolli"),
-    "pepper": Image("pepper"),
-    "pepper_sharp": Image("pepper 1"),
+    "pepper_sharp": Image("pepper"),
+    "pepper": Image("pepper 1"),
     "cherry": Image("cherry"),
     "lemon": Image("lemon"),
     "grapes": Image("grapes"),
@@ -41,7 +41,6 @@ let names: [String: [String]] = [
     "orange": ["orange", "orangen"],
     "pepper_sharp": ["paprikasspitz", "paprikaspitz"],
     "pepper": ["paprika", "paprikas"],
-   
     "pear": ["birne", "birnen"],
     "strawberry": ["erdbeere", "erdbeeren"],
     "tomato": ["tomate", "tomaten"],
@@ -53,11 +52,15 @@ let names: [String: [String]] = [
 
 struct IconManager {
     static func getIcon(_ str: String) -> Image {
+        var query = str.lowercased().replacingOccurrences(of: " ", with: "")
         var img = Image(systemName: "questionmark.diamond")
      
         names.forEach { entry in
             entry.value.forEach { val in
-                if str.lowercased().replacingOccurrences(of: " ", with: "").contains(val) {
+                if query == val {
+                    guard let icon = icons[entry.key] else { return }
+                    img = icon
+                } else if query.contains(val) {
                     guard let icon = icons[entry.key] else { return }
                     img = icon
                 }
