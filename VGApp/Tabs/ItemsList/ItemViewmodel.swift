@@ -102,7 +102,6 @@ class ItemViewmodel: ObservableObject {
         recycleCount = 1
         Util.save()
         withAnimation { showsSheet = false }
-       // updateViews()
         setUsedRecyleTypesArr()
     }
     

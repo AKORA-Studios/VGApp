@@ -89,4 +89,22 @@ struct IconManager {
             return getIcon("crate")
         }
     }
+    
+    static func get_recycle_image(_ type: RecycleTypes) -> Image {
+        var img: Image?
+        
+        switch type {
+        case .yoghurtglass:
+            img = icons["yogurt"]
+        case .bottle:
+            img = icons["glass"]
+        case .crate:
+            img = icons["crate"]
+        }
+        
+        guard let img = img else {
+            return Image(systemName: "questionmark.diamond")
+        }
+        return img
+    }
 }

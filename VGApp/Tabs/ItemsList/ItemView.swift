@@ -156,35 +156,56 @@ struct Itemview: View {
     }
     
     func newRecycleView() -> some View {
-        VStack {
-            Text("newRecycle_title").font(.title)
-                .padding(.bottom, 20)
-                .padding(.top, 20)
-            
-            HStack {
-                Button("-") {
-                    if vm.recycleCount > 1 {
-                        vm.recycleCount -= 1
-                    }
-                }.buttonStyle(RecycleButtonStyle()).disabled(vm.recycleCount <= 1)
-                Text(String(vm.recycleCount)).frame(minWidth: 60)
-                Button("+") {
-                    vm.recycleCount += 1
-                }.buttonStyle(RecycleButtonStyle())
+        NavigationView(content: {
+            VStack {
+                HStack {
+                    Button("-") {
+                        if vm.recycleCount > 1 {
+                            vm.recycleCount -= 1
+                        }
+                    }.buttonStyle(RecycleButtonStyle()).disabled(vm.recycleCount <= 1)
+                    Text(String(vm.recycleCount)).frame(minWidth: 60)
+                    Button("+") {
+                        vm.recycleCount += 1
+                    }.buttonStyle(RecycleButtonStyle())
+                }.padding(.top, 20)
+                
+                Spacer()
+                
+                ForEach(Array(vm.typeArr.enumerated()), id: \.offset) {  _, type in
+                    Button {
+                        vm.addRecyle(type)
+                    } label: {
+                        HStack {
+                            IconManager.get_recycle_image(type)
+                                .resizable()
+                                .frame(width: 15, height: 15)
+                                .colorMultiply(.gray)
+                            
+                            Text(Util.recTypeName(type))
+                                .frame(height: 15)
+                                .frame(maxWidth: .infinity)
+                        }
+                    }.buttonStyle(RecycleOptionButtonStyle())
+                }
+                .frame(maxWidth: .infinity)
+                navigationStyling("newRecycle_title".localized)
             }
-            
+            .padding()
+        })
+    }
+    
+    @ViewBuilder
+    func navigationStyling(_ title: String) -> some View {
+        if #available(iOS 16.0, *) {
             Spacer()
-            
-            ForEach(Array(vm.typeArr.enumerated()), id: \.offset) {  _, type in
-                Button {
-                    vm.addRecyle(type)
-                } label: {
-                    Text(Util.recTypeName(type)).frame(maxWidth: .infinity)
-                }.buttonStyle(RecycleOptionButtonStyle())
-            }
-            .padding(.bottom, 30).frame(maxWidth: .infinity)
+                .navigationTitle(title)
+                .toolbarBackground(
+                    Color.accentColor, for: .navigationBar)
+                .toolbarBackground(.visible, for: .navigationBar)
+        } else {
             Spacer()
+                .navigationTitle(title)
         }
-        .padding()
     }
 }
