@@ -94,11 +94,8 @@ struct Itemview: View {
     }
     
     func newItemView() -> some View {
-        ScrollView {
+        NavigationView(content: {
             VStack {
-                Spacer()
-                Text("newItem_title").font(.title)
-                Spacer().frame(height: 50)
                 ZStack {
                     TextField("newItem_item_name", text: $vm.newName)
                         .padding()
@@ -129,11 +126,13 @@ struct Itemview: View {
                         Text("newItem_add_button_title").foregroundColor(.white)
                     }
                 }
-                Spacer()
-            }.padding(10)
-        }.onAppear {
-            vm.updateViews()
-        }
+                navigationStyling("newItem_title".localized)
+                
+            }.padding()
+                .onAppear {
+                    vm.updateViews()
+                }
+        })
     }
     
     func editItemView() -> some View {
