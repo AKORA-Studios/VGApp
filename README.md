@@ -8,10 +8,10 @@ Scannen von Barcodes in Bioläden, sodass man diese nicht mehr nervig auf Zettel
 
 ## Features
 
-- Scannen von barcodes und das daraus elsen der Gemüse/Obst-Nummer
-- speichern von Einkäufen
-- speichern von abgegebenen Pfand
-- speichern von nummern mti zugehörigem gemüse/Obst -> autocomplete on scan
+- Scannen von Barcodes und das daraus lesen der Gemüse/Obst-Nummer
+- Speichern von Einkäufen
+- Speichern von abgegebenen Pfand
+- Speichern von Nummern mit zugehörigem gemüse/Obst -> Autocomplete on scan
 
 ## Showcase
 
