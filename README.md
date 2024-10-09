@@ -15,15 +15,16 @@ Scannen von Barcodes in Bioläden, sodass man diese nicht mehr nervig auf Zettel
 
 ## Showcase
 
-<details open>
-  <summary>Pictures</summary>
+<img src="./ShowcaseImages/Scanner.JPG" height="700" width="323" hspace="10"/>
+<img src="./ShowcaseImages/ListDetail.png" height="700" width="323" hspace="10" vspace="10"/>
+
+<details closed>
+  <summary>More Pictures</summary>
 
 <img src="./ShowcaseImages/ItemList.png" height="700" width="323" hspace="10"/>
 <img src="./ShowcaseImages/ItemList_swipe.png" height="700" width="323"/>
 
-<img src="./ShowcaseImages/ListDetail.png" height="700" width="323" hspace="10" vspace="10"/>
 <img src="./ShowcaseImages/ListOverview.png" height="700" width="323" vspace="10"/>
-
 <img src="./ShowcaseImages/AddRecycle.png" height="700" width="323" vspace="10"/>
 
 </details>
